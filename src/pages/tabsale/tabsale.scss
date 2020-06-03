@@ -1,0 +1,25 @@
+page-tabsale {
+    ion-content{
+        background-image: url('./../../assets/imgs/home.jpg');
+    }
+    ion-card{
+        img{
+            height: 230px;
+        }
+    }
+
+    ion-fab{
+        margin-bottom: 35px;
+        .fab-md, .fab-ios{
+        background-color: cadetblue;
+        }
+    }
+
+    .toolbar-background-md{
+        background: cadetblue;
+    }
+
+    .list-md, .list-ios{
+        margin-top: -15px
+    }
+}
