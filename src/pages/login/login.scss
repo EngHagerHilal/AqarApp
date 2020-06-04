@@ -1,0 +1,21 @@
+page-login {
+    ion-content{
+        background-image: url('./../../assets/imgs/login.jpg');
+        .divform{
+            border-radius: 10px;
+            padding: 5%;
+            color: #eee;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+        }
+        .divformmargin{
+            margin-top: 20%;
+            margin-bottom: 5%;
+        }
+        .itembackground{
+            background-color: rgba(27,29,30,0.62);
+        }
+        .note-md, .note-ios {
+            color: red;
+        }
+    }
+}

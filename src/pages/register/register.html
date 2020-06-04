@@ -1,0 +1,69 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="divform divformmargin">
+    <h2 text-center><u>Sign Up</u></h2>
+    <div text-center>
+      <b>Happy To Join Us <ion-icon name="happy"></ion-icon></b>
+    </div>
+    <br>
+    <form #f="ngForm" (ngSubmit)="Register()">
+      <ion-item class="divform itembackground">
+        <ion-label floating>User Name</ion-label>
+        <ion-input type="text" [(ngModel)]="logData.UserName" name="UserName" #UserName="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="UserName.touched && UserName.errors?.required">User Name Cannot By Empty</ion-note>
+      </div>
+      
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="logData.Email" name="Email" #Email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Email.touched && Email.errors?.required">Email Cannot By Empty</ion-note>
+      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">Please, Enter a Valid E-mail</ion-note>
+    </div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Phone</ion-label>
+        <ion-input type="number" [(ngModel)]="logData.Phone" name="Phone" #Phone="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Phone.touched && Phone.errors?.required">Phone Cannot By Empty</ion-note></div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Password</ion-label>
+        <ion-input type="Password" [(ngModel)]="logData.Password" name="Password" #Password="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Password.touched && Password.errors?.required">Password Cannot By Empty</ion-note></div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Confirme Password</ion-label>
+        <ion-input type="Password" [(ngModel)]="ConfirmePasswordText" name="ConfirmePassword" #ConfirmePassword="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="ConfirmePassword.touched && ConfirmePassword.errors?.required">Confirme Password Cannot By Empty</ion-note>
+      <ion-note *ngIf="ConfirmePassword.touched && ConfirmePassword.value != Password.value && !ConfirmePassword.errors?.required">Not Match</ion-note>
+      </div><br>
+      <button ion-button type="submit" block round [disabled]="f.invalid || ConfirmePassword.value != Password.value">Sign Up</button>
+      <br>
+    </form>
+  </div>
+
+</ion-content>

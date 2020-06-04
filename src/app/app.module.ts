@@ -8,6 +8,10 @@ import { TabrentPage } from './../pages/tabrent/tabrent';
 import { TabsalePage } from './../pages/tabsale/tabsale';
 import { TabhomePage } from './../pages/tabhome/tabhome';
 import { PostdetailsPage } from './../pages/postdetails/postdetails';
+import { LoginPage } from './../pages/login/login';
+import { RegisterPage } from './../pages/register/register';
+import { AddpostPage } from './../pages/addpost/addpost';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +23,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabhomePage,
     TabsalePage,
     TabrentPage,
-    PostdetailsPage
+    PostdetailsPage,
+    LoginPage,
+    RegisterPage,
+    AddpostPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabhomePage,
     TabsalePage,
     TabrentPage,
-    PostdetailsPage
+    PostdetailsPage,
+    LoginPage,
+    RegisterPage,
+    AddpostPage
   ],
   providers: [
     StatusBar,

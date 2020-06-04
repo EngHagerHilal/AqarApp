@@ -1,0 +1,72 @@
+<!--
+  Generated template for the AddpostPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Advertisement</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="divform divformmargin">
+    <h2 text-center><u>Details of Ad.</u></h2>
+    <br>
+    <form #f="ngForm" (ngSubmit)="add()">
+      <ion-item class="divform itembackground">
+        <ion-label floating>Title</ion-label>
+        <ion-input type="text" [(ngModel)]="newad.Title" name="Title" #Title="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="Title.touched && Title.errors?.required">Title Cannot By Empty</ion-note>
+      </div>
+      
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Description</ion-label>
+        <ion-textarea type="text" [(ngModel)]="newad.Description" name="Description" #Description="ngModel" required></ion-textarea>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Description.touched && Description.errors?.required">Description Cannot By Empty</ion-note>
+    </div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Address</ion-label>
+        <ion-input type="text" [(ngModel)]="newad.Address" name="Address" #Address="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Address.touched && Address.errors?.required">Address Cannot By Empty</ion-note></div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Price</ion-label>
+        <ion-input type="number" [(ngModel)]="newad.Price" name="Price" #Price="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Price.touched && Price.errors?.required">Password Cannot By Empty</ion-note></div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>Type</ion-label>
+        <ion-select [(ngModel)]="newad.Type" name="Type" #Type="ngModel" required>
+          <ion-option value="Selling">Selling</ion-option>
+          <ion-option value="Renet">Renet</ion-option>
+        </ion-select>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Type.touched && Type.errors?.required">Type Cannot By Empty</ion-note>
+      </div>
+      <br>
+      <ion-row>
+        <ion-col col-10>
+          <button ion-button type="submit" block round [disabled]="f.invalid">Add</button>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button type="button" block round icon-only style="background-color: black;"><ion-icon name="images"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+      <br>
+    </form>
+  </div>
+
+</ion-content>

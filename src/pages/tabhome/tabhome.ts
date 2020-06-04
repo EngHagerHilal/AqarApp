@@ -1,3 +1,4 @@
+import { AddpostPage } from './../addpost/addpost';
 import { PostdetailsPage } from './../postdetails/postdetails';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -57,6 +58,10 @@ export class TabhomePage {
 
   opendetails(item){
     this.navCtrl.push(PostdetailsPage ,{item:item});
+  }
+
+  openaddpost(){
+    this.navCtrl.push(AddpostPage);
   }
 
 }

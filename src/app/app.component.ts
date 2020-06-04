@@ -1,3 +1,5 @@
+import { RegisterPage } from './../pages/register/register';
+import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,8 +25,8 @@ export class MyApp {
     this.pages = [
       { index:0 , title: 'Home', component: TabsHomePage ,icon:'home' ,isActive:true},
       { index:1 , title: 'My Profile', component: TabsHomePage ,icon:'person' ,isActive:false},
-      { index:2 , title: 'Sign In', component: TabsHomePage ,icon:'log-in' ,isActive:false},
-      { index:3 , title: 'Sign Up', component: TabsHomePage ,icon:'happy' ,isActive:false},
+      { index:2 , title: 'Sign In', component: LoginPage ,icon:'log-in' ,isActive:false},
+      { index:3 , title: 'Sign Up', component: RegisterPage ,icon:'happy' ,isActive:false},
       { index:4 , title: 'About Us', component: TabsHomePage ,icon:'information-circle' ,isActive:false},
       //{ index:5 , title: 'List', component: ListPage ,icon:'information-circle' ,isActive:false}
     ];
