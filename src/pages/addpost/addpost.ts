@@ -24,10 +24,11 @@ export class AddpostPage {
   }
   add(){
     this.newad.created_at = this.date.toISOString()
+    this.newad.created_at = this.date.toISOString()
     this.newad.status = 'active'
     this.newad.allImages = [];
     this.newad.mainImaage = '';
-    this.newad.user_id = 'who logedin';
+    this.newad.user_id = 0; //'who logedin'
     this.newad.email = 'who logedin';
     this.newad.phone = 'who logedin';
     console.log('newad: ',this.newad)

@@ -1,3 +1,6 @@
+import { ContactusPage } from './../pages/contactus/contactus';
+import { ProfilePage } from './../pages/profile/profile';
+import { AboutusPage } from './../pages/aboutus/aboutus';
 import { RegisterPage } from './../pages/register/register';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
@@ -24,10 +27,11 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { index:0 , title: 'Home', component: TabsHomePage ,icon:'home' ,isActive:true},
-      { index:1 , title: 'My Profile', component: TabsHomePage ,icon:'person' ,isActive:false},
+      { index:1 , title: 'My Profile', component: ProfilePage ,icon:'person' ,isActive:false},
       { index:2 , title: 'Sign In', component: LoginPage ,icon:'log-in' ,isActive:false},
       { index:3 , title: 'Sign Up', component: RegisterPage ,icon:'happy' ,isActive:false},
-      { index:4 , title: 'About Us', component: TabsHomePage ,icon:'information-circle' ,isActive:false},
+      { index:4 , title: 'Contact Us', component: ContactusPage ,icon:'mail' ,isActive:false},
+      { index:5 , title: 'About Us', component: AboutusPage ,icon:'information-circle' ,isActive:false},
       //{ index:5 , title: 'List', component: ListPage ,icon:'information-circle' ,isActive:false}
     ];
     this.lastpage = this.pages[0]
@@ -53,10 +57,10 @@ export class MyApp {
   }
 
   isActive(page){
-    this.pages[this.pages.indexOf(page)].isActive = true;
-    if(this.lastpage){
-      this.lastpage.isActive = false
+    if(this.pages[this.pages.indexOf(page)].isActive == false){
+      this.pages[this.pages.indexOf(page)].isActive = true;
+        this.lastpage.isActive = false
+      this.lastpage = this.pages[this.pages.indexOf(page)]
     }
-    this.lastpage = this.pages[this.pages.indexOf(page)]
   }
 }

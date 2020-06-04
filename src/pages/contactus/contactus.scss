@@ -1,24 +1,23 @@
-page-addpost {
+page-contactus {
     ion-content{
-        background-image: url('./../../assets/imgs/add.jpg');
+        background-image: url('./../../assets/imgs/profile.jpg');
         .divform{
             border-radius: 10px;
             padding: 5%;
             color: #eee;
+            background-color: rgba(27,29,30,0.62);
             box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
         }
         .divformmargin{
+            margin-top: 5%;
             margin-bottom: 5%;
         }
         .itembackground{
-            background-color: rgba(27,29,30,0.62);
+            border-radius: 5px;
+            padding: 5%;
         }
         .note-md, .note-ios {
             color: red;
         }
-        
     }
-    .toolbar-background-md, .toolbar-background-ios{
-            background: cadetblue;
-        }
 }

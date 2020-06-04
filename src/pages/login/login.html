@@ -42,10 +42,15 @@
     <h2 text-center>Reset Password</h2>
     <form #f2="ngForm">
       <ion-item class="divform itembackground">
-        <ion-label floating>User Name</ion-label>
-        <ion-input type="text" [(ngModel)]="logData.UserName" name="UserName" #UserName="ngModel" required></ion-input>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="EmailText" name="Email" #Email="ngModel" required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
       </ion-item>
-      <ion-note *ngIf="UserName.touched && UserName.errors?.required">User Name Cannot By Empty</ion-note>
+      <div text-center>
+      <ion-note *ngIf="Email.touched && Email.errors?.required">E-mail Cannot By Empty</ion-note>
+      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">Please, Enter a Valid E-mail
+      </ion-note>
+    </div>
       <br>
       <button ion-button type="submit" block round (click)="resetpassword()" [disabled]="f2.invalid">Resert Password</button>
       <br>

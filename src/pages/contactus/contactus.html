@@ -1,0 +1,71 @@
+<!--
+  Generated template for the ContactusPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="divform divformmargin">
+    <h2 text-center><u>Send You Massege!</u></h2>
+    <br>
+    <form #f="ngForm" (ngSubmit)="Send()">
+      <ion-item class="itembackground">
+        <ion-label floating>User Name</ion-label>
+        <ion-input type="text" [(ngModel)]="contactDetails.UserName" name="UserName" #UserName="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="UserName.touched && UserName.errors?.required">User Name Cannot By Empty</ion-note>
+      </div>
+
+      <br>
+      <ion-item class=" itembackground">
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="contactDetails.Email" name="Email" #Email="ngModel" required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="Email.touched && Email.errors?.required">Email Cannot By Empty</ion-note>
+        <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">Please, Enter a Valid E-mail
+        </ion-note>
+      </div>
+
+      <br>
+      <ion-item class=" itembackground">
+        <ion-label floating>Phone</ion-label>
+        <ion-input type="number" [(ngModel)]="contactDetails.Phone" name="Phone" #Phone="ngModel" required></ion-input>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="Phone.touched && Phone.errors?.required">Phone Cannot By Empty</ion-note>
+      </div>
+
+      <br>
+      <ion-item class=" itembackground">
+        <ion-label floating>Your Massege</ion-label>
+        <ion-textarea type="Password" [(ngModel)]="contactDetails.massege" name="massege" #massege="ngModel"
+          required></ion-textarea>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="massege.touched && massege.errors?.required">Massege Cannot By Empty
+        </ion-note>
+      </div>
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button icon-start type="submit" text-center round [disabled]="f.invalid">
+            <ion-icon name="mail"></ion-icon> Send
+          </button>
+        </ion-col>
+      </ion-row>
+      <br>
+    </form>
+  </div>
+</ion-content>

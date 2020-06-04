@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class LoginPage {
   isforget:boolean = false;
   logData:{UserName:string , Password:string} = {UserName:'',Password:''}
+  EmailText:string=''
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -26,10 +27,11 @@ export class LoginPage {
     console.log('logData: ',this.logData)
   }
   resetpassword(){
-    console.log('reset data: ',this.logData)
+    console.log('reset EmailText: ',this.EmailText)
   }
   toggelforget(){
     this.isforget =!this.isforget;
+    this.EmailText='';
   }
 
 }

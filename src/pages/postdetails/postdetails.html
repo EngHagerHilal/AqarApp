@@ -15,17 +15,17 @@
     <ion-card>
 
       <ion-slides pager autoplay="1000" loop="true" speed="3000">
-        <ion-slide *ngFor="let img of myitem.imgs">
+        <ion-slide *ngFor="let img of myitem.allImages">
           <img [src]="img"/>
         </ion-slide>
       </ion-slides>
 
       <ion-card-content>
         <ion-card-title text-center>
-          <b>{{myitem.title | titlecase}}</b>
+          <b>{{myitem.post_name | titlecase}}</b>
         </ion-card-title>
         <p text-center>
-          {{myitem.description | titlecase}}
+          {{myitem.desc | titlecase}}
         </p>
 <hr>
         <ion-row>
@@ -33,7 +33,7 @@
             <ion-icon name="time" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.date}}
+            {{myitem.created_at}}
           </ion-col>
         </ion-row>
 
@@ -42,7 +42,7 @@
             <ion-icon name="locate" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.location}}
+            {{myitem.address}}
           </ion-col>
         </ion-row>
 
@@ -70,6 +70,15 @@
           </ion-col>
           <ion-col col-10>
             {{myitem.phone}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="star" color="primary"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            For {{myitem.type | titlecase}}
           </ion-col>
         </ion-row>
 

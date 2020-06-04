@@ -11,6 +11,10 @@ import { PostdetailsPage } from './../pages/postdetails/postdetails';
 import { LoginPage } from './../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { AddpostPage } from './../pages/addpost/addpost';
+import { AboutusPage } from './../pages/aboutus/aboutus';
+import { ProfilePage } from './../pages/profile/profile';
+import { ContactusPage } from './../pages/contactus/contactus';
+import { EditpostPage } from './../pages/editpost/editpost';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,7 +30,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PostdetailsPage,
     LoginPage,
     RegisterPage,
-    AddpostPage
+    AddpostPage,
+    AboutusPage,
+    ProfilePage,
+    ContactusPage,
+    EditpostPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PostdetailsPage,
     LoginPage,
     RegisterPage,
-    AddpostPage
+    AddpostPage,
+    AboutusPage,
+    ProfilePage,
+    ContactusPage,
+    EditpostPage
   ],
   providers: [
     StatusBar,

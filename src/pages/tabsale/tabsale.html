@@ -14,32 +14,35 @@
   <ion-list>
 
     <ion-card *ngFor="let item of saleinterface; let i = Index">
-      <img [src]="item.imgs[0]" (click)="opendetails(item)"/>
+      <img [src]="item.allImages[0]" (click)="opendetails(item)"/>
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
-          <u><b>{{item.title | titlecase}}</b></u>
+          <b><u>{{item.post_name | titlecase}}</u></b>
         </ion-card-title>
         <p text-center>
-          {{item.description | titlecase}}
+          {{item.desc | titlecase}}
         </p>
         <hr>
         <ion-row>
-          <ion-col col-5>
+          <ion-col col-2>
             <ion-icon name="images"></ion-icon>
-            {{item.imgs.length}}
+            {{item.allImages.length}}
           </ion-col>
-          <ion-col col-7>
+          <ion-col col-9 text-center>
             <ion-icon name="time"></ion-icon>
-            {{item.date}}
+            {{item.created_at}}
           </ion-col>
+          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="item.user_id == 2">
+          <ion-icon name="more"></ion-icon>
+        </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-
+<br>
 
   </ion-list>
   <ion-fab bottom right edge>
-    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+    <button ion-fab mini (click)="openaddpost()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
 </ion-content>
