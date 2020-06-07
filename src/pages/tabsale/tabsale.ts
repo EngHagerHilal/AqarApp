@@ -1,3 +1,4 @@
+import { Post } from './../../interfaces/post';
 import { AddpostPage } from './../addpost/addpost';
 import { EditpostPage } from './../editpost/editpost';
 import { PostdetailsPage } from './../postdetails/postdetails';
@@ -17,10 +18,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
   templateUrl: 'tabsale.html',
 })
 export class TabsalePage {
-  saleinterface: {
-    id?: number, post_name: string, desc: string, created_at: Date | string,updated_at: Date | string, allImages: string[],
-    price: number, address: string, phone: string, email: string, user_id:number, status:string, type:string
-  }[] = [
+  saleinterface: Post[] = [
       {
         id: 1,
         post_name: "Villa for sale",

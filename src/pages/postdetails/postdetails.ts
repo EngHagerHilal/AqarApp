@@ -1,3 +1,4 @@
+import { Post } from './../../interfaces/post';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,10 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'postdetails.html',
 })
 export class PostdetailsPage {
-  myitem:{
-    id?: number, post_name: string, desc: string, created_at: Date | string,updated_at: Date | string, allImages: string[],
-    price: number, address: string, phone: string, email: string, user_id:number, status:string, type:string
-  }
+  myitem:Post
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.myitem = this.navParams.get('item')
     console.log('this.myitem: ',this.myitem)

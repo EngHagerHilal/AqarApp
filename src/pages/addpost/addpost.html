@@ -17,7 +17,7 @@
     <form #f="ngForm" (ngSubmit)="add()">
       <ion-item class="divform itembackground">
         <ion-label floating>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="newad.Title" name="Title" #Title="ngModel" required></ion-input>
+        <ion-input type="text" [(ngModel)]="newad.post_name" name="Title" #Title="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
         <ion-note *ngIf="Title.touched && Title.errors?.required">Title Cannot By Empty</ion-note>
@@ -26,29 +26,29 @@
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>Description</ion-label>
-        <ion-textarea type="text" [(ngModel)]="newad.Description" name="Description" #Description="ngModel" required></ion-textarea>
+        <ion-textarea type="text" [(ngModel)]="newad.desc" name="Description" #Description="ngModel" required></ion-textarea>
       </ion-item>
       <div text-center>
       <ion-note *ngIf="Description.touched && Description.errors?.required">Description Cannot By Empty</ion-note>
     </div>
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>Address</ion-label>
-        <ion-input type="text" [(ngModel)]="newad.Address" name="Address" #Address="ngModel" required></ion-input>
+        <ion-label floating>City</ion-label>
+        <ion-input type="text" [(ngModel)]="newad.address" name="Address" #Address="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
       <ion-note *ngIf="Address.touched && Address.errors?.required">Address Cannot By Empty</ion-note></div>
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>Price</ion-label>
-        <ion-input type="number" [(ngModel)]="newad.Price" name="Price" #Price="ngModel" required></ion-input>
+        <ion-input type="number" [(ngModel)]="newad.price" name="Price" #Price="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
       <ion-note *ngIf="Price.touched && Price.errors?.required">Password Cannot By Empty</ion-note></div>
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>Type</ion-label>
-        <ion-select [(ngModel)]="newad.Type" name="Type" #Type="ngModel" required>
+        <ion-select [(ngModel)]="newad.type" name="Type" #Type="ngModel" required>
           <ion-option value="Selling">Selling</ion-option>
           <ion-option value="Renet">Renet</ion-option>
         </ion-select>

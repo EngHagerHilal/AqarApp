@@ -41,10 +41,12 @@
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>Phone</ion-label>
-        <ion-input type="number" [(ngModel)]="logData.Phone" name="Phone" #Phone="ngModel" required></ion-input>
+        <ion-input type="number" [(ngModel)]="logData.Phone" name="Phone" #Phone="ngModel" required maxlength="12"></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Phone.touched && Phone.errors?.required">Phone Cannot By Empty</ion-note></div>
+      <ion-note *ngIf="Phone.touched && Phone.errors?.required">Phone Cannot By Empty</ion-note>
+      <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">Please, Enter a Valid phone (12 Num)</ion-note>
+    </div>
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>Password</ion-label>

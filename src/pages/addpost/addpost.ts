@@ -1,3 +1,4 @@
+import { Post } from './../../interfaces/post';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'addpost.html',
 })
 export class AddpostPage {
-  newad:any={}
+  newad:Post={};
   date=new Date();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -24,10 +25,10 @@ export class AddpostPage {
   }
   add(){
     this.newad.created_at = this.date.toISOString()
-    this.newad.created_at = this.date.toISOString()
+    this.newad.updated_at = this.date.toISOString()
     this.newad.status = 'active'
     this.newad.allImages = [];
-    this.newad.mainImaage = '';
+    //this.newad.mainImaage = '';
     this.newad.user_id = 0; //'who logedin'
     this.newad.email = 'who logedin';
     this.newad.phone = 'who logedin';
