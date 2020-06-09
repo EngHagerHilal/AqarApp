@@ -1,0 +1,58 @@
+{
+    "MENU":{
+        "title" : "شركـة الرواد العقاريـة",
+        "note":"المـحـتــوى",
+        "homePage": "الصفحـــة الرئيسيــة",
+        "ProfilePage": "الصفحـــة الشخصيـــة",
+        "SignInPage": "تسجيــل الدخـــول",
+        "SignUpPage": "إنضــم إلينـــا",
+        "ContactUsPage": "تواصـــل معنـــا",
+        "AboutUsPage": "من نحــن",
+        "SignOutPage": "تسجيـــل الخـروج",
+        "labLanguage" : "اللغـــــة"
+    },
+
+    "HOME":{
+        "title" : "الصفحـــة الرئيسيــة",
+        "tabHome" : "الرئيسيــة",
+        "tabSale" : "بيــع",
+        "tabRent" : "إيجــار"
+    },
+
+    "TABs":{
+        "title_actionSheet" : "الإختيـــارات",
+        "butDelete_actionSheet" : "إزالــــة",
+        "butEdit_actionSheet" : "تعديـــل",
+        "butCancel_actionSheet" : "إلغــاء"
+    },
+
+    "POSTDETAILS":{
+        "title" : "تفــاصيــل الإعــلان"
+    },
+
+    "ADDPOST": {
+        "title" : "إضــافــة إعـــلان",
+        "subtitle" : "تفـاصيـــل الإعــلان",
+
+        "lab2_description" : "الوصــــف التفصيـــلى",
+        "lab2_description_requered" : "الوصف التفصيلى لا يمكن أن يكون فارغًا",
+
+        "lab1_title" : "عنــوان الإعـــلان",
+        "lab1_title_requered" : "عنوان الإعلان لا يمكن أن يكون فارغًا",
+        "lab1_title_maxlength" : "الحـد الأقصــى لعنــوان الإعــلان هو 20 حـرف",
+
+        "lab3_city" : "المـديـنـــة",
+        "lab3_city_requered" : "المدينة لا يمكن أن تكون فارغًا",
+
+        "lab4_price" : "السـعــر المـطـلــوب *الريال السعودى",
+        "lab4_price_requered" : "السـعر المطلوب لا يمكن أن يكون فارغًا",
+
+        "lab5_type" : "نــوع الإعــلان",
+        "lab5_type_requered" : "نوع الإعلان لا يمكن أن يكون فارغًا",
+
+        "select_option_salling" : "بـيـــع",
+        "select_option_rent" : "إيـجـــار",
+
+        "butt_add" : "إضـافــة الإعــلان"
+    }
+}

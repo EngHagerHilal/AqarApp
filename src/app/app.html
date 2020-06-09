@@ -1,22 +1,31 @@
 <ion-menu [content]="content" type="overlay">
   <ion-header>
     <ion-toolbar>
-      <ion-title>شركـة الرواد العقاريـة</ion-title>
+      <ion-title>{{ 'MENU.title' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <img src="./../../assets/imgs/logoCompany.png" alt="Logo"> 
+    <ion-note padding>{{ 'MENU.note' | translate}}</ion-note>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages; i as index" (click)="openPage(p)">
         <ion-icon item-start [name]="p.icon" [color]="p.isActive? 'primary' :''"></ion-icon>
-        {{p.title | titlecase}}
+        {{p.title | translate}}
       </button>
       <button menuClose ion-item (click)="signOut()">
         <ion-icon item-start name="exit"></ion-icon>
-        Sign Out
+        {{'MENU.SignOutPage' | translate}}
       </button>
     </ion-list>
+<hr>
+    <ion-item>
+      <ion-label>{{ 'MENU.labLanguage' | translate}}</ion-label>
+      <ion-select [(ngModel)]="selected" name="selected" interface="popover" (ionChange)="changelang()">
+        <ion-option value="en">ENG (English)</ion-option>
+        <ion-option value="ar">AR (Arabic)</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-content>
 
 </ion-menu>

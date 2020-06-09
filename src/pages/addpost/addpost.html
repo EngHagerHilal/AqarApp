@@ -6,60 +6,61 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Add Advertisement</ion-title>
+    <ion-title>{{'ADDPOST.title' | translate | titlecase }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="divform divformmargin">
-    <h2 text-center><u>Details of Ad.</u></h2>
+    <h2 text-center><u>{{'ADDPOST.subtitle' | translate | titlecase}}</u></h2>
     <br>
     <form #f="ngForm" (ngSubmit)="add()">
       <ion-item class="divform itembackground">
-        <ion-label floating>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="newad.post_name" name="Title" #Title="ngModel" required></ion-input>
+        <ion-label floating>{{'ADDPOST.lab1_title'| translate | titlecase }}</ion-label>
+        <ion-input type="text" [(ngModel)]="newad.post_name" name="Title" #Title="ngModel" required maxlength="20"></ion-input>
       </ion-item>
       <div text-center>
-        <ion-note *ngIf="Title.touched && Title.errors?.required">Title Cannot By Empty</ion-note>
+        <ion-note *ngIf="Title.touched && Title.errors?.required">{{'ADDPOST.lab1_title_requered'| translate | titlecase }}</ion-note>
+        <ion-note *ngIf="Title.touched && !Title.errors?.required && Title.errors?.maxlength">{{'ADDPOST.lab1_title_maxlength'| translate | titlecase }}</ion-note>
       </div>
       
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>Description</ion-label>
+        <ion-label floating>{{'ADDPOST.lab2_description'| translate | titlecase }}</ion-label>
         <ion-textarea type="text" [(ngModel)]="newad.desc" name="Description" #Description="ngModel" required></ion-textarea>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Description.touched && Description.errors?.required">Description Cannot By Empty</ion-note>
+      <ion-note *ngIf="Description.touched && Description.errors?.required">{{'ADDPOST.lab2_description_requered'| translate | titlecase }}</ion-note>
     </div>
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>City</ion-label>
+        <ion-label floating>{{'ADDPOST.lab3_city'| translate | titlecase }}</ion-label>
         <ion-input type="text" [(ngModel)]="newad.address" name="Address" #Address="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Address.touched && Address.errors?.required">Address Cannot By Empty</ion-note></div>
+      <ion-note *ngIf="Address.touched && Address.errors?.required">{{'ADDPOST.lab3_city_requered'| translate | titlecase }}</ion-note></div>
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>Price</ion-label>
+        <ion-label floating>{{'ADDPOST.lab4_price'| translate | titlecase }}</ion-label>
         <ion-input type="number" [(ngModel)]="newad.price" name="Price" #Price="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Price.touched && Price.errors?.required">Password Cannot By Empty</ion-note></div>
+      <ion-note *ngIf="Price.touched && Price.errors?.required">{{'ADDPOST.lab4_price_requered'| translate | titlecase }}</ion-note></div>
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>Type</ion-label>
+        <ion-label floating>{{'ADDPOST.lab5_type'| translate | titlecase }}</ion-label>
         <ion-select [(ngModel)]="newad.type" name="Type" #Type="ngModel" required>
-          <ion-option value="Selling">Selling</ion-option>
-          <ion-option value="Renet">Renet</ion-option>
+          <ion-option value="Selling">{{'ADDPOST.select_option_salling'| translate | titlecase }}</ion-option>
+          <ion-option value="Renet">{{'ADDPOST.select_option_rent'| translate | titlecase }}</ion-option>
         </ion-select>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Type.touched && Type.errors?.required">Type Cannot By Empty</ion-note>
+      <ion-note *ngIf="Type.touched && Type.errors?.required">{{'ADDPOST.lab5_type_requered'| translate | titlecase }}</ion-note>
       </div>
       <br>
       <ion-row>
         <ion-col col-10>
-          <button ion-button type="submit" block round [disabled]="f.invalid">Add</button>
+          <button ion-button type="submit" block round [disabled]="f.invalid">{{'ADDPOST.butt_add'| translate | titlecase }}</button>
         </ion-col>
         <ion-col col-2>
           <button ion-button type="button" block round icon-only style="background-color: black;"><ion-icon name="images"></ion-icon></button>

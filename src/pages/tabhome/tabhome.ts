@@ -4,6 +4,7 @@ import { AddpostPage } from './../addpost/addpost';
 import { PostdetailsPage } from './../postdetails/postdetails';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the TabhomePage page.
@@ -51,7 +52,8 @@ export class TabhomePage {
         type:"rent"
       },
     ];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
+      ,public translate:TranslateService) {
   }
 
   ionViewDidLoad() {
@@ -73,21 +75,21 @@ export class TabhomePage {
 
   presentActionSheetMore(item) {
     const actionSheet = this.actionSheetCtrl.create({
-      title: 'Options',
+      title: this.translate.instant('TABs.title_actionSheet'),
       buttons: [
         {
-          text: 'Delete',
+          text: this.translate.instant('TABs.butDelete_actionSheet'),
           handler: () => {
             console.log('Delete clicked');
           }
         },{
-          text: 'Edit',
+          text: this.translate.instant('TABs.butEdit_actionSheet'),
           handler: () => {
             this.navCtrl.push(EditpostPage,{item:item});
             console.log('Edit clicked');
           }
         },{
-          text: 'Cancel',
+          text: this.translate.instant('TABs.butCancel_actionSheet'),
           handler: () => {
             console.log('Cancel clicked');
           }

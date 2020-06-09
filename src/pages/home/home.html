@@ -3,14 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>{{ 'HOME.title' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-tabs [selectedIndex]='myIndex'>
-    <ion-tab [root]="tabSaleRoot" tabTitle="Sale" tabIcon="infinite"></ion-tab>
-    <ion-tab [root]="tabHomeRoot" tabTitle="Home" tabIcon="home"></ion-tab>
-    <ion-tab [root]="tabRentRoot" tabTitle="Rent" tabIcon="repeat"></ion-tab>
+    <ion-tab [root]="tabSaleRoot" tabTitle="{{'HOME.tabSale' | translate}}" tabIcon="infinite"></ion-tab>
+    <ion-tab [root]="tabHomeRoot" tabTitle="{{'HOME.tabHome' | translate}}" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tabRentRoot" tabTitle="{{'HOME.tabRent' | translate}}" tabIcon="repeat"></ion-tab>
   </ion-tabs>
 </ion-content>

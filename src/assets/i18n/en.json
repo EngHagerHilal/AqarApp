@@ -1,0 +1,58 @@
+{
+    "MENU":{
+        "title" : "Al Rowad Company",
+        "note" : "CONTENT",
+        "homePage": "Home",
+        "ProfilePage": "My Profile",
+        "SignInPage": "Sign In",
+        "SignUpPage": "Sign Up",
+        "ContactUsPage": "Contact Us",
+        "AboutUsPage": "About Us",
+        "SignOutPage": "Sign Out",
+        "labLanguage" : "LANGUAGE"
+    },
+
+    "HOME":{
+        "title" : "Home",
+        "tabHome" : "Home",
+        "tabSale" : "Sale",
+        "tabRent" : "Rent"
+    },
+
+    "TABs":{
+        "title_actionSheet" : "Options",
+        "butDelete_actionSheet" : "Delete",
+        "butEdit_actionSheet" : "Edit",
+        "butCancel_actionSheet" : "Cancel"
+    },
+
+    "POSTDETAILS":{
+        "title" : "advertisement details"
+    },
+
+    "ADDPOST": {
+        "title" : "Add Advertisement",
+        "subtitle" : "Details of Ad.",
+
+        "lab1_title" : "title",
+        "lab1_title_requered" : "Title Cannot By Empty",
+        "lab1_title_maxlength" : "maximum length for title is 20 char.",
+
+        "lab2_description" : "Detailed description",
+        "lab2_description_requered" : "Detailed description Cannot By Empty",
+
+        "lab3_city" : "city",
+        "lab3_city_requered" : "city Cannot By Empty",
+
+        "lab4_price" : "price (SAR)",
+        "lab4_price_requered" : "price Cannot By Empty",
+
+        "lab5_type" : "type",
+        "lab5_type_requered" : "type Cannot By Empty",
+
+        "select_option_salling" : "salling",
+        "select_option_rent" : "rent",
+
+        "butt_add" : "add"
+    }
+}
