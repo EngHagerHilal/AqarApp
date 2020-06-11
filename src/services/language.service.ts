@@ -1,3 +1,4 @@
+import { Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
@@ -8,7 +9,7 @@ const LNG_KEY = 'SELECTED_LANGUAGE';
 export class LanguageService {
     selected ='';
 
-    constructor(private translate: TranslateService, private storage:Storage) {
+    constructor(private translate: TranslateService, private storage:Storage , private platform:Platform) {
         console.log('constr',localStorage.getItem('LANGSTORAGE'))
         
     }
@@ -37,6 +38,11 @@ export class LanguageService {
     setLanguage(lng){
         this.translate.use(lng);
         this.selected = lng;
+        if(this.selected == 'en'){
+            this.platform.setDir('ltr',true)
+        }else if (this.selected == 'ar'){
+            this.platform.setDir('rtl',true)
+        }
         localStorage.setItem('LANGSTORAGE',lng)
         console.log('localStorage updated: ',localStorage.getItem('LANGSTORAGE'))
     }
