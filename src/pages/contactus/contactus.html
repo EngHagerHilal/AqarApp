@@ -9,60 +9,70 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Contact Us</ion-title>
+    <ion-title>{{ 'CONTACTUS.title' | translate | titlecase}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="divform divformmargin">
-    <h2 text-center><u>Send You Massege!</u></h2>
+    <h2 text-center><u>{{ 'CONTACTUS.sub_title' | translate | titlecase}}</u></h2>
     <br>
     <form #f="ngForm" (ngSubmit)="Send()">
       <ion-item class="itembackground">
-        <ion-label floating>User Name</ion-label>
+        <ion-label floating>{{ 'CONTACTUS.lab1_username' | translate | titlecase}}</ion-label>
         <ion-input type="text" [(ngModel)]="contactDetails.UserName" name="UserName" #UserName="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-        <ion-note *ngIf="UserName.touched && UserName.errors?.required">User Name Cannot By Empty</ion-note>
-      </div>
-
-      <br>
-      <ion-item class=" itembackground">
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" [(ngModel)]="contactDetails.Email" name="Email" #Email="ngModel" required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
-      </ion-item>
-      <div text-center>
-        <ion-note *ngIf="Email.touched && Email.errors?.required">Email Cannot By Empty</ion-note>
-        <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">Please, Enter a Valid E-mail
+        <ion-note *ngIf="UserName.touched && UserName.errors?.required">
+          {{ 'CONTACTUS.lab1_username_required' | translate | titlecase}}
         </ion-note>
       </div>
 
       <br>
       <ion-item class=" itembackground">
-        <ion-label floating>Phone</ion-label>
-        <ion-input type="number" [(ngModel)]="contactDetails.Phone" name="Phone" #Phone="ngModel" required maxlength="12"></ion-input>
+        <ion-label floating>{{ 'CONTACTUS.lab2_email' | translate | titlecase}}</ion-label>
+        <ion-input type="text" [(ngModel)]="contactDetails.Email" name="Email" #Email="ngModel" required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
       </ion-item>
       <div text-center>
-        <ion-note *ngIf="Phone.touched && Phone.errors?.required">Phone Cannot By Empty</ion-note>
-        <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">Please, Enter a Valid phone (12 Num)</ion-note>
+        <ion-note *ngIf="Email.touched && Email.errors?.required">
+          {{ 'CONTACTUS.lab2_email_required' | translate | titlecase}}
+        </ion-note>
+        <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
+          {{ 'CONTACTUS.lab2_email_pattern' | translate | titlecase}}
+        </ion-note>
       </div>
 
       <br>
       <ion-item class=" itembackground">
-        <ion-label floating>Your Massege</ion-label>
+        <ion-label floating>{{ 'CONTACTUS.lab3_phone' | translate | titlecase}}</ion-label>
+        <ion-input type="number" [(ngModel)]="contactDetails.Phone" name="Phone" #Phone="ngModel" required maxlength="12"></ion-input>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="Phone.touched && Phone.errors?.required">
+          {{ 'CONTACTUS.lab3_phone_required' | translate | titlecase}}
+        </ion-note>
+        <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">
+          {{ 'CONTACTUS.lab3_phone_maxlength' | translate | titlecase}}
+        </ion-note>
+      </div>
+
+      <br>
+      <ion-item class=" itembackground">
+        <ion-label floating>{{ 'CONTACTUS.lab4_message' | translate | titlecase}}</ion-label>
         <ion-textarea type="Password" [(ngModel)]="contactDetails.massege" name="massege" #massege="ngModel"
           required></ion-textarea>
       </ion-item>
       <div text-center>
-        <ion-note *ngIf="massege.touched && massege.errors?.required">Massege Cannot By Empty
+        <ion-note *ngIf="massege.touched && massege.errors?.required">
+          {{ 'CONTACTUS.lab4_message_required' | translate | titlecase}}
         </ion-note>
       </div>
 
       <ion-row>
         <ion-col col-6>
           <button ion-button icon-start type="submit" text-center round [disabled]="f.invalid">
-            <ion-icon name="mail"></ion-icon> Send
+            <ion-icon name="mail"></ion-icon> {{ 'CONTACTUS.butt_send' | translate | titlecase}}
           </button>
         </ion-col>
       </ion-row>

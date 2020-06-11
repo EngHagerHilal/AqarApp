@@ -54,5 +54,151 @@
         "select_option_rent" : "rent",
 
         "butt_add" : "add"
+    },
+
+    "EDITPOST":{
+        "title" : "edit Advertisement",
+        "butt_save" : "save edits"
+    },
+
+    "MYPROFILE":{
+        "title" : "my profile",
+        "butt_edit" : "edit",
+        "sub_title" : "edit profile",
+
+        "lab1_username" : "user name",
+        "lab1_username_required" : "User Name Cannot By Empty",
+
+        "lab2_email" : "your email",
+        "lab2_email_required" : "Email Cannot By Empty",
+        "lab2_email_pattern" : "Please, Enter a Valid E-mail",
+
+        "lab3_phone" : "your phone",
+        "lab3_phone_required" : "Phone Cannot By Empty",
+        "lab3_phone_maxlength" : "Please, Enter a Valid phone (12 Num)",
+
+        "lab4_CurrentPassword" : "Current Password",
+        "lab4_CurrentPassword_required" : "Current Password Cannot By Empty",
+        "lab4_CurrentPassword_notmatch" : "The Current Password Is Wrong",
+
+        "lab5_NewPassword" : "New Password",
+        "lab5_NewPassword_required" : "New Password Cannot By Empty",
+
+        "lab6_ConfirmeNewPassword" : "Confirme New Password",
+        "lab6_ConfirmeNewPassword_required" : "Confirme New Password Cannot By Empty",
+        "lab6_ConfirmeNewPassword_notmatch" : "Confirme New Password Is Not Match with New Password",
+
+        "butt_save" : "save",
+        "butt_cancel" : "cancel"
+    },
+
+    "LOGIN":{
+        "title" : "Sign In",
+        "sub_title1" : "Sign In",
+
+        "lab1_username" : "user name",
+        "lab1_username_required" : "User Name Cannot By Empty",
+
+        "lab2_Password" : "Password",
+        "lab2_Password_required" : "Password Cannot By Empty",
+
+        "butt_signIn" : "sign in",
+        "butt_forget" : "Forget Password ?",
+
+        "sub_title2" : "Reset Password",
+
+        "lab2_email" : "your email",
+        "lab2_email_required" : "Email Cannot By Empty",
+        "lab2_email_pattern" : "Please, Enter a Valid E-mail",
+
+        "butt_reset" : "Reset Password",
+        "butt_back" : "Back To Sign In"
+    },
+
+    "REGISTER":{
+        "title" : "Sign Up",
+        "sub_title1" : "Sign In",
+        "sub_title2" : "Happy To Join Us",
+
+        "lab1_username" : "user name",
+        "lab1_username_required" : "User Name Cannot By Empty",
+
+        "lab2_email" : "your email",
+        "lab2_email_required" : "Email Cannot By Empty",
+        "lab2_email_pattern" : "Please, Enter a Valid E-mail",
+
+        "lab3_phone" : "your phone",
+        "lab3_phone_required" : "Phone Cannot By Empty",
+        "lab3_phone_maxlength" : "Please, Enter a Valid phone (12 Num)",
+
+        "lab4_Password" : "Password",
+        "lab4_Password_required" : "Password Cannot By Empty",
+
+        "lab5_ConfirmePassword" : "Confirme New Password",
+        "lab5_ConfirmePassword_required" : "Confirme New Password Cannot By Empty",
+        "lab5_ConfirmePassword_notmatch" : "Confirme New Password Is Not Match with Password",
+
+        "butt_signup" : "Sign up"
+    },
+
+    "CONTACTUS":{
+        "title" : "Contact Us",
+        "sub_title" : "Send Your Massege!",
+
+        "lab1_username" : "user name",
+        "lab1_username_required" : "User Name Cannot By Empty",
+
+        "lab2_email" : "your email",
+        "lab2_email_required" : "Email Cannot By Empty",
+        "lab2_email_pattern" : "Please, Enter a Valid E-mail",
+
+        "lab3_phone" : "your phone",
+        "lab3_phone_required" : "Phone Cannot By Empty",
+        "lab3_phone_maxlength" : "Please, Enter a Valid phone (12 Num)",
+
+        "lab4_message" : "your message",
+        "lab4_message_required" : "your message Cannot By Empty",
+
+        "butt_send" : "Send"
+    },
+
+    "ABOUTUS":{
+        "title" : "about us",
+        "sub_title" : "Who Us!",
+
+        "sub_title_dec" : "Our concept of property management is different. We do comprehensive service, which is the modern concept of property management that saves the owner and buyer All kinds of suffering And that without any additional cost, as the technology saved a lot, expenses and fees Rukn Al Rowad Real Estate Company provides its valued clients with property management service in several aspects.",
+        
+        "title_part1" : "First: Finance",
+        "title_part1_ln1" : "- Collecting rents.",
+        "title_part1_ln2" : "- Prepare monthly financial reports for all works that have been carried out and their cost.",
+
+        "title_part2" : "Second: Legal",
+        "title_part2_ln1" : "- Preparing, drafting, concluding contracts and legally reviewing them.",
+        "title_part2_ln2" : "- Coordination of the relationship with the tenants.",
+        "title_part2_ln3" : "- Raising and following up rental lawsuits.",
+        "title_part2_ln4" : "- Implementing settlements with defaulted clients and taking all legal guarantees.",
+        "title_part2_ln5" : "- Follow up with law firms.",
+
+        "title_part3" : "Third: Follow up the technical works",
+        "title_part3_ln1" : "- Carrying out all maintenance work with the lowest material costs.",
+        "title_part3_ln2" : "- Implementing the necessary periodic preventive maintenance in order to avoid future malfunctions.",
+        "title_part3_ln3" : "- Follow-up and supervision.",
+        "title_part3_ln4" : "- Cleaning and security services for managed properties.",
+        "title_part3_ln5" : "- Preparing a report on the state of the property.",
+        "title_part3_ln6" : "- Preparing and equipping empty units for the purpose of renting.",
+        "title_part3_ln7" : "- Marketing vacant units.",
+
+        "title_part4" : "Fourth: Maintenance",
+        "title_part4_ln1" : "- Providing the best prices for maintenance and cleaning works.",
+        "title_part4_ln2" : "- Minimizing maintenance costs.",
+        "title_part4_ln3" : "- Securing materials and equipment at the right price and high quality.",
+        "title_part4_ln4" : "- Implementing the necessary preventive maintenance, whether electricity, paints, floors, or carpentry.",
+        "title_part4_ln5" : "- Fast, timely implementation of maintenance work.",
+        "title_part4_ln6" : "- Providing high quality services.",
+        "title_part4_ln7" : "- A team with experience in required maintenance, repairs and extensions.",
+        "title_part4_ln8" : "- Professional hygiene team.",
+        "title_part4_ln9" : "- Pesticide workshops and furniture polishing.",
+
+        "title_part5" : "Fifth: Classified by the Real Estate Authority in"
     }
 }

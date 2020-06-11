@@ -9,60 +9,57 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>About Us</ion-title>
+    <ion-title>{{ 'ABOUTUS.title' | translate | titlecase}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
   <div class="divform divformmargin">
-    <h2 text-center><u>Who Us!</u></h2>
-    <p>Our concept of property management is different. We do comprehensive service, which is the modern concept of 
-      property management that saves the owner and buyer All kinds of suffering And that without any additional cost, 
-      as the technology saved a lot, expenses and fees Rukn Al Rowad Real Estate Company provides its valued clients 
-      with property management service in several aspects.</p>
+    <h2 text-center><u>{{ 'ABOUTUS.sub_title' | translate | titlecase}}</u></h2>
+    <p>{{ 'ABOUTUS.sub_title_dec' | translate | titlecase}}</p>
 
-      <h2 text-left><u>First: Finance</u></h2>
+      <h2><u>{{ 'ABOUTUS.title_part1' | translate | titlecase}}</u></h2>
       <p>
-        - Collecting rents.<br>
-        - Prepare monthly financial reports for all works that have been carried out and their cost.
+        {{ 'ABOUTUS.title_part1_ln1' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part1_ln2' | translate | titlecase}}
       </p>
 
-      <h2 text-left><u>Second: Legal</u></h2>
+      <h2><u>{{ 'ABOUTUS.title_part2' | translate | titlecase}}</u></h2>
       <p>
-        - Preparing, drafting, concluding contracts and legally reviewing them.<br>
-        - Coordination of the relationship with the tenants.<br>
-        - Raising and following up rental lawsuits.<br>
-        - Implementing settlements with defaulted clients and taking all legal guarantees.<br>
-        - Follow up with law firms.
+        {{ 'ABOUTUS.title_part2_ln1' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part2_ln2' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part2_ln3' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part2_ln4' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part2_ln5' | translate | titlecase}}
       </p>
 
-      <h2 text-left><u>Third: Follow up the technical works</u></h2>
+      <h2><u>{{ 'ABOUTUS.title_part3' | translate | titlecase}}</u></h2>
       <p>
-        - Carrying out all maintenance work with the lowest material costs.<br>
-        - Implementing the necessary periodic preventive maintenance in order to avoid future malfunctions.<br>
-        - Follow-up and supervision.<br>
-        - Cleaning and security services for managed properties.<br>
-        - Preparing a report on the state of the property.<br>
-        - Preparing and equipping empty units for the purpose of renting.<br>
-        - Marketing vacant units.
+        {{ 'ABOUTUS.title_part3_ln1' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part3_ln2' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part3_ln3' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part3_ln4' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part3_ln5' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part3_ln6' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part3_ln7' | translate | titlecase}}
       </p>
 
-      <h2 text-left><u>Fourth: Maintenance</u></h2>
+      <h2><u>{{ 'ABOUTUS.title_part4' | translate | titlecase}}</u></h2>
       <p>
-        - Providing the best prices for maintenance and cleaning works.<br>
-        - Minimizing maintenance costs.<br>
-        - Securing materials and equipment at the right price and high quality.<br>
-        - Implementing the necessary preventive maintenance, whether electricity, paints, floors, or carpentry.<br>
-        - Fast, timely implementation of maintenance work.<br>
-        - Providing high quality services.<br>
-        - A team with experience in required maintenance, repairs and extensions.<br>
-        - Professional hygiene team.<br>
-        - Pesticide workshops and furniture polishing.
+        {{ 'ABOUTUS.title_part4_ln1' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln2' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln3' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln4' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln5' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln6' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln7' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln8' | translate | titlecase}}<br>
+        {{ 'ABOUTUS.title_part4_ln9' | translate | titlecase}}
       </p>
 
-      <h2 text-left><u>Fifth: Classified by the Real Estate Authority in</u></h2>
-      <ion-slides pager autoplay="1000" loop="true" speed="3000">
+      <h2><u>{{ 'ABOUTUS.title_part5' | translate | titlecase}}</u></h2>
+      <ion-slides pager autoplay="1000" loop="true" speed="3000" dir="ltr">
         <ion-slide *ngFor="let img of ClassifiedBy">
           <img [src]="img"/>
         </ion-slide>

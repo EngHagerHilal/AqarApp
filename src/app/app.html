@@ -21,7 +21,7 @@
 <hr>
     <ion-item>
       <ion-label>{{ 'MENU.labLanguage' | translate}}</ion-label>
-      <ion-select [(ngModel)]="selected" name="selected" interface="popover" (ionChange)="changelang()">
+      <ion-select menuClose [(ngModel)]="selected" name="selected" interface="popover" (ionChange)="changelang()">
         <ion-option value="en">ENG (English)</ion-option>
         <ion-option value="ar">AR (Arabic)</ion-option>
       </ion-select>

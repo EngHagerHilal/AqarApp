@@ -9,52 +9,66 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Sign In</ion-title>
+    <ion-title>{{ 'LOGIN.title' | translate | titlecase}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
   <div class="divform divformmargin" *ngIf="!isforget">
-    <h2 text-center>Sign In</h2>
+    <h2 text-center>{{ 'LOGIN.sub_title1' | translate | titlecase}}</h2>
     <form #f="ngForm">
       <ion-item class="divform itembackground">
-        <ion-label floating>User Name</ion-label>
+        <ion-label floating>{{ 'LOGIN.lab1_username' | translate | titlecase}}</ion-label>
         <ion-input type="text" [(ngModel)]="logData.UserName" name="UserName" #UserName="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="UserName.touched && UserName.errors?.required">User Name Cannot By Empty</ion-note></div>
+      <ion-note *ngIf="UserName.touched && UserName.errors?.required">
+        {{ 'LOGIN.lab1_username_required' | translate | titlecase}}
+      </ion-note>
+    </div>
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>Password</ion-label>
+        <ion-label floating>{{ 'LOGIN.lab2_Password' | translate | titlecase}}</ion-label>
         <ion-input type="Password" [(ngModel)]="logData.Password" name="Password" #Password="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Password.touched && Password.errors?.required">Password Cannot By Empty</ion-note></div>
+      <ion-note *ngIf="Password.touched && Password.errors?.required">
+        {{ 'LOGIN.lab2_Password_required' | translate | titlecase}}
+      </ion-note></div>
       <br>
-      <button ion-button type="submit" block round (click)="Login()" [disabled]="f.invalid">Sign In</button>
+      <button ion-button type="submit" block round (click)="Login()" [disabled]="f.invalid">
+        {{ 'LOGIN.butt_signIn' | translate}}
+      </button>
       <br>
-      <div text-center (click)="toggelforget()"><u><b>Forget Password ?</b></u></div>
+      <div text-center (click)="toggelforget()"><u><b>
+        {{ 'LOGIN.butt_forget' | translate | titlecase}}
+      </b></u></div>
     </form>
   </div>
 
   <div class="divform divformmargin" *ngIf="isforget">
-    <h2 text-center>Reset Password</h2>
+    <h2 text-center>{{ 'LOGIN.sub_title2' | translate | titlecase}}</h2>
     <form #f2="ngForm">
       <ion-item class="divform itembackground">
-        <ion-label floating>Email</ion-label>
+        <ion-label floating>{{ 'LOGIN.lab2_email' | translate | titlecase}}</ion-label>
         <ion-input type="text" [(ngModel)]="EmailText" name="Email" #Email="ngModel" required
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Email.touched && Email.errors?.required">E-mail Cannot By Empty</ion-note>
-      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">Please, Enter a Valid E-mail
+      <ion-note *ngIf="Email.touched && Email.errors?.required">
+        {{ 'LOGIN.lab2_email_required' | translate | titlecase}}
+      </ion-note>
+      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
+        {{ 'LOGIN.lab2_email_pattern' | translate | titlecase}}
       </ion-note>
     </div>
       <br>
-      <button ion-button type="submit" block round (click)="resetpassword()" [disabled]="f2.invalid">Resert Password</button>
+      <button ion-button type="submit" block round (click)="resetpassword()" [disabled]="f2.invalid">
+        {{ 'LOGIN.butt_reset' | translate | titlecase}}
+      </button>
       <br>
-      <div text-center  (click)="toggelforget()"><u><b>Back To Sign In</b></u></div>
+      <div text-center  (click)="toggelforget()"><u><b>{{ 'LOGIN.butt_back' | translate | titlecase}}</b></u></div>
     </form>
   </div>
 </ion-content>

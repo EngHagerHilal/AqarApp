@@ -48,7 +48,6 @@ export class MyApp {
       this.splashScreen.hide();
       this.languageService.setInitialAppLanguage();
       this.selected = this.languageService.selected;
-      console.log('this.selected: ',this.selected)
     });
   }
 

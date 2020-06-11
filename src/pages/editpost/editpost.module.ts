@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EditpostPage } from './editpost';
@@ -8,6 +9,7 @@ import { EditpostPage } from './editpost';
   ],
   imports: [
     IonicPageModule.forChild(EditpostPage),
+    TranslateModule
   ],
 })
 export class EditpostPageModule {}
