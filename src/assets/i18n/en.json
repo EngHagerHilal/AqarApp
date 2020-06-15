@@ -4,6 +4,7 @@
         "note" : "CONTENT",
         "homePage": "Home",
         "ProfilePage": "My Profile",
+        "mypostsPage": "My posts",
         "SignInPage": "Sign In",
         "SignUpPage": "Sign Up",
         "ContactUsPage": "Contact Us",
@@ -27,7 +28,10 @@
     },
 
     "POSTDETAILS":{
-        "title" : "advertisement details"
+        "title" : "advertisement details",
+        "type_for_rent" : "for rent",
+        "type_for_selling" : "for selling",
+        "unit" : "SAR"
     },
 
     "ADDPOST": {
@@ -92,6 +96,13 @@
         "butt_cancel" : "cancel"
     },
 
+    "MYPOSTS":{
+        "title" : "my posts",
+        "butt_segment_all" : "all",
+        "butt_segment_selling" : "selling",
+        "butt_segment_rent" : "rent"
+    },
+
     "LOGIN":{
         "title" : "Sign In",
         "sub_title1" : "Sign In",
@@ -133,6 +144,7 @@
 
         "lab4_Password" : "Password",
         "lab4_Password_required" : "Password Cannot By Empty",
+        "lab4_Password_minlength" : "password must be at least 8 characters",
 
         "lab5_ConfirmePassword" : "Confirme New Password",
         "lab5_ConfirmePassword_required" : "Confirme New Password Cannot By Empty",

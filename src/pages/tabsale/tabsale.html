@@ -13,8 +13,8 @@
 <ion-content>
   <ion-list>
 
-    <ion-card *ngFor="let item of saleinterface; let i = Index">
-      <img [src]="item.allImages[0]" (click)="opendetails(item)"/>
+    <ion-card *ngFor="let item of sellingposts; let i = Index">
+      <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
           <b><u>{{item.post_name | titlecase}}</u></b>
@@ -26,13 +26,13 @@
         <ion-row>
           <ion-col col-2>
             <ion-icon name="images"></ion-icon>
-            {{item.allImages.length}}
+            {{item.imgCount}}
           </ion-col>
           <ion-col col-9 text-center>
             <ion-icon name="time"></ion-icon>
             {{item.created_at}}
           </ion-col>
-          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="item.user_id == 2">
+          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="item.user_id == 1">
           <ion-icon name="more"></ion-icon>
         </ion-col>
         </ion-row>

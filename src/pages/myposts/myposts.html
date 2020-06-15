@@ -1,0 +1,112 @@
+<!--
+  Generated template for the MypostsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{'MYPOSTS.title' | translate | titlecase}}</ion-title>
+  </ion-navbar>
+  <div padding>
+    <ion-segment  [(ngModel)]="pet">
+      <ion-segment-button value="sell">
+        {{'MYPOSTS.butt_segment_selling' | translate | titlecase}}
+      </ion-segment-button>
+      <ion-segment-button value="All">
+        {{'MYPOSTS.butt_segment_all' | translate | titlecase}}
+      </ion-segment-button>
+      <ion-segment-button value="rent">
+        {{'MYPOSTS.butt_segment_rent' | translate | titlecase}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content padding>
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchCase="'rent'">
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title text-center>
+            <u><b>{{'item.post_name' | titlecase}}</b></u>
+          </ion-card-title>
+          <p text-center>
+            {{'rent' | titlecase}}
+          </p>
+          <hr>
+          <ion-row>
+            <ion-col col-2>
+              <ion-icon name="images"></ion-icon>
+              0
+            </ion-col>
+            <ion-col col-9 text-center>
+              <ion-icon name="time"></ion-icon>
+              {{'item.created_at'}}
+            </ion-col>
+            <ion-col col-1>
+            <ion-icon name="more"></ion-icon>
+          </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'All'">
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title text-center>
+            <u><b>{{'item.post_name' | titlecase}}</b></u>
+          </ion-card-title>
+          <p text-center>
+            {{'All' | titlecase}}
+          </p>
+          <hr>
+          <ion-row>
+            <ion-col col-2>
+              <ion-icon name="images"></ion-icon>
+              0
+            </ion-col>
+            <ion-col col-9 text-center>
+              <ion-icon name="time"></ion-icon>
+              {{'item.created_at'}}
+            </ion-col>
+            <ion-col col-1>
+            <ion-icon name="more"></ion-icon>
+          </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'sell'">
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title text-center>
+            <u><b>{{'item.post_name' | titlecase}}</b></u>
+          </ion-card-title>
+          <p text-center>
+            {{'sell' | titlecase}}
+          </p>
+          <hr>
+          <ion-row>
+            <ion-col col-2>
+              <ion-icon name="images"></ion-icon>
+              0
+            </ion-col>
+            <ion-col col-9 text-center>
+              <ion-icon name="time"></ion-icon>
+              {{'item.created_at'}}
+            </ion-col>
+            <ion-col col-1>
+            <ion-icon name="more"></ion-icon>
+          </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+</ion-content>

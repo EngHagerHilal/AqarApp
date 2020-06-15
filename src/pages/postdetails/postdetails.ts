@@ -1,3 +1,4 @@
+import { IMGURL } from './../../services/ApisConst.service';
 import { Post } from './../../interfaces/post';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -15,9 +16,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'postdetails.html',
 })
 export class PostdetailsPage {
-  myitem:Post
+  myitem:Post={allImages:[]};
+  imgurl:string = IMGURL;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.myitem = this.navParams.get('item')
+    this.myitem.allImages.push(this.myitem.mainImage)
+    this.myitem.allImages.push(this.myitem.mainImage)
+    this.myitem.allImages.push(this.myitem.mainImage)
     console.log('this.myitem: ',this.myitem)
   }
 

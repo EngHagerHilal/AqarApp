@@ -10,7 +10,9 @@ export interface Post {
     phone?: string,
     email?: string,
     user_id?:number,
+    username?:string,
     status?:string,
-    type?:string
-    //mainImage?:string
+    type?:string,
+    imgCount?:number,
+    mainImage?:string
 }

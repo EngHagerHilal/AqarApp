@@ -8,7 +8,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-tabs [selectedIndex]='myIndex'>
+  <!--  (tap)="ionSelected(myTabs,$event)" -->
+  <ion-tabs #myTabs [selectedIndex]='myIndex'>
     <ion-tab [root]="tabSaleRoot" tabTitle="{{'HOME.tabSale' | translate}}" tabIcon="infinite"></ion-tab>
     <ion-tab [root]="tabHomeRoot" tabTitle="{{'HOME.tabHome' | translate}}" tabIcon="home"></ion-tab>
     <ion-tab [root]="tabRentRoot" tabTitle="{{'HOME.tabRent' | translate}}" tabIcon="repeat"></ion-tab>

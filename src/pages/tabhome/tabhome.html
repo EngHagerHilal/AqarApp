@@ -10,12 +10,13 @@
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
-  <ion-list>
-
-    <ion-card *ngFor="let item of offerinterface; let i = Index">
-      <img [src]="item.allImages[0]" (click)="opendetails(item)"/>
+  <div *ngIf="allposts.length == 0">
+    <p text-center><b>there are not data to show</b></p>
+  </div>
+  <ion-list *ngIf="allposts.length != 0">
+    <ion-card *ngFor="let item of allposts; let i = Index">
+      <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
           <u><b>{{item.post_name | titlecase}}</b></u>
@@ -27,7 +28,7 @@
         <ion-row>
           <ion-col col-2>
             <ion-icon name="images"></ion-icon>
-            {{item.allImages.length}}
+            {{item.imgCount}}
           </ion-col>
           <ion-col col-9 text-center>
             <ion-icon name="time"></ion-icon>

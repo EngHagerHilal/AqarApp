@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,17 +15,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  userData:{UserName:string , Password:string, Phone:string ,Email:string} = {
-    UserName:'Ahmed samy',
-    Password:'4mydak59d63slp',
-    Phone:'058954785235',
-    Email:'engahmed.a@gmail.com'
+  userData:{UserName?:string , Password?:string, Phone?:number ,Email?:string} = {
+    //UserName:'Ahmed samy',
+    //Password:'4mydak59d63slp',
+    //Phone:'058954785235',
+    //Email:'engahmed.a@gmail.com'
   };
   isEdit:boolean = false;
   NewPasswordText:string='';
   ConfirmeNewPasswordText:string='';
   CurrentPasswordText:string='';
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService) {
+    this.userData.UserName = this.authser.userData.name
+    this.userData.Password = this.authser.userData.password
+    this.userData.Phone = this.authser.userData.phone
+    this.userData.Email = this.authser.userData.email
   }
 
   ionViewDidLoad() {

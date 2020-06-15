@@ -13,8 +13,8 @@
 <ion-content>
   <ion-list>
 
-    <ion-card *ngFor="let item of rentinterface; let i = Index">
-      <img [src]="item.allImages[0]" (click)="opendetails(item)"/>
+    <ion-card *ngFor="let item of rentposts; let i = Index">
+      <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
           <u><b>{{item.post_name | titlecase}}</b></u>
@@ -26,7 +26,7 @@
         <ion-row>
           <ion-col col-2>
             <ion-icon name="images"></ion-icon>
-            {{item.allImages.length}}
+            {{item.imgCount}}
           </ion-col>
           <ion-col col-9 text-center>
             <ion-icon name="time"></ion-icon>

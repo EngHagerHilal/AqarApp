@@ -19,12 +19,16 @@
     <h2 text-center>{{ 'LOGIN.sub_title1' | translate | titlecase}}</h2>
     <form #f="ngForm">
       <ion-item class="divform itembackground">
-        <ion-label floating>{{ 'LOGIN.lab1_username' | translate | titlecase}}</ion-label>
-        <ion-input type="text" [(ngModel)]="logData.UserName" name="UserName" #UserName="ngModel" required></ion-input>
+        <ion-label floating>{{ 'LOGIN.lab2_email' | translate | titlecase}}</ion-label>
+        <ion-input type="text" [(ngModel)]="logData.UserName" name="UserName" #UserName="ngModel" required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
       </ion-item>
       <div text-center>
       <ion-note *ngIf="UserName.touched && UserName.errors?.required">
-        {{ 'LOGIN.lab1_username_required' | translate | titlecase}}
+        {{ 'LOGIN.lab2_email_required' | translate | titlecase}}
+      </ion-note>
+      <ion-note *ngIf="UserName.touched && !UserName.errors?.required && UserName.errors?.pattern">
+        {{ 'LOGIN.lab2_email_pattern' | translate | titlecase}}
       </ion-note>
     </div>
       <br>

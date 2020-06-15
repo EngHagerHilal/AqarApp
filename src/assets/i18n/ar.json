@@ -4,6 +4,7 @@
         "note":"المـحـتــوى",
         "homePage": "الصفحـــة الرئيسيــة",
         "ProfilePage": "الصفحـــة الشخصيـــة",
+        "mypostsPage": "منشــوراتــى",
         "SignInPage": "تسجيــل الدخـــول",
         "SignUpPage": "إنضــم إلينـــا",
         "ContactUsPage": "تواصـــل معنـــا",
@@ -27,7 +28,10 @@
     },
 
     "POSTDETAILS":{
-        "title" : "تفــاصيــل الإعــلان"
+        "title" : "تفــاصيــل الإعــلان",
+        "type_for_rent" : "للإيـجـــار",
+        "type_for_selling" : "للبيـــع",
+        "unit" : "ريـال سـعــودى"
     },
 
     "ADDPOST": {
@@ -92,6 +96,13 @@
         "butt_cancel" : "إلغــاء"
     },
 
+    "MYPOSTS":{
+        "title" : "منشــوراتــى",
+        "butt_segment_all" : "الجميــع",
+        "butt_segment_selling" : "بيــع",
+        "butt_segment_rent" : "إيجــار"
+    },
+
     "LOGIN":{
         "title" : "تسجيــل الدخـــول",
         "sub_title1" : "تسجيــل الدخـــول الان",
@@ -133,6 +144,7 @@
 
         "lab4_Password" : "كلمـة المـرور",
         "lab4_Password_required" : "كلمـة المـرور لا يمكن أن تكون فارغًا",
+        "lab4_Password_minlength" : "كلمـة المـرور يجـب ألا تقـل عن 8 حـروف",
 
         "lab5_ConfirmePassword" : "إعـادة كلمـة المـرور",
         "lab5_ConfirmePassword_required" : "إعـادة كلمـة المـرور لا يمكن أن تكون فارغًا",

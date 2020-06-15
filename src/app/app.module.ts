@@ -1,3 +1,5 @@
+import { AuthService } from './../services/auth.service';
+import { PostService } from './../services/post.service';
 import { LanguageService } from './../services/language.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -16,7 +18,7 @@ import { AboutusPage } from './../pages/aboutus/aboutus';
 import { ProfilePage } from './../pages/profile/profile';
 import { ContactusPage } from './../pages/contactus/contactus';
 import { EditpostPage } from './../pages/editpost/editpost';
-
+import { MypostsPage } from './../pages/myposts/myposts';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +27,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {TranslateModule , TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { IonicStorageModule} from '@ionic/storage';
+import { UiControllerFunService } from '../services/uiControllerFun.service';
 
 export function createTeanslateLoader(http: HttpClient){
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json')
@@ -44,7 +47,8 @@ export function createTeanslateLoader(http: HttpClient){
     AboutusPage,
     ProfilePage,
     ContactusPage,
-    EditpostPage
+    EditpostPage,
+    MypostsPage
   ],
   imports: [
     BrowserModule,
@@ -73,12 +77,16 @@ export function createTeanslateLoader(http: HttpClient){
     AboutusPage,
     ProfilePage,
     ContactusPage,
-    EditpostPage
+    EditpostPage,
+    MypostsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     LanguageService,
+    PostService,
+    AuthService,
+    UiControllerFunService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

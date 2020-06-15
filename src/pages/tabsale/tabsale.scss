@@ -4,7 +4,7 @@ page-tabsale {
     }
     ion-card{
         img{
-            height: 230px;
+            height: 220px;
         }
     }
 
@@ -21,18 +21,5 @@ page-tabsale {
 
     .list-md, .list-ios{
         margin-top: -15px
-    }
-
-    .morebutton{
-        position: absolute;
-  top: 0;
-  right: 0;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-
     }
 }

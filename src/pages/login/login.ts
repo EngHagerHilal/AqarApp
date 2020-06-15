@@ -1,3 +1,7 @@
+import { UiControllerFunService } from './../../services/uiControllerFun.service';
+import { TabsHomePage } from './../home/home';
+import { User } from './../../interfaces/user';
+import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,16 +19,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
   isforget:boolean = false;
-  logData:{UserName:string , Password:string} = {UserName:'',Password:''}
+  logData:{UserName:string , Password:string} = {UserName:'engahmed.as@gmail.com',Password:'123456789'}
   EmailText:string=''
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userData:User;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
   Login(){
+    this.uiser.presentLoading()
     console.log('logData: ',this.logData)
+    this.authser.Signin(this.logData.UserName , this.logData.Password).subscribe(data => {
+      if(data.userData){
+        data.userData.password = this.logData.Password;
+        this.authser.userData = data.userData;
+        this.authser.isLogIn = true
+        this.navCtrl.setRoot(TabsHomePage);
+        if(!data.userData.email_verified_at){
+          this.uiser.presentToast('you need to active your acount')
+        }
+        this.uiser.dissmisloading()
+        localStorage.setItem('userData',JSON.stringify(this.authser.userData))
+      }else{
+        this.uiser.dissmisloading()
+        this.uiser.presentToast(data.message)
+      }
+      console.log('data response: ',data)
+    })
   }
   resetpassword(){
     console.log('reset EmailText: ',this.EmailText)

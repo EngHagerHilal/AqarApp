@@ -1,3 +1,5 @@
+import { IMGURL } from './../../services/ApisConst.service';
+import { PostService } from './../../services/post.service';
 import { Post } from './../../interfaces/post';
 import { AddpostPage } from './../addpost/addpost';
 import { EditpostPage } from './../editpost/editpost';
@@ -36,15 +38,26 @@ export class TabrentPage {
         type:"rent"
       },
     ];
+    rentposts:Post[]=[]
+    imgurl:string = IMGURL;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
-    ,public translate:TranslateService) {
+    ,public translate:TranslateService, public postser:PostService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TabrentPage');
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter TabrentPage');
+    this.postser.getAllPosts().subscribe((data:Post[]) => {
+      data.forEach(element => {
+        if(element.type == 'rent'){
+          this.rentposts.push(element)
+        }
+      });
+      console.log('data from server: ',this.rentposts)
+    })
   }
 
   opendetails(item){
+    item.allImages=[]
     this.navCtrl.push(PostdetailsPage ,{item:item});
   }
 

@@ -55,11 +55,14 @@
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab4_Password' | translate | titlecase}}</ion-label>
-        <ion-input type="Password" [(ngModel)]="logData.Password" name="Password" #Password="ngModel" required></ion-input>
+        <ion-input type="Password" [(ngModel)]="logData.Password" name="Password" #Password="ngModel" required minlength="8"></ion-input>
       </ion-item>
       <div text-center>
       <ion-note *ngIf="Password.touched && Password.errors?.required">
-        {{ 'REGISTER.lab4_Password_required' | translate | titlecase}}</ion-note></div>
+        {{ 'REGISTER.lab4_Password_required' | translate | titlecase}}</ion-note>
+        <ion-note *ngIf="Password.touched && !Password.errors?.required && Password.errors?.minlength">
+          {{ 'REGISTER.lab4_Password_minlength' | translate | titlecase}}</ion-note>
+      </div>
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab5_ConfirmePassword' | translate | titlecase}}</ion-label>

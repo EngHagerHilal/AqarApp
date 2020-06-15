@@ -1,3 +1,5 @@
+import { PostService } from './../../services/post.service';
+import { IMGURL } from './../../services/ApisConst.service';
 import { Post } from './../../interfaces/post';
 import { AddpostPage } from './../addpost/addpost';
 import { EditpostPage } from './../editpost/editpost';
@@ -36,12 +38,22 @@ export class TabsalePage {
         type:"selling"
       },
     ];
+    sellingposts:Post[]=[];
+    imgurl:string = IMGURL;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
-    ,public translate:TranslateService) {
+    ,public translate:TranslateService, public postser:PostService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TabsalePage');
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter TabsalePage');
+    this.postser.getAllPosts().subscribe((data:Post[]) => {
+      data.forEach(element => {
+        if(element.type == 'selling'){
+          this.sellingposts.push(element)
+        }
+      });
+      console.log('data from server: ',this.sellingposts)
+    })
   }
 
   openaddpost(){
@@ -49,6 +61,7 @@ export class TabsalePage {
   }
 
   opendetails(item){
+    item.allImages=[]
     this.navCtrl.push(PostdetailsPage ,{item:item});
   }
 
