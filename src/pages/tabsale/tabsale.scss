@@ -1,7 +1,12 @@
 page-tabsale {
     ion-content{
-        background-image: url('./../../assets/imgs/home.jpg');
+        background-image: url('./../../assets/imgs/home.jpg') !important;
     }
+    .scroll-content {
+        background-image: url('./../../assets/imgs/home.jpg');
+        background-repeat: repeat !important;
+      }
+
     ion-card{
         img{
             height: 220px;

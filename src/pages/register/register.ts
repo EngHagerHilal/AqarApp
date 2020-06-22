@@ -1,7 +1,7 @@
 import { TabsHomePage } from './../home/home';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { UiControllerFunService } from '../../services/uiControllerFun.service';
 
 /**
@@ -20,7 +20,8 @@ export class RegisterPage {
   logData:{UserName:string , Password:string, Phone:string ,Email:string} = {UserName:'',Password:'',Phone:'',Email:''};
   ConfirmePasswordText:any ='';
   loader:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService
+    ,public event: Events) {
   }
 
   ionViewDidLoad() {
@@ -47,6 +48,7 @@ export class RegisterPage {
             }
             this.uiser.dissmisloading()
             localStorage.setItem('userData',JSON.stringify(this.authser.userData))
+            this.event.publish('userLogIn',true)
           }else{
             this.uiser.dissmisloading()
             this.uiser.presentToast(data2.message)

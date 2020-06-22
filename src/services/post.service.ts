@@ -1,3 +1,5 @@
+import { Post } from './../interfaces/post';
+import { AuthService } from './auth.service';
 import { APIURL } from './ApisConst.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,31 +9,54 @@ import { Observable } from 'rxjs';
 
 export class PostService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, public authser:AuthService) { }
   
   getAllPosts(): Observable<any>{
     return this.http.get(APIURL+'index/')
   }
 
-  getPost(id = 1): Observable<any>{
-    const params = new HttpParams().set('Post_id', id.toString());
-    return this.http.get(APIURL+'postDetails/',{params})
+  getPost(id:string): Observable<any>{
+    let param = {
+      "post_id": id
+    }
+    return this.http.get(APIURL+'postDetails/',{ params: param })
   }
 
-  getMyPosts(api_token:string){
-
+  getMyPosts(){
+    let param = {
+      "api_token": this.authser.userData.api_token
+    }
+    return this.http.get(APIURL+'postDetails/',{ params: param })
   }
 
   addPost(){
 
   }
 
-  updatePost(id:string){
-
+  updatePost(item:Post){
+    let param = {
+      "api_token": this.authser.userData.api_token,
+      "post_id": item.id,
+      "post_name" : item.post_name,
+      "post_desc" : item.desc,
+      "post_address" : item.address,
+      "type" : item.type,
+      "mobile" : item.phone,
+      "email" : item.email,
+      "price" : item.price,
+      "status" : item.status
+    }
+    console.log('param', param)
+    return this.http.post(APIURL+'updatePost',param)
   }
 
   deletePost(id:string){
-
+    let param = {
+      "api_token": this.authser.userData.api_token,
+      "post_id": id
+    }
+    console.log('param', param)
+    return this.http.post(APIURL+'deletePost/',param)
   }
 
 }

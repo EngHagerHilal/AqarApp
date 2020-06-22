@@ -11,9 +11,23 @@
 </ion-header>
 -->
 <ion-content>
-  <ion-list>
+  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="chevron-down-circle-outline"
+    refreshingSpinner="circles"
+    pullingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <ion-card *ngFor="let item of rentposts; let i = Index">
+  
+  <div *ngIf="rentposts.length == 0 && !isloading">
+    <p text-center><b>{{ 'TABs.nodata' | translate | titlecase}}</b></p>
+  </div>
+  <ion-list *ngIf="rentposts.length != 0 && !isloading">
+
+
+    <ion-card *ngFor="let item of posts; let i = Index">
       <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
@@ -32,13 +46,20 @@
             <ion-icon name="time"></ion-icon>
             {{item.created_at}}
           </ion-col>
-          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="item.user_id == 1">
+          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="authser.userData && item.user_id === authser.userData?.id">
             <ion-icon name="more"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <br>
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="circles"
+        loadingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
   </ion-list>
   <ion-fab bottom right edge>
     <button ion-fab mini (click)="openaddpost()"><ion-icon name="add"></ion-icon></button>

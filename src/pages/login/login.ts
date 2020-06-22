@@ -1,9 +1,10 @@
+import { UserService } from './../../services/user.service';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { TabsHomePage } from './../home/home';
 import { User } from './../../interfaces/user';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 /**
  * Generated class for the LoginPage page.
@@ -22,16 +23,19 @@ export class LoginPage {
   logData:{UserName:string , Password:string} = {UserName:'engahmed.as@gmail.com',Password:'123456789'}
   EmailText:string=''
   userData:User;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService
+    ,public event: Events, public userser: UserService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+  isClickLogIn = false
   Login(){
-    this.uiser.presentLoading()
+    //this.uiser.presentLoading()
+    this.isClickLogIn = true
     console.log('logData: ',this.logData)
-    this.authser.Signin(this.logData.UserName , this.logData.Password).subscribe(data => {
+    this.authser.Signin(this.logData.UserName , this.logData.Password).subscribe(async data => {
       if(data.userData){
         data.userData.password = this.logData.Password;
         this.authser.userData = data.userData;
@@ -40,16 +44,31 @@ export class LoginPage {
         if(!data.userData.email_verified_at){
           this.uiser.presentToast('you need to active your acount')
         }
-        this.uiser.dissmisloading()
+        //this.uiser.dissmisloading()
+        this.isClickLogIn = false
         localStorage.setItem('userData',JSON.stringify(this.authser.userData))
+        await this.event.publish('userLogIn',true)
       }else{
-        this.uiser.dissmisloading()
+        //this.uiser.dissmisloading()
+        this.isClickLogIn = false
         this.uiser.presentToast(data.message)
       }
       console.log('data response: ',data)
     })
   }
+  isClickReset = false
   resetpassword(){
+    this.isClickReset = true
+    this.userser.resetPassword(this.EmailText).subscribe( data => {
+      let result:any = data
+      if(result.success){
+        this.toggelforget();
+        this.uiser.presentToast(result.success)
+      }else{
+        this.uiser.presentToast(result.errors)
+      }
+      this.isClickReset = false
+    })
     console.log('reset EmailText: ',this.EmailText)
   }
   toggelforget(){

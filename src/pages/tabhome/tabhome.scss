@@ -1,7 +1,12 @@
 page-tabhome {
     ion-content{
-        background-image: url('./../../assets/imgs/home.jpg');
+        background-image: url('./../../assets/imgs/home.jpg') !important;
     }
+    .scroll-content {
+        background-image: url('./../../assets/imgs/home.jpg');
+        background-repeat: repeat !important;
+      }
+
     .list-md, .list-ios{
         margin-top: -15px
     }

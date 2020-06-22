@@ -4,7 +4,7 @@ export interface Post {
     desc?: string,
     created_at?: Date | string,
     updated_at?: Date | string,
-    allImages?: string[],
+    allImages?: any[],
     price?: number,
     address?: string,
     phone?: string,

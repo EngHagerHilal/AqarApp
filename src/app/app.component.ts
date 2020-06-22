@@ -1,3 +1,4 @@
+
 import { MypostsPage } from './../pages/myposts/myposts';
 import { AuthService } from './../services/auth.service';
 import { ContactusPage } from './../pages/contactus/contactus';
@@ -6,7 +7,7 @@ import { AboutusPage } from './../pages/aboutus/aboutus';
 import { RegisterPage } from './../pages/register/register';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,34 +25,40 @@ export class MyApp {
 
   pages: Array<{index:number, title: string, component: any , icon:string, isActive:boolean,isLogIn?:any}>;
   lastpage: {index:number, title: string, component: any , icon:string, isActive:boolean, isLogIn?:any};
+  isLogIn;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen
-    ,private languageService:LanguageService, public authser:AuthService) {
+    ,private languageService:LanguageService, public authser:AuthService,public event: Events
+    ) {
+      if(localStorage.getItem('userData')){
+        this.authser.isLogIn = true
+        this.isLogIn = true;
+      }else{
+        this.authser.isLogIn = false
+        this.isLogIn = false;
+      }
     this.initializeApp();
     console.log('localStorage user: ', localStorage.getItem('userData'))
     this.authser.userData = JSON.parse(localStorage.getItem('userData'))
     console.log('authser.userData: ', this.authser.userData)
-    if(localStorage.getItem('userData')){
-      this.authser.isLogIn = true
-    }else{
-      this.authser.isLogIn = false
-    }
     // used for an example of ngFor and navigation
-    this.pages = [
-      { index:0 , title: 'MENU.homePage', component: TabsHomePage ,icon:'home' ,isActive:true, isLogIn: true},
-      { index:1 , title: 'MENU.ProfilePage', component: ProfilePage ,icon:'person' ,isActive:false, isLogIn: this.authser.userData},
-      { index:5 , title: 'MENU.mypostsPage', component: MypostsPage ,icon:'document' ,isActive:false, isLogIn: this.authser.userData},
-      { index:2 , title: 'MENU.SignInPage', component: LoginPage ,icon:'log-in' ,isActive:false, isLogIn: !this.authser.userData},
-      { index:3 , title: 'MENU.SignUpPage', component: RegisterPage ,icon:'happy' ,isActive:false, isLogIn: !this.authser.userData},
-      { index:4 , title: 'MENU.ContactUsPage', component: ContactusPage ,icon:'mail' ,isActive:false, isLogIn: true},
-      { index:5 , title: 'MENU.AboutUsPage', component: AboutusPage ,icon:'information-circle' ,isActive:false, isLogIn: true}
-    ];
-    console.log('pages: ', this.pages)
+    this.pages = this.setPages(this.isLogIn)
     this.lastpage = this.pages[0]
+    console.log('before event loggin: ',this.isLogIn)
+    console.log('before event loggin pages: ',this.pages)
+      this.event.subscribe('userLogIn',async (data)=>{
+        this.isLogIn = data;
+        this.pages = await this.setPages(data)
+        console.log('after event loggin: ',this.isLogIn)
+        console.log('after event loggin pages: ',this.pages)
+      });
+      this.event.subscribe('userLOgOut',async (data)=>{
+        this.isLogIn = data;
+        this.pages = await this.setPages(data)
+        console.log('after event LOgOut: ',this.isLogIn)
+        console.log('after event LOgOut pages: ',this.pages)
+      });
   }
 
-  ionViewWillEnter(){
-    console.log('menu enter')
-  }
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -62,6 +69,18 @@ export class MyApp {
       this.selected = this.languageService.selected;
     });
   }
+
+  setPages(isLogin:boolean){
+    return this.pages = [
+      { index:0 , title: 'MENU.homePage', component: TabsHomePage ,icon:'home' ,isActive:true, isLogIn: true},
+      { index:1 , title: 'MENU.ProfilePage', component: ProfilePage ,icon:'person' ,isActive:false, isLogIn: isLogin},
+      { index:5 , title: 'MENU.mypostsPage', component: MypostsPage ,icon:'document' ,isActive:false, isLogIn: isLogin},
+      { index:2 , title: 'MENU.SignInPage', component: LoginPage ,icon:'log-in' ,isActive:false, isLogIn: !isLogin},
+      { index:3 , title: 'MENU.SignUpPage', component: RegisterPage ,icon:'happy' ,isActive:false, isLogIn: !isLogin},
+      { index:4 , title: 'MENU.ContactUsPage', component: ContactusPage ,icon:'mail' ,isActive:false, isLogIn: true},
+      { index:5 , title: 'MENU.AboutUsPage', component: AboutusPage ,icon:'information-circle' ,isActive:false, isLogIn: true}
+    ];
+  }
   
   openPage(page) {
     // Reset the content nav to have just this page
@@ -69,10 +88,12 @@ export class MyApp {
     this.nav.setRoot(page.component);
     this.isActive(page);
   }
-  signOut(){
+  async signOut(){
     let result: boolean = this.authser.SignOut()
     if(result == true){
       this.authser.isLogIn = false
+      await this.event.publish("userLOgOut",false)
+      this.nav.setRoot(TabsHomePage);
       console.log('signOut done')
       console.log('localStorage user: ', localStorage.getItem('userData'))
       console.log('authser.userData: ', this.authser.userData)
@@ -88,7 +109,10 @@ export class MyApp {
   isActive(page){
     if(this.pages[this.pages.indexOf(page)].isActive == false){
       this.pages[this.pages.indexOf(page)].isActive = true;
-        this.lastpage.isActive = false
+      this.lastpage.isActive = false
+      if(this.pages[this.pages.indexOf(this.lastpage)]){
+        this.pages[this.pages.indexOf(this.lastpage)].isActive = false
+      }
       this.lastpage = this.pages[this.pages.indexOf(page)]
     }
   }

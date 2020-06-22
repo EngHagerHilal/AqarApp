@@ -21,10 +21,16 @@
     },
 
     "TABs":{
+        "refresher_pullingText" : "Loading more data...",
+        "nodata" : "until now, no Advertisements available, be the owner to a first Advertisement!!",
         "title_actionSheet" : "Options",
         "butDelete_actionSheet" : "Delete",
         "butEdit_actionSheet" : "Edit",
-        "butCancel_actionSheet" : "Cancel"
+        "butCancel_actionSheet" : "Cancel",
+
+        "title_alert" : "Verify Your Email Required!!",
+        "subtitle_alert" : "Adding an Advertisement Requires First Verify Your Email. Go to The 'My Profile' To Resend The Verification Email 'If You Need To Resend It'.",
+        "butt_alert_ok" : "ok"
     },
 
     "POSTDETAILS":{
@@ -51,6 +57,9 @@
         "lab4_price" : "price (SAR)",
         "lab4_price_requered" : "price Cannot By Empty",
 
+        "lab6_email" : "Email to contact",
+        "lab7_phone" : "Phone to contact",
+
         "lab5_type" : "type",
         "lab5_type_requered" : "type Cannot By Empty",
 
@@ -68,6 +77,7 @@
     "MYPROFILE":{
         "title" : "my profile",
         "butt_edit" : "edit",
+        "butt_resend" : "Resend Activation Email",
         "sub_title" : "edit profile",
 
         "lab1_username" : "user name",

@@ -58,6 +58,27 @@
       </ion-note></div>
       <br>
       <ion-item class="divform itembackground">
+        <ion-label floating>{{'ADDPOST.lab6_email'| translate | titlecase }}</ion-label>
+        <ion-input type="text" [(ngModel)]="myitem.email" name="Email" #Email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Email.touched && Email.errors?.required">{{ 'REGISTER.lab2_email_required' | translate | titlecase}}</ion-note>
+      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
+        {{ 'REGISTER.lab2_email_pattern' | translate | titlecase}}</ion-note>
+    </div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>{{'ADDPOST.lab7_phone'| translate | titlecase }}</ion-label>
+        <ion-input type="number" [(ngModel)]="myitem.phone" name="Phone" #Phone="ngModel" required maxlength="12"></ion-input>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="Phone.touched && Phone.errors?.required">{{ 'REGISTER.lab3_phone_required' | translate | titlecase}}</ion-note>
+      <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">
+        {{ 'REGISTER.lab3_phone_maxlength' | translate | titlecase}}
+      </ion-note>
+    </div>
+      <br>
+      <ion-item class="divform itembackground">
         <ion-label>{{'ADDPOST.lab5_type'| translate | titlecase }}</ion-label>
         <ion-select [(ngModel)]="myitem.type" name="Type" #Type="ngModel">
         <ion-option value="selling">{{'ADDPOST.select_option_salling'| translate | titlecase }}</ion-option>
@@ -68,16 +89,17 @@
         <ion-note *ngIf="Type.touched && Type.errors?.required">{{'ADDPOST.lab5_type_requered'| translate | titlecase }}</ion-note>
         </div>
       <br>
-      <ion-row>
+      <div text-center>
         <ion-col col-10>
           <button ion-button type="submit" block round [disabled]="f.invalid">
             {{'EDITPOST.butt_save'| translate | titlecase }}
           </button>
         </ion-col>
+        <!--
         <ion-col col-2>
           <button ion-button type="button" block round icon-only style="background-color: black;"><ion-icon name="images"></ion-icon></button>
-        </ion-col>
-      </ion-row>
+        </ion-col>-->
+      </div>
       <br>
     </form>
   </div>

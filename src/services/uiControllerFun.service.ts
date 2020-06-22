@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController } from 'ionic-angular';
+import { ToastController, LoadingController, AlertController } from 'ionic-angular';
 @Injectable()
 
 export class UiControllerFunService {
     loader:any;
-  constructor(public toastCtrl: ToastController,public loadingCtrl: LoadingController) { }
+    pages: Array<{index:number, title: string, component: any , icon:string, isActive:boolean,isLogIn?:any}>;
+  constructor(public toastCtrl: ToastController,public loadingCtrl: LoadingController, public alertCtrl:AlertController) { }
   
   presentToast(msg:string) {
     const toast = this.toastCtrl.create({
@@ -25,4 +26,14 @@ export class UiControllerFunService {
   dissmisloading(){
     this.loader.dismiss();
   }
+
+  showBasicAlertWithTranslate(titletxt:string , masstxt:string, buttOk: string) {
+    const alert = this.alertCtrl.create({
+      title: titletxt,
+      subTitle: masstxt,
+      buttons: [buttOk]
+    });
+    alert.present();
+  }
+
 }

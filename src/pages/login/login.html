@@ -41,7 +41,8 @@
         {{ 'LOGIN.lab2_Password_required' | translate | titlecase}}
       </ion-note></div>
       <br>
-      <button ion-button type="submit" block round (click)="Login()" [disabled]="f.invalid">
+      <button ion-button type="submit" block round (click)="Login()" [disabled]="f.invalid || isClickLogIn">
+        <ion-spinner *ngIf="isClickLogIn" name="bubbles" class="spinnerloading"></ion-spinner>
         {{ 'LOGIN.butt_signIn' | translate}}
       </button>
       <br>
@@ -68,7 +69,8 @@
       </ion-note>
     </div>
       <br>
-      <button ion-button type="submit" block round (click)="resetpassword()" [disabled]="f2.invalid">
+      <button ion-button type="submit" block round (click)="resetpassword()" [disabled]="f2.invalid || isClickReset">
+        <ion-spinner *ngIf="isClickReset" name="bubbles" class="spinnerloading"></ion-spinner>
         {{ 'LOGIN.butt_reset' | translate | titlecase}}
       </button>
       <br>

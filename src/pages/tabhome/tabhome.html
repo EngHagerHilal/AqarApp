@@ -11,11 +11,22 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div *ngIf="allposts.length == 0">
-    <p text-center><b>there are not data to show</b></p>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="chevron-down-circle-outline"
+    refreshingSpinner="circles"
+    pullingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="allposts.length == 0 && !isloading">
+    <p text-center><b>{{ 'TABs.nodata' | translate | titlecase}}</b>
+      <!--<br>{{this.allposts | json}} -->
+    </p>
   </div>
-  <ion-list *ngIf="allposts.length != 0">
-    <ion-card *ngFor="let item of allposts; let i = Index">
+  <ion-list *ngIf="allposts.length != 0 && !isloading">
+    <ion-card *ngFor="let item of posts; let i = Index">
       <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
@@ -34,13 +45,19 @@
             <ion-icon name="time"></ion-icon>
             {{item.created_at}}
           </ion-col>
-          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="item.user_id == 2">
+          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="authser.userData && item.user_id === authser.userData?.id">
           <ion-icon name="more"></ion-icon>
         </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <br>
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="circles"
+        loadingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
   </ion-list>
   <ion-fab bottom right edge>

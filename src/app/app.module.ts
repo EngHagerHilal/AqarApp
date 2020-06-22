@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { AuthService } from './../services/auth.service';
 import { PostService } from './../services/post.service';
 import { LanguageService } from './../services/language.service';
@@ -87,6 +88,7 @@ export function createTeanslateLoader(http: HttpClient){
     PostService,
     AuthService,
     UiControllerFunService,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

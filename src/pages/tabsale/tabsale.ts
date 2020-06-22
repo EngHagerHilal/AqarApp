@@ -1,3 +1,5 @@
+import { AuthService } from './../../services/auth.service';
+import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { PostService } from './../../services/post.service';
 import { IMGURL } from './../../services/ApisConst.service';
 import { Post } from './../../interfaces/post';
@@ -40,11 +42,16 @@ export class TabsalePage {
     ];
     sellingposts:Post[]=[];
     imgurl:string = IMGURL;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
-    ,public translate:TranslateService, public postser:PostService) {
+    posts:Post[]=[]
+    constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
+    ,public translate:TranslateService, public postser:PostService, public authser:AuthService, public uiser:UiControllerFunService) {
   }
 
+  isloading = false
   ionViewWillEnter() {
+    this.isloading = true
+    this.sellingposts =[]
+    this.posts =[]
     console.log('ionViewWillEnter TabsalePage');
     this.postser.getAllPosts().subscribe((data:Post[]) => {
       data.forEach(element => {
@@ -52,12 +59,50 @@ export class TabsalePage {
           this.sellingposts.push(element)
         }
       });
+      this.posts = this.sellingposts.slice(0,2)
       console.log('data from server: ',this.sellingposts)
+      console.log('posts: ',this.posts)
+      this.isloading = false
     })
   }
 
+  async doRefresh(event) {
+    console.log('refresher async operation');
+    await this.ionViewWillEnter();
+    console.log('refresher Async operation has ended');
+    event.complete();
+  }
+
+  loadData(event) {
+    console.log('=================================')
+    console.log('this.sellingposts.length: ',this.sellingposts.length)
+    console.log('this.posts.length: ',this.posts.length)
+    if(this.sellingposts.length > this.posts.length){
+      let l = this.sellingposts.length - this.posts.length
+      console.log('elfrq: ',l)
+      if(l >= 2){
+        console.log('hdif 1 bs ')
+        this.posts = this.sellingposts.slice(0, this.posts.length+2)
+      }else{
+        console.log('hdif klh ')
+        this.posts = this.sellingposts.slice(0)
+      }
+    }else{
+      console.log('no more data to show')
+    }
+    event.complete();
+  }
+
   openaddpost(){
-    this.navCtrl.push(AddpostPage);
+    if(this.authser.userData.email_verified_at){
+      this.navCtrl.push(AddpostPage);
+    }else{
+      console.log('you not verify your email')
+      this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert'),
+      this.translate.instant('TABs.subtitle_alert'),
+      this.translate.instant('TABs.butt_alert_ok')
+      )
+    }
   }
 
   opendetails(item){
@@ -72,7 +117,23 @@ export class TabsalePage {
         {
           text: this.translate.instant('TABs.butDelete_actionSheet'),
           handler: () => {
-            console.log('Delete clicked');
+            this.uiser.presentLoading();
+            console.log('Delete clicked id:', item.id);
+            this.postser.deletePost(item.id.toString()).subscribe(data=>{
+              let result:any = data
+              console.log('delete response data: ',result)
+              if(result.success){
+                this.sellingposts.splice(this.sellingposts.indexOf(item),1)
+                this.uiser.dissmisloading()
+                this.uiser.presentToast(result.success)
+                console.log('this.allposts after deleted: ',this.sellingposts)
+              }else{
+                this.uiser.dissmisloading()
+                this.uiser.presentToast("Ooops, Mistake thing happened,Try Agin!")
+                console.log('ERR: ',result.errors)
+                console.log('this.allposts after no deleted: ',this.sellingposts)
+              }
+            })
           }
         },{
           text: this.translate.instant('TABs.butEdit_actionSheet'),

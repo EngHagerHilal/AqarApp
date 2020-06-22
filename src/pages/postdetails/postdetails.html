@@ -14,18 +14,20 @@
   <ion-list>
     <ion-card>
 
-      <ion-slides pager autoplay="1000" loop="true" speed="3000" dir="ltr">
-        <ion-slide *ngFor="let img of myitem.allImages">
-          <img src="{{imgurl}}{{img}}"/>
+      <ion-slides *ngIf="myitem2.allImages && myitem2.allImages.length && myitem2.allImages?.length > 1" pager autoplay="1000" loop="true" speed="3000" dir="ltr">
+        <ion-slide *ngFor="let img of myitem2.allImages">
+          <img src="{{imgurl}}{{img?.img_url}}"/>
         </ion-slide>
       </ion-slides>
 
+      <img *ngIf="myitem2.allImages && myitem2.allImages.length && myitem2.allImages?.length === 1" src="{{imgurl}}{{myitem2.mainImage}}"/>
+
       <ion-card-content>
         <ion-card-title text-center>
-          <b>{{myitem.post_name | titlecase}}</b>
+          <b>{{myitem2.post_name | titlecase}}</b>
         </ion-card-title>
         <p text-center>
-          {{myitem.desc | titlecase}}
+          {{myitem2.desc | titlecase}}
         </p>
 <hr>
         <ion-row>
@@ -33,7 +35,7 @@
             <ion-icon name="time" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.created_at}}
+            {{myitem2.created_at}}
           </ion-col>
         </ion-row>
 
@@ -42,7 +44,7 @@
             <ion-icon name="locate" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.address}}
+            {{myitem2.address}}
           </ion-col>
         </ion-row>
 
@@ -60,7 +62,7 @@
             <ion-icon name="mail" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.email}}
+            {{myitem2.email}}
           </ion-col>
         </ion-row>
 
@@ -69,7 +71,7 @@
             <ion-icon name="call" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.phone}}
+            {{myitem2.phone}}
           </ion-col>
         </ion-row>
 
@@ -77,10 +79,10 @@
           <ion-col col-2>
             <ion-icon name="star" color="primary"></ion-icon>
           </ion-col>
-          <ion-col col-10 *ngIf="myitem.type == 'rent'">
+          <ion-col col-10 *ngIf="myitem2.type == 'rent'">
             {{ 'POSTDETAILS.type_for_rent' | translate | titlecase}}
           </ion-col>
-          <ion-col col-10 *ngIf="myitem.type == 'selling'">
+          <ion-col col-10 *ngIf="myitem2.type == 'selling'">
             {{ 'POSTDETAILS.type_for_selling' | translate | titlecase}}
           </ion-col>
         </ion-row>
@@ -90,7 +92,7 @@
             <ion-icon name="logo-bitcoin" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.price | number}} {{ 'POSTDETAILS.unit' | translate}}
+            {{myitem2.price | number}} {{ 'POSTDETAILS.unit' | translate}}
           </ion-col>
         </ion-row>
 

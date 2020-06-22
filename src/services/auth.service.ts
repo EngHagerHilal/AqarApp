@@ -16,7 +16,7 @@ export class AuthService {
       "email" : username,
       "password" : password
     }
-    return this.http.post(APIURL+'login/',params)
+    return this.http.post(APIURL+'login',params)
   }
 
   SignUp(userdata){
@@ -26,7 +26,8 @@ export class AuthService {
       "password" : userdata.Password,
       "phone" : userdata.Phone
     }
-    return this.http.post(APIURL+'register/',params)
+    console.log('my params: ',params)
+    return this.http.post(APIURL+'register',params)
   }
 
   SignOut(): boolean{
