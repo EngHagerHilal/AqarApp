@@ -30,6 +30,13 @@ import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { IonicStorageModule} from '@ionic/storage';
 import { UiControllerFunService } from '../services/uiControllerFun.service';
 
+import { CallNumber } from '@ionic-native/call-number';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file'
+
+//import { Camera } from '@ionic-native/camera';
+
 export function createTeanslateLoader(http: HttpClient){
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json')
 }
@@ -89,6 +96,11 @@ export function createTeanslateLoader(http: HttpClient){
     AuthService,
     UiControllerFunService,
     UserService,
+    CallNumber,
+    EmailComposer,
+    ImagePicker,
+    File,
+    //Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

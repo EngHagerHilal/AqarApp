@@ -108,7 +108,8 @@
 
     "MYPOSTS":{
         "title" : "منشــوراتــى",
-        "butt_segment_all" : "الجميــع",
+        "butt_segment_allvisible" : "جميــع المـرئـي",
+        "butt_segment_allunvisible" : "جميــع الغـيـر مـرئـي",
         "butt_segment_selling" : "بيــع",
         "butt_segment_rent" : "إيجــار"
     },

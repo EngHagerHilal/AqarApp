@@ -1,6 +1,6 @@
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { AuthService } from './../../services/auth.service';
-import { IMGURL } from './../../services/ApisConst.service';
+import { IMGURL, SIZEOFRELOADING } from './../../services/ApisConst.service';
 import { PostService } from './../../services/post.service';
 import { Post } from './../../interfaces/post';
 import { EditpostPage } from './../editpost/editpost';
@@ -38,15 +38,16 @@ export class TabhomePage {
     //alert('send get request successfully')
     this.postser.getAllPosts().subscribe((data:Post[]) => {
       this.allposts = data
-      this.posts = this.allposts.slice(0,2)
-      //alert('data get successfully')
+      this.posts = this.allposts.slice(0,SIZEOFRELOADING)
+      alert('data get successfully')
+      alert(JSON.stringify(data))
       console.log('data from server: ',this.allposts)
       console.log('posts slice: ',this.posts)
       this.isloading = false
     }, err => {
       console.log('err: ',err)
       this.isloading = false
-      //alert('ERR: '+err)
+      alert('ERR: '+err)
     })
   }
   
@@ -64,9 +65,9 @@ export class TabhomePage {
     if(this.allposts.length > this.posts.length){
       let l = this.allposts.length - this.posts.length
       console.log('elfrq: ',l)
-      if(l >= 2){
+      if(l >= SIZEOFRELOADING){
         console.log('hdif 1 bs ')
-        this.posts = this.allposts.slice(0, this.posts.length+2)
+        this.posts = this.allposts.slice(0, this.posts.length+SIZEOFRELOADING)
       }else{
         console.log('hdif klh ')
         this.posts = this.allposts.slice(0)
@@ -88,9 +89,10 @@ export class TabhomePage {
   }
 
   openaddpost(){
-    if(this.authser.userData.email_verified_at){
+    if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
     }else{
+      this.navCtrl.push(AddpostPage);
       console.log('you not verify your email')
       this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert'),
       this.translate.instant('TABs.subtitle_alert'),
@@ -142,5 +144,6 @@ export class TabhomePage {
     });
     actionSheet.present();
   }
+
 
 }

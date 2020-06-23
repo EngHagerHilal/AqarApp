@@ -1,6 +1,6 @@
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { AuthService } from './../../services/auth.service';
-import { IMGURL } from './../../services/ApisConst.service';
+import { IMGURL, SIZEOFRELOADING } from './../../services/ApisConst.service';
 import { PostService } from './../../services/post.service';
 import { Post } from './../../interfaces/post';
 import { AddpostPage } from './../addpost/addpost';
@@ -23,23 +23,6 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'tabrent.html',
 })
 export class TabrentPage {
-  rentinterface: Post[] = [
-      {
-        id: 2,
-        post_name: "Apartment for rent",
-        created_at: "2020-04-21 14:43:16",
-        updated_at: "2020-04-21 14:43:16",
-        desc: "apartment for sale. 5 rooms and a hall, 4 bathrooms and a kitchen Fully furnished furniture, air conditioning, excellent location, high finishing, close to Herfy Najm Al Din",
-        allImages: ['./../../assets/imgs/villa1.jpg', './../../assets/imgs/villa2.jpg'],
-        price: 950000,
-        address: 'Riyadh, Saudi Arabia',
-        phone: "+966556311000",
-        email: "tarekbadry30@gmail.com",
-        user_id: 1,
-        status:"active",
-        type:"rent"
-      },
-    ];
     rentposts:Post[]=[]
     posts:Post[]=[]
     imgurl:string = IMGURL;
@@ -58,7 +41,7 @@ export class TabrentPage {
           this.rentposts.push(element)
         }
       });
-      this.posts = this.rentposts.slice(0,2)
+      this.posts = this.rentposts.slice(0,SIZEOFRELOADING)
       console.log('data from server: ',this.rentposts)
       console.log('posts: ',this.posts)
       this.isloading = false
@@ -79,9 +62,9 @@ export class TabrentPage {
     if(this.rentposts.length > this.posts.length){
       let l = this.rentposts.length - this.posts.length
       console.log('elfrq: ',l)
-      if(l >= 2){
+      if(l >= SIZEOFRELOADING){
         console.log('hdif 1 bs ')
-        this.posts = this.rentposts.slice(0, this.posts.length+2)
+        this.posts = this.rentposts.slice(0, this.posts.length+SIZEOFRELOADING)
       }else{
         console.log('hdif klh ')
         this.posts = this.rentposts.slice(0)
@@ -98,7 +81,7 @@ export class TabrentPage {
   }
 
   openaddpost(){
-    if(this.authser.userData.email_verified_at){
+    if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
     }else{
       console.log('you not verify your email')

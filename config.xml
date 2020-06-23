@@ -43,7 +43,7 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <preference name="loadUrlTimeoutValue" value="700000"/>
+        <preference name="loadUrlTimeoutValue" value="700000" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -103,5 +103,13 @@
     <allow-navigation href="http://192.168.56.1:8100" />
     <allow-navigation href="http://192.168.1.5:8100" />
     <allow-navigation href="http://192.168.1.6:8100" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <allow-navigation href="http://192.168.56.1:8101" />
+    <plugin name="cordova-plugin-email-composer" spec="~0.9.2" />
+    <plugin name="cordova-plugin-telerik-imagepicker" spec="~2.3.3" />
+    <plugin name="cordova-plugin-file" spec="~6.0.2" />
+    <plugin name="cordova-android-support-gradle-release" spec="^3.0.1">
+        <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
+    </plugin>
     <engine name="android" spec="~7.1.4" />
 </widget>

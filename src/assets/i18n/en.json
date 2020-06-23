@@ -108,9 +108,10 @@
 
     "MYPOSTS":{
         "title" : "my posts",
-        "butt_segment_all" : "all",
-        "butt_segment_selling" : "selling",
-        "butt_segment_rent" : "rent"
+        "butt_segment_allvisible" : "all visible",
+        "butt_segment_selling" : "visible selling",
+        "butt_segment_rent" : "visible rent",
+        "butt_segment_allunvisible" : "all invisible"
     },
 
     "LOGIN":{

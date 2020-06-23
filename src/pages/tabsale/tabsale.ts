@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { PostService } from './../../services/post.service';
-import { IMGURL } from './../../services/ApisConst.service';
+import { IMGURL, SIZEOFRELOADING } from './../../services/ApisConst.service';
 import { Post } from './../../interfaces/post';
 import { AddpostPage } from './../addpost/addpost';
 import { EditpostPage } from './../editpost/editpost';
@@ -23,23 +23,6 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'tabsale.html',
 })
 export class TabsalePage {
-  saleinterface: Post[] = [
-      {
-        id: 1,
-        post_name: "Villa for sale",
-        created_at: "2020-04-21 14:43:16",
-        updated_at: "2020-04-21 14:43:16",
-        desc: "Villa for sale, Al-Manar neighborhood. The area is 250 meters. Specifications Hall drawer, 4 rooms , 3 halls, 1 Basement, 4 bathrooms. There is a driver room. There is a room with a roof top.",
-        allImages: ['./../../assets/imgs/villa2.jpg', './../../assets/imgs/villa1.jpg'],
-        price: 950000,
-        address: 'Riyadh, Saudi Arabia',
-        phone: "+966556311000",
-        email: "tarekbadry30@gmail.com",
-        user_id: 2,
-        status:"active",
-        type:"selling"
-      },
-    ];
     sellingposts:Post[]=[];
     imgurl:string = IMGURL;
     posts:Post[]=[]
@@ -59,7 +42,7 @@ export class TabsalePage {
           this.sellingposts.push(element)
         }
       });
-      this.posts = this.sellingposts.slice(0,2)
+      this.posts = this.sellingposts.slice(0,SIZEOFRELOADING)
       console.log('data from server: ',this.sellingposts)
       console.log('posts: ',this.posts)
       this.isloading = false
@@ -80,9 +63,9 @@ export class TabsalePage {
     if(this.sellingposts.length > this.posts.length){
       let l = this.sellingposts.length - this.posts.length
       console.log('elfrq: ',l)
-      if(l >= 2){
+      if(l >= SIZEOFRELOADING){
         console.log('hdif 1 bs ')
-        this.posts = this.sellingposts.slice(0, this.posts.length+2)
+        this.posts = this.sellingposts.slice(0, this.posts.length + SIZEOFRELOADING)
       }else{
         console.log('hdif klh ')
         this.posts = this.sellingposts.slice(0)
@@ -94,7 +77,7 @@ export class TabsalePage {
   }
 
   openaddpost(){
-    if(this.authser.userData.email_verified_at){
+    if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
     }else{
       console.log('you not verify your email')

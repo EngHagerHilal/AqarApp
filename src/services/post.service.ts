@@ -1,7 +1,7 @@
 import { Post } from './../interfaces/post';
 import { AuthService } from './auth.service';
 import { APIURL } from './ApisConst.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -26,7 +26,7 @@ export class PostService {
     let param = {
       "api_token": this.authser.userData.api_token
     }
-    return this.http.get(APIURL+'postDetails/',{ params: param })
+    return this.http.post(APIURL+'myPosts',param)
   }
 
   addPost(){

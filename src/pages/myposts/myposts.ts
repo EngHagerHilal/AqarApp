@@ -1,3 +1,5 @@
+import { Post } from './../../interfaces/post';
+import { PostService } from './../../services/post.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,11 +17,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MypostsPage {
   pet:string = 'All'
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  activeSelling:Post[]=[]
+  activeRent:Post[]=[]
+  allActive:Post[]=[]
+  allDisActive:Post[]=[]
+  constructor(public navCtrl: NavController, public navParams: NavParams, public postser:PostService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MypostsPage');
+  }
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter MypostsPage');
+    /*this.postser.getMyPosts().subscribe(data => {
+      console.log('my data: ',data)
+      let myposts:any = JSON.stringify(data)
+      console.log('my rent Posts: ',myposts.rentPosts)
+      console.log('my sell Posts: ',myposts.sellPosts.active)
+
+    })*/
   }
 
 }

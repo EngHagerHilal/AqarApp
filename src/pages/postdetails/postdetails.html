@@ -62,7 +62,9 @@
             <ion-icon name="mail" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem2.email}}
+            <a (click)="SendEmail(myitem2.email)">
+              {{myitem2.email}}
+            </a>
           </ion-col>
         </ion-row>
 
@@ -71,7 +73,7 @@
             <ion-icon name="call" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem2.phone}}
+            <a (click)="MakeCall(myitem2.phone)"> {{myitem2.phone}} </a>
           </ion-col>
         </ion-row>
 

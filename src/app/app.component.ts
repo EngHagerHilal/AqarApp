@@ -48,12 +48,14 @@ export class MyApp {
       this.event.subscribe('userLogIn',async (data)=>{
         this.isLogIn = data;
         this.pages = await this.setPages(data)
+        this.lastpage = this.pages[0]
         console.log('after event loggin: ',this.isLogIn)
         console.log('after event loggin pages: ',this.pages)
       });
       this.event.subscribe('userLOgOut',async (data)=>{
         this.isLogIn = data;
         this.pages = await this.setPages(data)
+        this.lastpage = this.pages[0]
         console.log('after event LOgOut: ',this.isLogIn)
         console.log('after event LOgOut pages: ',this.pages)
       });

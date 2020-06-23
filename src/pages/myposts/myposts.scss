@@ -21,7 +21,24 @@ page-myposts {
         .toolbar-background-md{
             background: cadetblue;
         }
-
+        ion-segment {
+            display: block;
+            white-space: nowrap;
+            font-size: 0;
+            overflow: auto;
+        
+            &::-webkit-scrollbar {
+                height: 0;
+                display: none;
+            }
+        
+            ion-segment-button.segment-button {
+                display: inline-block;
+                min-width: 100px;
+                width: auto !important;
+                height: auto !important;
+            }
+        }
         ion-segment-button{
         color: white !important;
         }

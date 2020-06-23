@@ -58,12 +58,20 @@
       <ion-note *ngIf="Type.touched && Type.errors?.required">{{'ADDPOST.lab5_type_requered'| translate | titlecase }}</ion-note>
       </div>
       <br>
+      <!-- test selected photos -->
+    <ion-slides *ngIf="myImages.length > 0" pager autoplay="1000" loop="true" speed="3000" dir="ltr">
+      <ion-slide *ngFor="let img of myImages">
+        <img src="{{img}}"/>
+      </ion-slide>
+    </ion-slides>
+    <br>
       <ion-row>
         <ion-col col-10>
           <button ion-button type="submit" block round [disabled]="f.invalid">{{'ADDPOST.butt_add'| translate | titlecase }}</button>
         </ion-col>
         <ion-col col-2>
-          <button ion-button type="button" block round icon-only style="background-color: black;"><ion-icon name="images"></ion-icon></button>
+          <button ion-button type="button" block round icon-only style="background-color: black;" (click)="selectphotos()">
+            <ion-icon name="images"></ion-icon></button>
         </ion-col>
       </ion-row>
       <br>
