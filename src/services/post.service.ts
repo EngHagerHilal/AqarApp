@@ -29,8 +29,20 @@ export class PostService {
     return this.http.post(APIURL+'myPosts',param)
   }
 
-  addPost(){
-
+  addPost(item:Post){
+    let param = {
+      "api_token": this.authser.userData.api_token,
+      "post_name" : item.post_name,
+      "post_desc" : item.desc,
+      "post_address" : item.address,
+      "type" : item.type,
+      "mobile" : item.phone,
+      "email" : item.email,
+      "price" : item.price,
+      "img" : item.allImages
+    }
+    console.log('param', param)
+    return this.http.post(APIURL+'insertPost',param)
   }
 
   updatePost(item:Post){
@@ -57,6 +69,22 @@ export class PostService {
     }
     console.log('param', param)
     return this.http.post(APIURL+'deletePost/',param)
+  }
+
+  Search(text:string , type?:string){
+    let param = {}
+    if(type){
+       param = {
+        "searchFor": text,
+        "filterType": type
+      }
+    }else{
+      param = {
+        "searchFor": text
+      }
+    }
+    console.log('param', param)
+    return this.http.get(APIURL+'search/',{ params: param })
   }
 
 }

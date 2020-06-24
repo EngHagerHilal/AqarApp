@@ -31,113 +31,126 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-spinner *ngIf="isLoading" name="bubbles" class="spinnerloading"></ion-spinner>
   <div [ngSwitch]="pet">
     <ion-list *ngSwitchCase="'rent'">
-      <ion-card>
-        <ion-card-content>
-          <ion-card-title text-center>
-            <u><b>{{'item.post_name' | titlecase}}</b></u>
-          </ion-card-title>
-          <p text-center>
-            {{'rent' | titlecase}}
-          </p>
-          <hr>
-          <ion-row>
-            <ion-col col-2>
-              <ion-icon name="images"></ion-icon>
-              0
+      <div *ngFor="let item of myposts; let i = Index">
+        <ion-card *ngIf="item.type=='rent' && item.status == 'active'">
+          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <ion-card-content>
+            <ion-card-title text-center (click)="opendetails(item)">
+              <u><b>{{item.post_name | titlecase}}</b></u>
+            </ion-card-title>
+            <p text-center>
+              {{item.desc | titlecase}}
+            </p>
+            <hr>
+            <ion-row>
+              <ion-col col-2>
+                <ion-icon name="images"></ion-icon>
+                {{item.imgCount}}
+              </ion-col>
+              <ion-col col-9 text-center>
+                <ion-icon name="time"></ion-icon>
+                {{item.created_at}}
+              </ion-col>
+              <ion-col col-1 (click)="presentActionSheetMore(item)">
+              <ion-icon name="more"></ion-icon>
             </ion-col>
-            <ion-col col-9 text-center>
-              <ion-icon name="time"></ion-icon>
-              {{'item.created_at'}}
-            </ion-col>
-            <ion-col col-1>
-            <ion-icon name="more"></ion-icon>
-          </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ion-list>
   
     <ion-list *ngSwitchCase="'All'">
-      <ion-card>
-        <ion-card-content>
-          <ion-card-title text-center>
-            <u><b>{{'item.post_name' | titlecase}}</b></u>
-          </ion-card-title>
-          <p text-center>
-            {{'All' | titlecase}}
-          </p>
-          <hr>
-          <ion-row>
-            <ion-col col-2>
-              <ion-icon name="images"></ion-icon>
-              0
+      <div *ngFor="let item of myposts; let i = Index">
+        <ion-card *ngIf="item.status == 'active'">
+          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <ion-card-content>
+            <ion-card-title text-center (click)="opendetails(item)">
+              <u><b>{{item.post_name | titlecase}}</b></u>
+            </ion-card-title>
+            <p text-center>
+              {{item.desc | titlecase}}
+            </p>
+            <hr>
+            <ion-row>
+              <ion-col col-2>
+                <ion-icon name="images"></ion-icon>
+                {{item.imgCount}}
+              </ion-col>
+              <ion-col col-9 text-center>
+                <ion-icon name="time"></ion-icon>
+                {{item.created_at}}
+              </ion-col>
+              <ion-col col-1 (click)="presentActionSheetMore(item)">
+              <ion-icon name="more"></ion-icon>
             </ion-col>
-            <ion-col col-9 text-center>
-              <ion-icon name="time"></ion-icon>
-              {{'item.created_at'}}
-            </ion-col>
-            <ion-col col-1>
-            <ion-icon name="more"></ion-icon>
-          </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'sell'">
-      <ion-card>
-        <ion-card-content>
-          <ion-card-title text-center>
-            <u><b>{{'item.post_name' | titlecase}}</b></u>
-          </ion-card-title>
-          <p text-center>
-            {{'sell' | titlecase}}
-          </p>
-          <hr>
-          <ion-row>
-            <ion-col col-2>
-              <ion-icon name="images"></ion-icon>
-              0
+      <div *ngFor="let item of myposts; let i = Index">
+        <ion-card *ngIf="item.type=='selling' && item.status == 'active'">
+          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <ion-card-content>
+            <ion-card-title text-center (click)="opendetails(item)">
+              <u><b>{{item.post_name | titlecase}}</b></u>
+            </ion-card-title>
+            <p text-center>
+              {{item.desc | titlecase}}
+            </p>
+            <hr>
+            <ion-row>
+              <ion-col col-2>
+                <ion-icon name="images"></ion-icon>
+                {{item.imgCount}}
+              </ion-col>
+              <ion-col col-9 text-center>
+                <ion-icon name="time"></ion-icon>
+                {{item.created_at}}
+              </ion-col>
+              <ion-col col-1 (click)="presentActionSheetMore(item)">
+              <ion-icon name="more"></ion-icon>
             </ion-col>
-            <ion-col col-9 text-center>
-              <ion-icon name="time"></ion-icon>
-              {{'item.created_at'}}
-            </ion-col>
-            <ion-col col-1>
-            <ion-icon name="more"></ion-icon>
-          </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'DisActive'">
-      <ion-card>
-        <ion-card-content>
-          <ion-card-title text-center>
-            <u><b>{{'item.post_name' | titlecase}}</b></u>
-          </ion-card-title>
-          <p text-center>
-            {{'DisActive' | titlecase}}
-          </p>
-          <hr>
-          <ion-row>
-            <ion-col col-2>
-              <ion-icon name="images"></ion-icon>
-              0
+      <div *ngFor="let item of myposts; let i = Index">
+        <ion-card *ngIf="item.status == 'disactive'">
+          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <ion-card-content>
+            <ion-card-title text-center (click)="opendetails(item)">
+              <u><b>{{item.post_name | titlecase}}</b></u>
+            </ion-card-title>
+            <p text-center>
+              {{item.desc | titlecase}}
+            </p>
+            <hr>
+            <ion-row>
+              <ion-col col-2>
+                <ion-icon name="images"></ion-icon>
+                {{item.imgCount}}
+              </ion-col>
+              <ion-col col-9 text-center>
+                <ion-icon name="time"></ion-icon>
+                {{item.created_at}}
+              </ion-col>
+              <ion-col col-1 (click)="presentActionSheetMore(item)">
+              <ion-icon name="more"></ion-icon>
             </ion-col>
-            <ion-col col-9 text-center>
-              <ion-icon name="time"></ion-icon>
-              {{'item.created_at'}}
-            </ion-col>
-            <ion-col col-1>
-            <ion-icon name="more"></ion-icon>
-          </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ion-list>
   </div>
 </ion-content>

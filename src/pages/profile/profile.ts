@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { UserService } from './../../services/user.service';
 import { User } from './../../interfaces/user';
@@ -24,7 +25,7 @@ export class ProfilePage {
   ConfirmeNewPasswordText:string='';
   CurrentPasswordText:string='';
   constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public userser:UserService
-    , public uiser:UiControllerFunService) {
+    , public uiser:UiControllerFunService, public translate:TranslateService) {
     this.userData.name = this.authser.userData.name
     this.userData.password = this.authser.userData.password
     this.userData.phone = this.authser.userData.phone
@@ -54,10 +55,11 @@ export class ProfilePage {
         this.NewPasswordText='';
         this.ConfirmeNewPasswordText='';
         this.CurrentPasswordText='';
-        this.uiser.presentToast(result.success)
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.editprofile_seccuss'))
         this.toggelIsEdit()
       }else{
-        this.uiser.presentToast(result.errors)
+        // result.errors
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
       }
       console.log('after updating user: ',this.authser.userData)
       console.log('storge after updating user: ',localStorage.getItem('userData'))
@@ -71,9 +73,10 @@ export class ProfilePage {
     this.userser.resendActivationLink().subscribe( data => {
       let result:any = data
       if(result.success){
-        this.uiser.presentToast(result.success)
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.ActivationEmail_seccuss'))
       }else{
-        this.uiser.presentToast(result.message)
+        // result.message
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
       }
       this.isClickResend = false
     })

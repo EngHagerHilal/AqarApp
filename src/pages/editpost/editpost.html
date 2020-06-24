@@ -92,14 +92,11 @@
       <br>
       <div text-center>
         <ion-col col-10>
-          <button ion-button type="submit" block round [disabled]="f.invalid">
+          <button ion-button type="submit" block round [disabled]="f.invalid || isClicksave">
+            <ion-spinner *ngIf="isClicksave" name="bubbles" class="spinnerloading"></ion-spinner>
             {{'EDITPOST.butt_save'| translate | titlecase }}
           </button>
         </ion-col>
-        <!--
-        <ion-col col-2>
-          <button ion-button type="button" block round icon-only style="background-color: black;"><ion-icon name="images"></ion-icon></button>
-        </ion-col>-->
       </div>
       <br>
     </form>

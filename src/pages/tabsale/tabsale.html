@@ -9,6 +9,13 @@
     <ion-title>tabsale</ion-title>
   </ion-navbar>
 </ion-header>-->
+<ion-header>
+  <ion-navbar>
+    <!--<ion-title>tabhome</ion-title> (ionInput)="getItems($event)" -->
+    <ion-searchbar (keyup.enter)="getItems($event)" [(ngModel)]="searchQuery"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
 
 <ion-content>
 
@@ -23,7 +30,12 @@
   <div *ngIf="sellingposts.length == 0 && !isloading">
     <p text-center><b>{{ 'TABs.nodata' | translate | titlecase}}</b></p>
   </div>
-  <ion-list *ngIf="sellingposts.length != 0 && !isloading">
+
+  <div *ngIf="posts.length == 0 && !isloading && !isSearchLoading">
+    <p text-center><b>{{ 'TABs.searchNoResult' | translate | titlecase}}</b></p>
+  </div>
+
+  <ion-list *ngIf="sellingposts.length != 0 && !isloading" [style.opacity]="isSearchLoading? '0.5' : ''">
 
     <ion-card *ngFor="let item of posts; let i = Index">
       <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
@@ -51,7 +63,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="!searchQuery">
       <ion-infinite-scroll-content
         loadingSpinner="circles"
         loadingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">

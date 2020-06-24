@@ -26,6 +26,8 @@ export class TabhomePage {
   imgurl:string = IMGURL;
   allposts:Post[]=[]
   posts:Post[]=[]
+  searchQuery:string='';
+  isSearchLoading:boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
       ,public translate:TranslateService, public postser:PostService, public authser:AuthService, public uiser:UiControllerFunService) {
       console.log('user id ',this.authser.userData)
@@ -33,14 +35,15 @@ export class TabhomePage {
   }
   isloading = false
   ionViewWillEnter() {
+    this.searchQuery=''
     this.isloading = true
     console.log('ionViewWillEnter TabhomePage');
     //alert('send get request successfully')
     this.postser.getAllPosts().subscribe((data:Post[]) => {
       this.allposts = data
       this.posts = this.allposts.slice(0,SIZEOFRELOADING)
-      alert('data get successfully')
-      alert(JSON.stringify(data))
+      //alert('data get successfully')
+      //alert(JSON.stringify(data))
       console.log('data from server: ',this.allposts)
       console.log('posts slice: ',this.posts)
       this.isloading = false
@@ -79,8 +82,25 @@ export class TabhomePage {
   }
 
   getItems(event){
-    let data = event.target.value
-    console.log(data)
+    let key = event.target.value
+    console.log(key)
+    console.log("searchQuery: ",this.searchQuery)
+    if (key != "") {
+      this.isSearchLoading = true
+      this.postser.Search(key).subscribe(data => {
+        let result: any = data
+        console.log('search result: ', data)
+        if (result.success) {
+          this.posts = result.data
+          console.log('posts = data: ', result.data)
+        }
+        this.isSearchLoading = false
+      })
+    }else{
+      this.posts = this.allposts.slice(0,SIZEOFRELOADING)
+      console.log('posts = this.allposts slice: ', this.allposts.slice(0,SIZEOFRELOADING))
+      this.isSearchLoading = false
+    }
   }
 
   opendetails(item){
@@ -116,11 +136,11 @@ export class TabhomePage {
               if(result.success){
                 this.allposts.splice(this.allposts.indexOf(item),1)
                 this.uiser.dissmisloading()
-                this.uiser.presentToast(result.success)
+                this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
                 console.log('this.allposts after deleted: ',this.allposts)
               }else{
                 this.uiser.dissmisloading()
-                this.uiser.presentToast("Ooops, Mistake thing happened,Try Agin!")
+                this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
                 console.log('ERR: ',result.errors)
                 console.log('this.allposts after no deleted: ',this.allposts)
               }

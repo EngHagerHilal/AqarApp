@@ -31,6 +31,7 @@ export class TabrentPage {
   }
   isloading = false
   ionViewWillEnter() {
+    this.searchQuery=''
     console.log('ionViewWillEnter TabrentPage');
     this.isloading = true
     this.rentposts =[]
@@ -75,6 +76,30 @@ export class TabrentPage {
     event.complete();
   }
 
+  searchQuery:string='';
+  isSearchLoading:boolean = false;
+  getItems(event){
+    let key = event.target.value
+    console.log(key)
+    console.log("searchQuery: ",this.searchQuery)
+    if (key != "") {
+      this.isSearchLoading = true
+      this.postser.Search(key,"rent").subscribe(data => {
+        let result: any = data
+        console.log('search result: ', data)
+        if (result.success) {
+          this.posts = result.data
+          console.log('posts = data: ', result.data)
+        }
+        this.isSearchLoading = false
+      })
+    }else{
+      this.posts = this.rentposts.slice(0,SIZEOFRELOADING)
+      console.log('posts = this.allposts slice: ', this.rentposts.slice(0,SIZEOFRELOADING))
+      this.isSearchLoading = false
+    }
+  }
+
   opendetails(item){
     item.allImages=[]
     this.navCtrl.push(PostdetailsPage ,{item:item});
@@ -107,11 +132,11 @@ export class TabrentPage {
               if(result.success){
                 this.rentposts.splice(this.rentposts.indexOf(item),1)
                 this.uiser.dissmisloading()
-                this.uiser.presentToast(result.success)
+                this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
                 console.log('this.allposts after deleted: ',this.rentposts)
               }else{
                 this.uiser.dissmisloading()
-                this.uiser.presentToast("Ooops, Mistake thing happened,Try Agin!")
+                this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
                 console.log('ERR: ',result.errors)
                 console.log('this.allposts after no deleted: ',this.rentposts)
               }

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { UserService } from './../../services/user.service';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { TabsHomePage } from './../home/home';
@@ -24,7 +25,7 @@ export class LoginPage {
   EmailText:string=''
   userData:User;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService
-    ,public event: Events, public userser: UserService) {
+    ,public event: Events, public userser: UserService, public translate:TranslateService) {
   }
 
   ionViewDidLoad() {
@@ -42,7 +43,7 @@ export class LoginPage {
         this.authser.isLogIn = true
         this.navCtrl.setRoot(TabsHomePage);
         if(!data.userData.email_verified_at){
-          this.uiser.presentToast('you need to active your acount')
+          this.uiser.presentToast(this.translate.instant('MESSAGETOAST.notVerifyEmail'))
         }
         //this.uiser.dissmisloading()
         this.isClickLogIn = false
@@ -63,7 +64,7 @@ export class LoginPage {
       let result:any = data
       if(result.success){
         this.toggelforget();
-        this.uiser.presentToast(result.success)
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.resetpassword_seccuss'))
       }else{
         this.uiser.presentToast(result.errors)
       }

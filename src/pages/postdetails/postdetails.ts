@@ -24,8 +24,10 @@ export class PostdetailsPage {
   myitem:Post={allImages:[]};
   myitem2:Post = {};
   imgurl:string = IMGURL;
+  isLoading:boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public postser:PostService, public call:CallNumber
     , public email:EmailComposer) {
+      this.isLoading = true
     this.myitem = this.navParams.get('item')
     //this.myitem.allImages.push(this.myitem.mainImage), public CallNum: CallNumber
     //this.myitem.allImages.push(this.myitem.mainImage)
@@ -33,7 +35,10 @@ export class PostdetailsPage {
     console.log('this.myitem: ',this.myitem)
     this.postser.getPost(this.myitem.id.toString()).subscribe(data =>{
       this.myitem2 = data.post
+      this.isLoading = false
       console.log('post from server id: ',this.myitem2)
+    },err => {
+      this.isLoading = false
     })
   }
 
@@ -42,7 +47,8 @@ export class PostdetailsPage {
   }
 
   MakeCall(phonenum){
-    this.call.callNumber(phonenum,true).then(data=>{
+    this.call.callNumber(phonenum,true)
+    .then(data=>{
       console.log('made a call: ',data)
     }).catch(err=>{
       console.log('ERR..made a call: ',err)
@@ -57,7 +63,11 @@ export class PostdetailsPage {
       isHtml : true
     }
     console.log('my param: ',email)
-    this.email.open(email);
+    this.email.open(email).then(data=>{
+      console.log('open email app: ',data)
+    }).catch(err=>{
+      console.log('ERR..open email app: ',err)
+    });
   }
 
 }

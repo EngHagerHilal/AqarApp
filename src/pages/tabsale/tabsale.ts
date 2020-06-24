@@ -35,6 +35,7 @@ export class TabsalePage {
     this.isloading = true
     this.sellingposts =[]
     this.posts =[]
+    this.searchQuery=''
     console.log('ionViewWillEnter TabsalePage');
     this.postser.getAllPosts().subscribe((data:Post[]) => {
       data.forEach(element => {
@@ -76,6 +77,30 @@ export class TabsalePage {
     event.complete();
   }
 
+  searchQuery:string='';
+  isSearchLoading:boolean = false;
+  getItems(event){
+    let key = event.target.value
+    console.log(key)
+    console.log("searchQuery: ",this.searchQuery)
+    if (key != "") {
+      this.isSearchLoading = true
+      this.postser.Search(key,"selling").subscribe(data => {
+        let result: any = data
+        console.log('search result: ', data)
+        if (result.success) {
+          this.posts = result.data
+          console.log('posts = data: ', result.data)
+        }
+        this.isSearchLoading = false
+      })
+    }else{
+      this.posts = this.sellingposts.slice(0,SIZEOFRELOADING)
+      console.log('posts = this.allposts slice: ', this.sellingposts.slice(0,SIZEOFRELOADING))
+      this.isSearchLoading = false
+    }
+  }
+
   openaddpost(){
     if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
@@ -108,11 +133,11 @@ export class TabsalePage {
               if(result.success){
                 this.sellingposts.splice(this.sellingposts.indexOf(item),1)
                 this.uiser.dissmisloading()
-                this.uiser.presentToast(result.success)
+                this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
                 console.log('this.allposts after deleted: ',this.sellingposts)
               }else{
                 this.uiser.dissmisloading()
-                this.uiser.presentToast("Ooops, Mistake thing happened,Try Agin!")
+                this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
                 console.log('ERR: ',result.errors)
                 console.log('this.allposts after no deleted: ',this.sellingposts)
               }

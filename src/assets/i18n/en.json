@@ -23,6 +23,7 @@
     "TABs":{
         "refresher_pullingText" : "Loading more data...",
         "nodata" : "until now, no Advertisements available, be the owner to a first Advertisement!!",
+        "searchNoResult" : "sorry, no results matching with this search word!! try agian with anther similar word!!",
         "title_actionSheet" : "Options",
         "butDelete_actionSheet" : "Delete",
         "butEdit_actionSheet" : "Edit",
@@ -162,6 +163,19 @@
         "lab5_ConfirmePassword_notmatch" : "Confirme New Password Is Not Match with Password",
 
         "butt_signup" : "Sign up"
+    },
+
+    "MESSAGETOAST":{
+        "deletepost_seccuss": "Your advertisement deleted seccussfully!!",
+        "addpost_seccuss" : "Your advertisement added seccussfully!!",
+        "updatepost_seccuss" : "Your advertisement Edited seccussfully!!",
+        "editprofile_seccuss" : "Your profile Edited seccussfully!!",
+        "ActivationEmail_seccuss" : "Activation Email sent seccussfully, Check your e-mail!!",
+        "resetpassword_seccuss" : "Link of reset password sent to your email, check your email!!",
+        "register_seccuss": "Your account created successfully! Welcome!!",
+        "notVerifyEmail": "Please, verify your email address!!",
+        "errorRequest" : "Oops, Mistake thing happened,Try again later!",
+        "pleasewait" : "Please Wait, adding advertisement will take some time!!"
     },
 
     "CONTACTUS":{

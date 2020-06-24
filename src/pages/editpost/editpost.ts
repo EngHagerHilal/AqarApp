@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { PostService } from './../../services/post.service';
 import { Post } from './../../interfaces/post';
@@ -19,7 +20,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class EditpostPage {
   myitem:Post
   date=new Date();
-  constructor(public navCtrl: NavController, public navParams: NavParams, public postser:PostService, public uiser:UiControllerFunService) {
+  isClicksave = false
+  constructor(public navCtrl: NavController, public navParams: NavParams, public postser:PostService, public uiser:UiControllerFunService
+    ,public translate:TranslateService) {
     this.myitem = this.navParams.get('item')
     console.log('this.myitem: ',this.myitem)
   }
@@ -29,17 +32,19 @@ export class EditpostPage {
   }
   updatepost(){
     //this.myitem.updated_at = this.date.toISOString()
+    this.isClicksave = true
     this.postser.updatePost(this.myitem).subscribe(data =>{
       let result:any =data;
       console.log('response from server: ',result)
       if(result.success){
-        this.uiser.presentToast(result.success)
-        console.log('success: ',result.success)
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.editprofile_seccuss'))
+        console.log('success: ',this.translate.instant('MESSAGETOAST.editprofile_seccuss'))
         this.navCtrl.pop();
       }else{
-        this.uiser.presentToast("Ooops, Mistake thing happened,Try Agin!")
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
         console.log('ERR: ',result.errors)
       }
+      this.isClicksave = false
     })
     //console.log('updated item: ',this.myitem)
   }

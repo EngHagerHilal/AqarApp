@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { TabsHomePage } from './../home/home';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
@@ -21,7 +22,7 @@ export class RegisterPage {
   ConfirmePasswordText:any ='';
   loader:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService
-    ,public event: Events) {
+    ,public event: Events, public translate:TranslateService) {
   }
 
   ionViewDidLoad() {
@@ -44,11 +45,11 @@ export class RegisterPage {
             this.authser.isLogIn = true
             this.navCtrl.setRoot(TabsHomePage);
             if(!data2.userData.email_verified_at){
-              this.uiser.presentToast('you need to active your acount')
+              this.uiser.presentToast(this.translate.instant('MESSAGETOAST.notVerifyEmail'))
             }
-            this.uiser.dissmisloading()
             localStorage.setItem('userData',JSON.stringify(this.authser.userData))
             this.event.publish('userLogIn',true)
+            this.uiser.dissmisloading()
           }else{
             this.uiser.dissmisloading()
             this.uiser.presentToast(data2.message)
@@ -58,7 +59,8 @@ export class RegisterPage {
       }else{
         this.uiser.dissmisloading()
       }
-      this.uiser.presentToast(response.message)
+      // response.message
+      this.uiser.presentToast(this.translate.instant('MESSAGETOAST.register_seccuss'))
     })
   }
 
