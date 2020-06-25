@@ -25,7 +25,7 @@
       <!--<br>{{this.allposts | json}} -->
     </p>
   </div>
-  <div *ngIf="posts.length == 0 && !isloading && !isSearchLoading">
+  <div *ngIf="allposts.length != 0 && posts.length == 0 && !isloading && !isSearchLoading">
     <p text-center><b>{{ 'TABs.searchNoResult' | translate | titlecase}}</b></p>
   </div>
 

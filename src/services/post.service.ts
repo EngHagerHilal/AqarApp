@@ -1,9 +1,8 @@
 import { Post } from './../interfaces/post';
 import { AuthService } from './auth.service';
-import { APIURL } from './ApisConst.service';
+import { APIURL, HttpHeader } from './ApisConst.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core'
 
 @Injectable()
 
@@ -11,15 +10,15 @@ export class PostService {
 
   constructor(private http:HttpClient, public authser:AuthService) { }
   
-  getAllPosts(): Observable<any>{
+  getAllPosts(){
     return this.http.get(APIURL+'index/')
   }
 
-  getPost(id:string): Observable<any>{
+  getPost(id:string){
     let param = {
       "post_id": id
     }
-    return this.http.get(APIURL+'postDetails/',{ params: param })
+    return this.http.get(APIURL+'postDetails/',{params:param })
   }
 
   getMyPosts(){

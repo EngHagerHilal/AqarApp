@@ -5,7 +5,7 @@ export const IMGURL = 'https://aqar.leen.com.eg/public/';
 
 export const CONTACTUS_EMAIL_TO = 'engahmed.as36@gmail.com';
 export const SIZEOFRELOADING : number = 10;
-export const httpOptions = {
+export const HttpHeader = {
   headers: new HttpHeaders({
     "access-control-allow-headers":	"Content-Type",
     "access-control-allow-methods":	"GET, HEAD, POST, PUT, OPTIONS",

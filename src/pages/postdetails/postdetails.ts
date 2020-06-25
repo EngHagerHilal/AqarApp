@@ -33,12 +33,11 @@ export class PostdetailsPage {
     //this.myitem.allImages.push(this.myitem.mainImage)
     //this.myitem.allImages.push(this.myitem.mainImage)
     console.log('this.myitem: ',this.myitem)
-    this.postser.getPost(this.myitem.id.toString()).subscribe(data =>{
+    this.postser.getPost(this.myitem.id.toString()).subscribe((data:any) =>{
       this.myitem2 = data.post
       this.isLoading = false
       console.log('post from server id: ',this.myitem2)
     },err => {
-      this.isLoading = false
     })
   }
 

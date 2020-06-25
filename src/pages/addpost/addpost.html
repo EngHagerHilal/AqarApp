@@ -49,7 +49,8 @@
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab6_email'| translate | titlecase }}</ion-label>
-        <ion-input type="text" [(ngModel)]="newad.email" name="Email" #Email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
+        <ion-input type="text" [(ngModel)]="newad.email" name="Email" #Email="ngModel" required 
+        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"></ion-input>
       </ion-item>
       <div text-center>
       <ion-note *ngIf="Email.touched && Email.errors?.required">{{ 'REGISTER.lab2_email_required' | translate | titlecase}}</ion-note>
