@@ -34,9 +34,10 @@ export class AddpostPage {
   add(){
     this.isClickAdd = true
     this.newad.allImages = this.myFiles;
-    console.log('newad: ',this.newad)
+    console.log('new post: ',this.newad)
     this.uiser.presentToast(this.translate.instant('MESSAGETOAST.pleasewait'))
     this.postser.addPost(this.newad).subscribe((data:any)=>{
+      console.log('response of add request: ',data)
       if(data.success){
         this.uiser.presentToast(this.translate.instant('MESSAGETOAST.addpost_seccuss'))
         this.navCtrl.pop()
@@ -51,13 +52,13 @@ export class AddpostPage {
   selectphotos(){
     let options : ImagePickerOptions ={
       maximumImagesCount : 5,
-      width: 100,
+      width: 300,
       height: 100,
       quality: 100
     }
     this.myImages = [];
     this.images.getPictures(options).then((results)=>{
-      alert(JSON.stringify(results))
+      //alert(JSON.stringify(results))
       this.myFiles = results
       for (let index = 0; index < results.length; index++) {
         const element = results[index];
@@ -65,12 +66,12 @@ export class AddpostPage {
         let path = element.substring(0,element.lastIndexOf('/')+1);
         this.file.readAsDataURL(path,filename).then((base64string)=>{
           this.myImages.push(base64string);
-          alert(JSON.stringify(this.myImages))
+          //alert(JSON.stringify(this.myImages))
         })
       }
     }).catch(err=>{
-      console.log('ERR..',err)
-      alert(err)
+      console.log('ERR on select photos..',err)
+      //alert(err)
     })
     /*
     let options = {

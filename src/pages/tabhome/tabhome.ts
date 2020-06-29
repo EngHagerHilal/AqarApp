@@ -50,7 +50,7 @@ export class TabhomePage {
     }, err => {
       console.log('err: ',err)
       this.isloading = false
-      alert('ERR: '+err)
+      //alert('ERR: '+err)
     })
   }
   
@@ -69,7 +69,7 @@ export class TabhomePage {
       let l = this.allposts.length - this.posts.length
       console.log('elfrq: ',l)
       if(l >= SIZEOFRELOADING){
-        console.log('hdif 1 bs ')
+        console.log('hdif 10 ')
         this.posts = this.allposts.slice(0, this.posts.length+SIZEOFRELOADING)
       }else{
         console.log('hdif klh ')
@@ -112,7 +112,7 @@ export class TabhomePage {
     if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
     }else{
-      this.navCtrl.push(AddpostPage);
+      //this.navCtrl.push(AddpostPage);
       console.log('you not verify your email')
       this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert'),
       this.translate.instant('TABs.subtitle_alert'),

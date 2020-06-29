@@ -3,7 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 export const APIURL = 'https://aqar.leen.com.eg/api/';
 export const IMGURL = 'https://aqar.leen.com.eg/public/';
 
-export const CONTACTUS_EMAIL_TO = 'engahmed.as36@gmail.com';
+export const CONTACTUS_EMAIL_TO = 'admin@admin.com';
 export const SIZEOFRELOADING : number = 10;
 export const HttpHeader = {
   headers: new HttpHeaders({

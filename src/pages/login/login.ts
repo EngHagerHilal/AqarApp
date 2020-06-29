@@ -21,7 +21,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 })
 export class LoginPage {
   isforget:boolean = false;
-  logData:{UserName:string , Password:string} = {UserName:'engahmed.as@gmail.com',Password:'123456789'}
+  logData:{UserName:string , Password:string} = {UserName:'',Password:''}
   EmailText:string=''
   userData:User;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public uiser:UiControllerFunService

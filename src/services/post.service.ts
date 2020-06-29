@@ -40,7 +40,7 @@ export class PostService {
       "price" : item.price,
       "img" : item.allImages
     }
-    console.log('param', param)
+    console.log('param to add request', param)
     return this.http.post(APIURL+'insertPost',param)
   }
 
