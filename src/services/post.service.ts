@@ -1,6 +1,6 @@
 import { Post } from './../interfaces/post';
 import { AuthService } from './auth.service';
-import { APIURL, HttpHeader } from './ApisConst.service';
+import { APIURL } from './ApisConst.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
 
@@ -11,14 +11,14 @@ export class PostService {
   constructor(private http:HttpClient, public authser:AuthService) { }
   
   getAllPosts(){
-    return this.http.get(APIURL+'index/')
+    return this.http.post(APIURL+'index',{})
   }
 
   getPost(id:string){
     let param = {
       "post_id": id
     }
-    return this.http.get(APIURL+'postDetails/',{params:param })
+    return this.http.post(APIURL+'postDetails',param)
   }
 
   getMyPosts(){
@@ -67,7 +67,7 @@ export class PostService {
       "post_id": id
     }
     console.log('param', param)
-    return this.http.post(APIURL+'deletePost/',param)
+    return this.http.post(APIURL+'deletePost',param)
   }
 
   Search(text:string , type?:string){
@@ -83,7 +83,7 @@ export class PostService {
       }
     }
     console.log('param', param)
-    return this.http.get(APIURL+'search/',{ params: param })
+    return this.http.post(APIURL+'search',param)
   }
 
 }

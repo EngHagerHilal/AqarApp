@@ -52,7 +52,7 @@
               </ion-col>
               <ion-col col-9 text-center>
                 <ion-icon name="time"></ion-icon>
-                {{item.created_at}}
+                {{item.created_at | date:'medium'}}
               </ion-col>
               <ion-col col-1 (click)="presentActionSheetMore(item)">
               <ion-icon name="more"></ion-icon>
@@ -82,7 +82,7 @@
               </ion-col>
               <ion-col col-9 text-center>
                 <ion-icon name="time"></ion-icon>
-                {{item.created_at}}
+                {{item.created_at | date:'medium'}}
               </ion-col>
               <ion-col col-1 (click)="presentActionSheetMore(item)">
               <ion-icon name="more"></ion-icon>
@@ -112,7 +112,7 @@
               </ion-col>
               <ion-col col-9 text-center>
                 <ion-icon name="time"></ion-icon>
-                {{item.created_at}}
+                {{item.created_at | date:'medium'}}
               </ion-col>
               <ion-col col-1 (click)="presentActionSheetMore(item)">
               <ion-icon name="more"></ion-icon>
@@ -142,7 +142,7 @@
               </ion-col>
               <ion-col col-9 text-center>
                 <ion-icon name="time"></ion-icon>
-                {{item.created_at}}
+                {{item.created_at | date:'medium'}}
               </ion-col>
               <ion-col col-1 (click)="presentActionSheetMore(item)">
               <ion-icon name="more"></ion-icon>

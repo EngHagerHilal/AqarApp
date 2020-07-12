@@ -8,6 +8,13 @@
 
   <ion-content>
     <img src="./../../assets/imgs/logoCompany.png" alt="Logo"> 
+    <div *ngIf="this.authser.userData || !this.authser.isInternetCon">
+      <p text-center>
+        <b *ngIf="this.authser.userData">{{this.authser.userData?.name | titlecase}}</b><br>
+        <small *ngIf="!this.authser.isInternetCon" style="color: red;">
+          {{'MENU.noConnection' | translate | titlecase}}</small>
+    </p>
+  </div>
     <ion-note padding>{{ 'MENU.note' | translate}}</ion-note>
     <ion-list>
       <div *ngFor="let p of pages; i as index" >
@@ -21,7 +28,6 @@
         {{'MENU.SignOutPage' | translate}}
       </button>
     </ion-list>
-<hr>
     <ion-item>
       <ion-label>{{ 'MENU.labLanguage' | translate}}</ion-label>
       <ion-select menuClose [(ngModel)]="selected" name="selected" interface="popover" (ionChange)="changelang()">
@@ -30,7 +36,17 @@
       </ion-select>
     </ion-item>
   </ion-content>
-
+<br>
+<ion-footer>
+<div text-center>
+  <ion-note>
+    <small>
+      Powered By Leen.com.eg<br>
+      <b>CopyRight</b> 2020 AlRowadco.com.sa<b>@</b>
+    </small>
+    </ion-note>
+  </div>
+  </ion-footer>
 </ion-menu>
 
 <!-- side menu for english direction ltr -->
@@ -43,6 +59,13 @@
 
   <ion-content>
     <img src="./../../assets/imgs/logoCompany.png" alt="Logo"> 
+    <div *ngIf="this.authser.userData || !this.authser.isInternetCon">
+      <p text-center>
+        <b *ngIf="this.authser.userData">{{this.authser.userData?.name | titlecase}}</b><br>
+        <small *ngIf="!this.authser.isInternetCon" style="color: red;">
+          {{'MENU.noConnection' | translate | titlecase}}</small>
+    </p>
+  </div>
     <ion-note padding>{{ 'MENU.note' | translate}}</ion-note>
     <ion-list>
       <div *ngFor="let p of pages; i as index" >
@@ -65,8 +88,19 @@
       </ion-select>
     </ion-item>
   </ion-content>
-
+<br>
+  <ion-footer>
+    <div text-center>
+      <ion-note>
+        <small>
+          Powered By Leen.com.eg<br>
+          <b>@CopyRight</b> 2020 AlRowadco.com.sa
+        </small>
+    </ion-note>
+  </div>
+  </ion-footer>
 </ion-menu>
+
 
 <!-- [side]="this.platform.isRTL ? 'right' : 'left'" this way to br one menu but not woking well-->
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus color="primary" -->

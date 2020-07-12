@@ -33,7 +33,7 @@ export class AddpostPage {
   }
   add(){
     this.isClickAdd = true
-    this.newad.allImages = this.myFiles;
+    this.newad.allImages = this.myImages;
     console.log('new post: ',this.newad)
     this.uiser.presentToast(this.translate.instant('MESSAGETOAST.pleasewait'))
     this.postser.addPost(this.newad).subscribe((data:any)=>{
@@ -50,13 +50,13 @@ export class AddpostPage {
   }
   myImages:any[]=[]
   selectphotos(){
+    this.myImages = [];
     let options : ImagePickerOptions ={
       maximumImagesCount : 5,
-      width: 300,
-      height: 100,
+      width: 800,
+      height: 500,
       quality: 100
     }
-    this.myImages = [];
     this.images.getPictures(options).then((results)=>{
       //alert(JSON.stringify(results))
       this.myFiles = results

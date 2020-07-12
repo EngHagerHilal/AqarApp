@@ -1,3 +1,6 @@
+import { UiControllerFunService } from './uiControllerFun.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Network } from '@ionic-native/network';
 import { User } from './../interfaces/user';
 import { APIURL } from './ApisConst.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,8 +11,9 @@ import { Observable } from 'rxjs';
 
 export class AuthService {
   userData:User;
+  isInternetCon:boolean=false
   isLogIn:Observable<boolean> | boolean;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, public network:Network,public translate:TranslateService, public uiser:UiControllerFunService) { }
 
   Signin(username:string,password:string): Observable<any>{
     let params ={
@@ -40,4 +44,17 @@ export class AuthService {
     }
   }
 
+  checkInternetConnection(){
+    this.network.onDisconnect().subscribe(()=> {
+      this.isInternetCon = false;
+      this.uiser.presentToast(this.translate.instant('MESSAGETOAST.offline_mode'))
+      //alert('No Internet Connection')
+    });
+    this.network.onConnect().subscribe(() => {
+      //setTimeout(() => {
+          this.isInternetCon = true;
+      //}, 3000);
+      //alert('the connection available: '+this.network.type)
+    });
+  }
 }

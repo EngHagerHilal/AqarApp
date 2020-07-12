@@ -10,7 +10,8 @@
         "ContactUsPage": "Contact Us",
         "AboutUsPage": "About Us",
         "SignOutPage": "Sign Out",
-        "labLanguage" : "LANGUAGE"
+        "labLanguage" : "LANGUAGE",
+        "noConnection" : "No Internet Connection"
     },
 
     "HOME":{
@@ -30,7 +31,10 @@
         "butCancel_actionSheet" : "Cancel",
 
         "title_alert" : "Verify Your Email Required!!",
-        "subtitle_alert" : "Adding an Advertisement Requires First Verify Your Email. Go to The 'My Profile' To Resend The Verification Email 'If You Need To Resend It'.",
+        "subtitle_alert" : "Adding an Advertisement Requires Verify Your Email. Go to The 'My Profile' To Resend The Verification Email 'If You Need To Resend It'.",
+
+        "title_alert2" : "Sorry,This Feature Not Allowed For You!!",
+        "subtitle_alert2" : "Adding an Advertisement Requires First Login. If You Have Not an Account, Please Hurry To Go To Join To Us From 'Sign Up' Page For Free.",
         "butt_alert_ok" : "ok"
     },
 
@@ -175,7 +179,8 @@
         "register_seccuss": "Your account created successfully! Welcome!!",
         "notVerifyEmail": "Please, verify your email address!!",
         "errorRequest" : "Oops, Mistake thing happened,Try again later!",
-        "pleasewait" : "Please Wait, adding advertisement will take some time!!"
+        "pleasewait" : "Please Wait, adding advertisement will take some time!!",
+        "offline_mode" : "Check Our Internet Connection, You Are Now Offline!!"
     },
 
     "CONTACTUS":{

@@ -101,15 +101,32 @@ export class TabsalePage {
     }
   }
 
+  getallItems(event){
+    let key = event.target.value
+    if(!key){
+      this.isSearchLoading = true
+      console.log(key)
+      console.log("keynot: ",key)
+      this.posts = this.sellingposts.slice(0,SIZEOFRELOADING)
+      console.log('posts = all this.sellingposts slice: ', this.sellingposts.slice(0,SIZEOFRELOADING))
+      this.isSearchLoading = false
+    }
+  }
+
   openaddpost(){
     if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
-    }else{
+    }else if(this.authser.userData){
       console.log('you not verify your email')
       this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert'),
       this.translate.instant('TABs.subtitle_alert'),
       this.translate.instant('TABs.butt_alert_ok')
       )
+    }else{
+      console.log('ro7 yad e3ml login')
+      this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert2'),
+      this.translate.instant('TABs.subtitle_alert2'),
+      this.translate.instant('TABs.butt_alert_ok'))
     }
   }
 
@@ -132,6 +149,7 @@ export class TabsalePage {
               console.log('delete response data: ',result)
               if(result.success){
                 this.sellingposts.splice(this.sellingposts.indexOf(item),1)
+                this.posts.splice(this.posts.indexOf(item),1)
                 this.uiser.dissmisloading()
                 this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
                 console.log('this.allposts after deleted: ',this.sellingposts)

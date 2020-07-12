@@ -12,7 +12,7 @@
 <ion-header>
   <ion-navbar>
     <!--<ion-title>tabhome</ion-title> (ionInput)="getItems($event)" -->
-    <ion-searchbar (keyup.enter)="getItems($event)" [(ngModel)]="searchQuery"></ion-searchbar>
+    <ion-searchbar (keyup.enter)="getItems($event)" (ionInput)="getallItems($event)" [(ngModel)]="searchQuery"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
@@ -54,7 +54,7 @@
           </ion-col>
           <ion-col col-9 text-center>
             <ion-icon name="time"></ion-icon>
-            {{item.created_at}}
+            {{item.created_at | date:'medium'}}
           </ion-col>
           <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="authser.userData && item.user_id === authser.userData?.id">
           <ion-icon name="more"></ion-icon>

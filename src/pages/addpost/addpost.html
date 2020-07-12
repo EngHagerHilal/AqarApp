@@ -81,15 +81,20 @@
       </div>
       <br>
       <!-- test selected photos -->
-    <ion-slides *ngIf="myImages.length > 0" pager autoplay="1000" loop="true" speed="3000" dir="ltr">
+    <ion-slides *ngIf="myImages.length > 1" pager autoplay="1000" loop="true" speed="3000" dir="ltr">
       <ion-slide *ngFor="let img of myImages">
-        <img src="{{img}}"/>
+          <img src="{{img}}"/>
       </ion-slide>
     </ion-slides>
+
+    <ion-card *ngIf="myImages.length === 1">
+      <img src="{{myImages[0]}}"/>
+    </ion-card>
     <br>
+
       <ion-row>
         <ion-col col-10>
-          <button ion-button type="submit" block round [disabled]="f.invalid || myFiles.length == 0 || isClickAdd">
+          <button ion-button type="submit" block round [disabled]="f.invalid || myImages.length === 0 || isClickAdd">
             <ion-spinner *ngIf="isClickAdd" name="bubbles"></ion-spinner>
             {{'ADDPOST.butt_add'| translate | titlecase }}</button>
         </ion-col>

@@ -1,4 +1,3 @@
-
 import { MypostsPage } from './../pages/myposts/myposts';
 import { AuthService } from './../services/auth.service';
 import { ContactusPage } from './../pages/contactus/contactus';
@@ -29,6 +28,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen
     ,private languageService:LanguageService, public authser:AuthService,public event: Events
     ) {
+      this.authser.checkInternetConnection();
       if(localStorage.getItem('userData')){
         this.authser.isLogIn = true
         this.isLogIn = true;
@@ -123,4 +123,6 @@ export class MyApp {
     console.log('selected: ',this.selected)
     this.languageService.setLanguage(this.selected)
   }
+
+
 }

@@ -33,7 +33,8 @@ import { UiControllerFunService } from '../services/uiControllerFun.service';
 import { CallNumber } from '@ionic-native/call-number';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { ImagePicker } from '@ionic-native/image-picker';
-import { File } from '@ionic-native/file'
+import { File } from '@ionic-native/file';
+import { Network } from '@ionic-native/network'
 
 //import { Camera } from '@ionic-native/camera';
 
@@ -100,7 +101,7 @@ export function createTeanslateLoader(http: HttpClient){
     EmailComposer,
     ImagePicker,
     File,
-    //Camera,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

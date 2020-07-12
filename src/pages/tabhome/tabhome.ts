@@ -38,19 +38,15 @@ export class TabhomePage {
     this.searchQuery=''
     this.isloading = true
     console.log('ionViewWillEnter TabhomePage');
-    //alert('send get request successfully')
     this.postser.getAllPosts().subscribe((data:Post[]) => {
       this.allposts = data
       this.posts = this.allposts.slice(0,SIZEOFRELOADING)
-      //alert('data get successfully')
-      //alert(JSON.stringify(data))
       console.log('data from server: ',this.allposts)
       console.log('posts slice: ',this.posts)
       this.isloading = false
     }, err => {
       console.log('err: ',err)
       this.isloading = false
-      //alert('ERR: '+err)
     })
   }
   
@@ -103,6 +99,18 @@ export class TabhomePage {
     }
   }
 
+  getallItems(event){
+    let key = event.target.value
+    if(!key){
+      this.isSearchLoading = true
+      console.log(key)
+      console.log("keynot: ",key)
+      this.posts = this.allposts.slice(0,SIZEOFRELOADING)
+      console.log('posts = all this.allposts slice: ', this.allposts.slice(0,SIZEOFRELOADING))
+      this.isSearchLoading = false
+    }
+  }
+
   opendetails(item){
     item.allImages=[]
     this.navCtrl.push(PostdetailsPage ,{item:item});
@@ -111,13 +119,18 @@ export class TabhomePage {
   openaddpost(){
     if(this.authser.userData && this.authser.userData.email_verified_at){
       this.navCtrl.push(AddpostPage);
-    }else{
+    }else if(this.authser.userData){
       //this.navCtrl.push(AddpostPage);
       console.log('you not verify your email')
       this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert'),
       this.translate.instant('TABs.subtitle_alert'),
       this.translate.instant('TABs.butt_alert_ok')
       )
+    }else{
+      console.log('ro7 yad e3ml login')
+      this.uiser.showBasicAlertWithTranslate(this.translate.instant('TABs.title_alert2'),
+      this.translate.instant('TABs.subtitle_alert2'),
+      this.translate.instant('TABs.butt_alert_ok'))
     }
   }
 
@@ -135,6 +148,7 @@ export class TabhomePage {
               console.log('delete response data: ',result)
               if(result.success){
                 this.allposts.splice(this.allposts.indexOf(item),1)
+                this.posts.splice(this.posts.indexOf(item),1)
                 this.uiser.dissmisloading()
                 this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
                 console.log('this.allposts after deleted: ',this.allposts)
