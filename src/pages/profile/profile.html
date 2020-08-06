@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <!-- My Profile -->
-  <div class="divform divformmargin" *ngIf="!isEdit">
+  <div class="divform divformmargin" *ngIf="!isEdit" [style.opacity]="isLoading? '0.5' : ''">
 
     <h2 text-center><u>{{userData.name | titlecase}}</u></h2>
     <br>

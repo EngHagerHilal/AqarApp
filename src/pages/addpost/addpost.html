@@ -14,10 +14,13 @@
   <div class="divform divformmargin">
     <h2 text-center><u>{{'ADDPOST.subtitle' | translate | titlecase}}</u></h2>
     <br>
+
     <form #f="ngForm" (ngSubmit)="add()">
+
+      <!-- content of form labels -->
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab1_title'| translate | titlecase }}</ion-label>
-        <ion-input type="text" [(ngModel)]="newad.post_name" name="Title" #Title="ngModel" required maxlength="20"></ion-input>
+        <ion-input type="text" [(ngModel)]="newad.title" name="Title" #Title="ngModel" required maxlength="20"></ion-input>
       </ion-item>
       <div text-center>
         <ion-note *ngIf="Title.touched && Title.errors?.required">{{'ADDPOST.lab1_title_requered'| translate | titlecase }}</ion-note>
@@ -34,11 +37,22 @@
     </div>
       <br>
       <ion-item class="divform itembackground">
-        <ion-label floating>{{'ADDPOST.lab3_city'| translate | titlecase }}</ion-label>
+        <ion-label floating>{{'ADDPOST.lab6_address'| translate | titlecase }}</ion-label>
         <ion-input type="text" [(ngModel)]="newad.address" name="Address" #Address="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Address.touched && Address.errors?.required">{{'ADDPOST.lab3_city_requered'| translate | titlecase }}</ion-note></div>
+      <ion-note *ngIf="Address.touched && Address.errors?.required">{{'ADDPOST.lab6_address_requered'| translate | titlecase }}</ion-note></div>
+      <br>
+      <ion-item class="divform itembackground">
+        <ion-label floating>{{'ADDPOST.lab3_city'| translate | titlecase }}</ion-label>
+        <ion-select interface="popover" [(ngModel)]="newad.city_id" name="selectedCity" #selectedCity="ngModel" required>
+          <ion-option value="{{cityoption.id}}" *ngFor="let cityoption of select_options;">
+            {{cityoption.name |translate |titlecase}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <div text-center>
+      <ion-note *ngIf="selectedCity.touched && selectedCity.errors?.required">{{'ADDPOST.lab3_city_requered'| translate | titlecase }}</ion-note>
+      </div>
       <br>
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab4_price'| translate | titlecase }}</ion-label>
@@ -71,7 +85,7 @@
     <br>
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab5_type'| translate | titlecase }}</ion-label>
-        <ion-select [(ngModel)]="newad.type" name="Type" #Type="ngModel" required>
+        <ion-select [(ngModel)]="newad.type" name="Type" #Type="ngModel" required interface="popover">
           <ion-option value="selling">{{'ADDPOST.select_option_salling'| translate | titlecase }}</ion-option>
           <ion-option value="rent">{{'ADDPOST.select_option_rent'| translate | titlecase }}</ion-option>
         </ion-select>
@@ -80,7 +94,8 @@
       <ion-note *ngIf="Type.touched && Type.errors?.required">{{'ADDPOST.lab5_type_requered'| translate | titlecase }}</ion-note>
       </div>
       <br>
-      <!-- test selected photos -->
+
+      <!-- selected photos -->
     <ion-slides *ngIf="myImages.length > 1" pager autoplay="1000" loop="true" speed="3000" dir="ltr">
       <ion-slide *ngFor="let img of myImages">
           <img src="{{img}}"/>
@@ -92,6 +107,7 @@
     </ion-card>
     <br>
 
+    <!-- choose imgs/ add buttons -->
       <ion-row>
         <ion-col col-10>
           <button ion-button type="submit" block round [disabled]="f.invalid || myImages.length === 0 || isClickAdd">

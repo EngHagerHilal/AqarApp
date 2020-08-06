@@ -31,14 +31,11 @@ export class RegisterPage {
   
   Register(){
     this.uiser.presentLoading()
-    console.log('registerData: ',this.logData)
     this.authser.SignUp(this.logData).subscribe(data => {
       let response:any = data
-      console.log('message: ',response.message)
-      console.log(response)
       // go to log in after register
-      if(response.api_token){
-        this.authser.Signin(response.email , this.logData.Password).subscribe(data2 => {
+      if(response.userData.api_token){
+        this.authser.Signin(response.userData.email , this.logData.Password).subscribe(data2 => {
           if(data2.userData){
             data2.userData.password = this.logData.Password;
             this.authser.userData = data2.userData;
@@ -54,12 +51,10 @@ export class RegisterPage {
             this.uiser.dissmisloading()
             this.uiser.presentToast(data2.message)
           }
-          console.log('data response login: ',data2)
         })
       }else{
         this.uiser.dissmisloading()
       }
-      // response.message
       this.uiser.presentToast(this.translate.instant('MESSAGETOAST.register_seccuss'))
     })
   }

@@ -30,7 +30,6 @@ export class AuthService {
       "password" : userdata.Password,
       "phone" : userdata.Phone
     }
-    console.log('my params: ',params)
     return this.http.post(APIURL+'register',params)
   }
 
@@ -48,13 +47,9 @@ export class AuthService {
     this.network.onDisconnect().subscribe(()=> {
       this.isInternetCon = false;
       this.uiser.presentToast(this.translate.instant('MESSAGETOAST.offline_mode'))
-      //alert('No Internet Connection')
     });
     this.network.onConnect().subscribe(() => {
-      //setTimeout(() => {
           this.isInternetCon = true;
-      //}, 3000);
-      //alert('the connection available: '+this.network.type)
     });
   }
 }

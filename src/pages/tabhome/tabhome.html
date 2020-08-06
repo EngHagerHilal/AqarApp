@@ -6,35 +6,67 @@
 -->
 <ion-header>
   <ion-navbar>
-    <!--<ion-title>tabhome</ion-title> (ionInput)="getItems($event)" -->
-    <ion-searchbar (keyup.enter)="getItems($event)" (ionInput)="getallItems($event)" [(ngModel)]="searchQuery"></ion-searchbar>
+    <ion-item>
+      <ion-label>{{'TABs.label_select' |translate |titlecase}}</ion-label>
+      <ion-select placeholder="{{'TABs.placeholder_select' |translate |titlecase}}" dir="ltr" interface="popover"
+        [(ngModel)]="selectedCity" name="selectedCity">
+        <ion-option value="{{cityoption.id}}" *ngFor="let cityoption of select_options;" (ionSelect)="search()">
+          {{cityoption.name |translate |titlecase}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-searchbar (keyup.enter)="search($event)" (ionInput)="searchFromTxt($event)" [(ngModel)]="searchQuery"
+      placeholder="{{'TABs.placeholder_searchbar' |translate |titlecase}}"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 <ion-content>
 
+  <!-- 
+    refresher content 
+  -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-    pullingIcon="chevron-down-circle-outline"
-    refreshingSpinner="circles"
-    pullingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
+      pullingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
     </ion-refresher-content>
   </ion-refresher>
 
-  <div *ngIf="allposts.length == 0 && !isloading">
-    <p text-center><b>{{ 'TABs.nodata' | translate | titlecase}}</b>
-      <!--<br>{{this.allposts | json}} -->
+  <!-- 
+    Slides cities 
+  -->
+  <div *ngIf="searchQuery == '' && (selectedCity =='0' || selectedCity =='')">
+    <ion-list-header><b class="header_slides">{{'HOMETABSLIDES.header_slides' |translate |titlecase}}</b>
+    </ion-list-header>
+    <ion-slides pager autoplay="1000" speed="3000" dir="ltr">
+      <ion-slide *ngFor="let imgSlide of imgsSlides; let i = Index">
+        <img src="{{imgSlide?.src}}" (click)="searchFromSlide(imgSlide.id)">
+        <h3><b>{{imgSlide.name |translate |uppercase}}</b></h3>
+      </ion-slide>
+    </ion-slides>
+    <hr>
+  </div>
+
+  <!-- 
+    masseges of validation no data && result search 
+  -->
+  <div *ngIf="lengthResultSearch === null && allposts.length == 0 && !isloading">
+    <p text-center>
+      <ion-spinner name="bubbles" *ngIf="isSearchLoading"></ion-spinner>
+      <b>{{ 'TABs.nodata' | translate | titlecase}}</b>
     </p>
   </div>
-  <div *ngIf="allposts.length != 0 && posts.length == 0 && !isloading && !isSearchLoading">
+  <div *ngIf="posts.length == 0 && lengthResultSearch === 0 && !isloading && !isSearchLoading">
     <p text-center><b>{{ 'TABs.searchNoResult' | translate | titlecase}}</b></p>
   </div>
 
-  <ion-list *ngIf="allposts.length != 0 && !isloading" [style.opacity]="isSearchLoading? '0.5' : ''">
+  <!-- 
+    contant of posts 
+  -->
+  <ion-list *ngIf="(allposts.length != 0 || posts.length != 0) && !isloading"
+    [style.opacity]="isSearchLoading? '0.5' : ''">
     <ion-card *ngFor="let item of posts; let i = Index">
-      <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+      <img src="{{imgurl}}{{item.main_img}}" (click)="opendetails(item)" />
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
-          <u><b>{{item.post_name | titlecase}}</b></u>
+          <u><b>{{item.title | titlecase}}</b></u>
         </ion-card-title>
         <p text-center>
           {{item.desc | titlecase}}
@@ -49,23 +81,33 @@
             <ion-icon name="time"></ion-icon>
             {{item.created_at | date:'medium'}}
           </ion-col>
-          <ion-col col-1 (click)="presentActionSheetMore(item)" *ngIf="authser.userData && item.user_id === authser.userData?.id">
-          <ion-icon name="more"></ion-icon>
-        </ion-col>
+          <ion-col col-1 (click)="presentActionSheetMore(item)"
+            *ngIf="authser.userData && item.user_id === authser.userData?.id">
+            <ion-icon name="more"></ion-icon>
+          </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-    
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="!searchQuery">
-      <ion-infinite-scroll-content
-        loadingSpinner="circles"
+
+  <!-- 
+    push some posts 
+  -->
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"
+      *ngIf="searchQuery == '' && (selectedCity =='0' || selectedCity =='')">
+      <ion-infinite-scroll-content loadingSpinner="circles"
         loadingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
   </ion-list>
+
+  <!-- 
+    open add new post page 
+  -->
   <ion-fab bottom right edge>
-    <button ion-fab mini (click)="openaddpost()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab mini (click)="openaddpost()">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
 
 </ion-content>

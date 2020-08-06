@@ -1,32 +1,17 @@
 <!--
-  Generated template for the TabsalePage page.
+  Generated template for the TabrowadpostsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 
 <ion-header>
   <ion-navbar>
-    <ion-title>tabsale</ion-title>
+    <ion-title>tabrowadposts</ion-title>
   </ion-navbar>
 </ion-header>-->
-<ion-header>
-  <ion-navbar>
-    <ion-item>
-      <ion-label>{{'TABs.label_select' |translate |titlecase}}</ion-label>
-      <ion-select placeholder="{{'TABs.placeholder_select' |translate |titlecase}}" dir="ltr" interface="popover"
-        [(ngModel)]="selectedCity" name="selectedCity">
-        <ion-option value="{{cityoption.id}}" *ngFor="let cityoption of select_options;" (ionSelect)="search()">
-          {{cityoption.name |translate |titlecase}}</ion-option>
-      </ion-select>
-    </ion-item>
-    <!--<ion-title>tabhome</ion-title> (ionInput)="getItems($event)" -->
-    <ion-searchbar (keyup.enter)="search($event)" (ionInput)="searchFromTxt($event)" [(ngModel)]="searchQuery"
-      placeholder="{{'TABs.placeholder_searchbar' |translate |titlecase}}"></ion-searchbar>
-  </ion-navbar>
-</ion-header>
-
 
 <ion-content>
+
   <!-- 
     refresher content 
   -->
@@ -37,29 +22,25 @@
   </ion-refresher>
 
   <!-- 
-  masseges of validation no data && result search 
--->
-  <div *ngIf="lengthResultSearch === null && sellingposts.length === 0 && posts.length === 0 && !isloading">
-    <p text-center>
-      <ion-spinner name="bubbles" *ngIf="isSearchLoading"></ion-spinner>
-      <b>{{ 'TABs.nodata' | translate | titlecase}}</b>
-    </p>
+    masseges of validation no data && result search 
+  -->
+  <div *ngIf="adminPosts.length == 0 && !isloading">
+    <p text-center><b>{{ 'TABs.nodata' | translate | titlecase}}</b></p>
   </div>
 
-  <div *ngIf="posts.length == 0 && lengthResultSearch === 0 && !isloading && !isSearchLoading">
+  <div *ngIf="posts.length == 0 && !isloading">
     <p text-center><b>{{ 'TABs.searchNoResult' | translate | titlecase}}</b></p>
   </div>
 
   <!-- 
     contant of posts 
   -->
-  <ion-list *ngIf="(sellingposts.length != 0 || posts.length != 0) && !isloading"
-    [style.opacity]="isSearchLoading? '0.5' : ''">
+  <ion-list *ngIf="adminPosts.length != 0 && !isloading">
     <ion-card *ngFor="let item of posts; let i = Index">
       <img src="{{imgurl}}{{item.main_img}}" (click)="opendetails(item)" />
       <ion-card-content>
         <ion-card-title text-center (click)="opendetails(item)">
-          <b><u>{{item.title | titlecase}}</u></b>
+          <u><b>{{item.title | titlecase}}</b></u>
         </ion-card-title>
         <p text-center>
           {{item.desc | titlecase}}
@@ -85,8 +66,7 @@
   <!-- 
     push some posts 
   -->
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"
-      *ngIf="searchQuery == '' && (selectedCity =='0' || selectedCity =='')">
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
       <ion-infinite-scroll-content loadingSpinner="circles"
         loadingText="{{ 'TABs.refresher_pullingText' | translate | titlecase}}">
       </ion-infinite-scroll-content>

@@ -1,8 +1,6 @@
 page-postdetails {
-    ion-content{
-        background-image: url('./../../assets/imgs/home.jpg');
-    }
     ion-card{
+        box-shadow: 0 0px 0px 0 !important;
         img{
             height: 200px !important;
             width: 100% !important;
@@ -18,9 +16,5 @@ page-postdetails {
 
     .toolbar-background-md, .toolbar-background-ios{
         background: cadetblue;
-    }
-
-    .list-md, .list-ios{
-        //margin-top: -15px
     }
 }

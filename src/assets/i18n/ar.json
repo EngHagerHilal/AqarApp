@@ -17,11 +17,16 @@
     "HOME":{
         "title" : "الصفحـــة الرئيسيــة",
         "tabHome" : "الرئيسيــة",
+        "tabrowad" : "إعلانات شركة الرواد",
         "tabSale" : "بيــع",
         "tabRent" : "إيجــار"
     },
 
     "TABs":{
+        "label_select": "المدينــة",
+        "placeholder_select": "إختــر مدينــة",
+        "placeholder_searchbar": "بـحــث",
+
         "refresher_pullingText" : "تحديــث الإعلانــات...",
         "nodata" : "حتى الآن ، لا توجد إعلانات متاحة ، كن صاحب أول إعلان!!",
         "searchNoResult" : "لا توجد نتائج مطابقة مع كلمة البحث هذه ، حاول مرة أخرى مع كلمة أخرى مماثلة !!",
@@ -37,6 +42,17 @@
         "subtitle_alert2" : "يتطلـب إضافـة إعـلان تسجيـل الدخـول أولاً. إذا لم يكـن لديـك حسـاب ، من فضـلك إسـرع بالتسجيـل معنا من صفحـة 'إنضـم إلينـا' مجانـاً.",
         
         "butt_alert_ok" : "حسنــاً!"
+    },
+
+    "HOMETABSLIDES": {
+        "header_slides": "تواجدنـا في المملكـة العربيـة السعوديــة",
+        "macca": "مكـة المكرمـة",
+        "medina": "المدينـة المنـورة",
+        "riyadh": "الرياض",
+        "jeddah": "جــدة", 
+        "dammam": "الدمـام",
+        "qassem": "القصيــم",
+        "khobar": "الخبــر"
     },
 
     "POSTDETAILS":{
@@ -59,6 +75,9 @@
 
         "lab3_city" : "المـديـنـــة",
         "lab3_city_requered" : "المدينة لا يمكن أن تكون فارغًا",
+
+        "lab6_address" : "العنـوان",
+        "lab6_address_requered" : "العنـوان لا يمكن أن تكون فارغًا",
 
         "lab4_price" : "السـعــر المـطـلــوب * الريال السعودى",
         "lab4_price_requered" : "السـعر المطلوب لا يمكن أن يكون فارغًا",
@@ -110,6 +129,12 @@
 
         "butt_save" : "حفــظ",
         "butt_cancel" : "إلغــاء"
+    },
+
+    "USERPROFILE": {
+        "title": "صفحــة مستـخـدم",
+        "butt_rent": "إعلانـات الإيـجــار",
+        "butt_selling": "إعلانـات البيــع"
     },
 
     "MYPOSTS":{
@@ -243,5 +268,55 @@
         "title_part4_ln9" : "- ورش المبيدات وتلميع الأثاث",
 
         "title_part5" : "خامسـاً: مصنـف من الهيئـة العامـة للعقـار في"
-    }
+    },
+
+    "CITY-All" : "جميــع المـدن",
+    "CITY-macca": "مكة المكرمة" ,
+    "CITY-Medina": "المدينة المنورة",
+    "CITY-Riyadh": "الرياض",
+    "CITY-Jeddah": "جدة",
+    "CITY-Dammam": "الدمام",
+    "CITY-Qassem": "القصيم" ,
+    "CITY-Khobar": "الخبر",
+    "CITY-Buraidah": "بريدة",
+    "CITY-Al_Bahah": "الباحة",
+    "CITY-Yanbu": "ينبع",
+    "CITY-Najran": "نجران" ,
+    "CITY-Jubail": "الجبيل",
+    "CITY-Qatif": "القطيف",
+    "CITY-KhamisMushait": "خميس مشيط",
+    "CITY-Hail": "حائل",
+    "CITY-Dhahran": "ظهران" ,
+    "CITY-Jizan": "جيزان",
+    "CITY-Hafar": "حفر الباطن",
+    "CITY-Sakakah": "سكاكا",
+    "CITY-Hofuf": "الهفوف",
+    
+    "CITY-al-Qunfudhah": "القنفدة" ,
+    "CITY-Dhurma": "ضرما",
+    "CITY-Baljurashi": "بلجشري",
+    "CITY-Khafji": "الخفجي",
+    "CITY-RasTanura": "رأس تنورة",
+    "CITY-Abqaiq": "بقيق" ,
+    "CITY-Rafha": "رفحاء",
+    "CITY-AlSulayyil": "السليل",
+    "CITY-Afif": "عفيف",
+    "CITY-Al-Namas": "النماص",
+    "CITY-Diriyah": "الدرعية" ,
+    "CITY-Al-Kharj": "الخرج",
+    "CITY-Tabuk": "تبوك",
+    "CITY-Qurayyat": "القريات",
+    "CITY-Al-Ahsa": "الأحساء",
+    "CITY-Duba": "ضباء" ,
+    "CITY-Umluj": "أملج",
+    "CITY-Unaizah": "عنيزة",
+    "CITY-AlWajh": "الوجه",
+    "CITY-Al-Ula": "العلا",
+    "CITY-Dawadmi": "الدودامي",
+    "CITY-Bisha": "بيشة",
+    "CITY-Tanomah": "تنومة",
+    "CITY-KingAbdullah": "مدينة الملك عبد الله الاقتصادية",
+    "CITY-AlJawf": "الجوف" ,
+    "CITY-Farasan": "فرسان",
+    "CITY-bhahran": "بهران"
 }

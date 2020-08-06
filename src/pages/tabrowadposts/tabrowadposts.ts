@@ -1,17 +1,16 @@
+import { TranslateService } from '@ngx-translate/core';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { AuthService } from './../../services/auth.service';
-import { IMGURL, SIZEOFRELOADING, CITIES_SELECT } from './../../services/ApisConst.service';
+import { IMGURL, SIZEOFRELOADING } from './../../services/ApisConst.service';
 import { PostService } from './../../services/post.service';
 import { Post } from './../../interfaces/post';
 import { AddpostPage } from './../addpost/addpost';
 import { EditpostPage } from './../editpost/editpost';
 import { PostdetailsPage } from './../postdetails/postdetails';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
-
 /**
- * Generated class for the TabrentPage page.
+ * Generated class for the TabrowadpostsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -19,33 +18,26 @@ import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
-  selector: 'page-tabrent',
-  templateUrl: 'tabrent.html',
+  selector: 'page-tabrowadposts',
+  templateUrl: 'tabrowadposts.html',
 })
-export class TabrentPage {
-  rentposts: Post[] = []
+export class TabrowadpostsPage {
+  adminPosts: Post[] = []
   posts: Post[] = []
   imgurl: string = IMGURL;
-  select_options: any[] = CITIES_SELECT;
-  selectedCity: string = ''
-  searchQuery: string = '';
-  isSearchLoading: boolean = false;
-  lengthResultSearch:number = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController
     , public translate: TranslateService, public postser: PostService, public authser: AuthService, public uiser: UiControllerFunService) {
   }
   isloading = false
   ionViewWillEnter() {
     console.log('ionViewWillEnter TabrentPage');
-    this.searchQuery = ''
-    this.selectedCity = ''
     this.isloading = true
-    this.rentposts = this.postser.TabRentCash
-    this.posts = this.rentposts.slice(0, SIZEOFRELOADING)
+    this.adminPosts = this.postser.TabAdminCash
+    this.posts = this.adminPosts.slice(0, SIZEOFRELOADING)
     this.postser.getAllPosts().subscribe((data: any) => {
-      this.postser.TabRentCash = data.rent
-      this.rentposts = this.postser.TabRentCash
-      this.posts = this.rentposts.slice(0, SIZEOFRELOADING)
+      this.postser.TabAdminCash = data.adminPosts
+      this.adminPosts = this.postser.TabAdminCash
+      this.posts = this.adminPosts.slice(0, SIZEOFRELOADING)
       this.isloading = false
     })
   }
@@ -56,58 +48,18 @@ export class TabrentPage {
   }
 
   loadData(event) {
-    if (this.rentposts.length > this.posts.length) {
-      let l = this.rentposts.length - this.posts.length
+    if (this.adminPosts.length > this.posts.length) {
+      let l = this.adminPosts.length - this.posts.length
       if (l >= SIZEOFRELOADING) {
-        this.posts = this.rentposts.slice(0, this.posts.length + SIZEOFRELOADING)
+        this.posts = this.adminPosts.slice(0, this.posts.length + SIZEOFRELOADING)
       } else {
-        this.posts = this.rentposts.slice(0)
+        this.posts = this.adminPosts.slice(0)
       }
     } else { }
     event.complete();
   }
 
-  search() {
-    if(this.searchQuery !='' || this.selectedCity !=''){
-      //do search
-      this.isSearchLoading = true
-      if(this.searchQuery ==='' && this.selectedCity ==='0'){
-        this.lengthResultSearch = null
-        this.searchFromTxt()
-      }else{
-        this.postser.Search(this.searchQuery, this.selectedCity).subscribe((result: any) => {
-          if (result.posts) {
-            this.posts = result.posts.rent
-            this.lengthResultSearch = this.posts.length
-          }
-          this.isSearchLoading = false
-        })
-      }
-    }else{
-      //no searceh
-      this.lengthResultSearch = null
-      this.searchFromTxt()
-    }
-  }
- 
-  searchFromTxt(event?) {
-    if (this.searchQuery ==='' && (this.selectedCity ==='0' || this.selectedCity ==='')) {
-      this.isSearchLoading = true
-      this.posts = this.rentposts.slice(0, SIZEOFRELOADING)
-      this.isSearchLoading = false
-      this.lengthResultSearch = null
-    }else if (this.searchQuery ==='' && this.selectedCity !=''){
-      this.isSearchLoading = true
-      this.postser.Search(this.searchQuery, this.selectedCity).subscribe((result: any) => {
-        if (result.posts) {
-          this.posts = result.posts.rent
-        }
-        this.isSearchLoading = false
-      })
-    }
-  }
   opendetails(item) {
-    item.allImages = []
     this.navCtrl.push(PostdetailsPage, { item: item });
   }
 
@@ -137,7 +89,7 @@ export class TabrentPage {
             this.postser.deletePost(item.id.toString()).subscribe(data => {
               let result: any = data
               if (result.success) {
-                this.rentposts.splice(this.rentposts.indexOf(item), 1)
+                this.adminPosts.splice(this.adminPosts.indexOf(item), 1)
                 this.posts.splice(this.posts.indexOf(item), 1)
                 this.uiser.dissmisloading()
                 this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
@@ -163,5 +115,6 @@ export class TabrentPage {
     });
     actionSheet.present();
   }
+
 
 }

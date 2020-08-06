@@ -14,10 +14,12 @@
   <div class="divform divformmargin">
     <h2 text-center><u>{{'ADDPOST.subtitle' | translate | titlecase}}</u></h2>
     <br>
+    
     <form #f="ngForm" (ngSubmit)="updatepost()">
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab1_title'| translate | titlecase }}</ion-label>
-        <ion-input type="text" [(ngModel)]="myitem.post_name" name="Title" #Title="ngModel" required  maxlength="20"></ion-input>
+        <ion-input type="text" [(ngModel)]="myitem.title" name="Title" #Title="ngModel" required maxlength="20">
+        </ion-input>
       </ion-item>
       <div text-center>
         <ion-note *ngIf="Title.touched && Title.errors?.required">
@@ -27,70 +29,83 @@
           {{'ADDPOST.lab1_title_maxlength'| translate | titlecase }}
         </ion-note>
       </div>
-      
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab2_description'| translate | titlecase }}</ion-label>
-        <ion-textarea type="text" [(ngModel)]="myitem.desc" name="Description" #Description="ngModel" required></ion-textarea>
+        <ion-textarea type="text" [(ngModel)]="myitem.desc" name="Description" #Description="ngModel" required>
+        </ion-textarea>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Description.touched && Description.errors?.required">
-        {{'ADDPOST.lab2_description_requered'| translate | titlecase }}
-      </ion-note>
-    </div>
+        <ion-note *ngIf="Description.touched && Description.errors?.required">
+          {{'ADDPOST.lab2_description_requered'| translate | titlecase }}
+        </ion-note>
+      </div>
       <br>
+
       <ion-item class="divform itembackground">
-        <ion-label floating>{{'ADDPOST.lab3_city'| translate | titlecase }}</ion-label>
+        <ion-label floating>{{'ADDPOST.lab6_address'| translate | titlecase }}</ion-label>
         <ion-input type="text" [(ngModel)]="myitem.address" name="Address" #Address="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Address.touched && Address.errors?.required">
-        {{'ADDPOST.lab3_city_requered'| translate | titlecase }}
-      </ion-note></div>
+        <ion-note *ngIf="Address.touched && Address.errors?.required">
+          {{'ADDPOST.lab6_address_requered'| translate | titlecase }}
+        </ion-note>
+      </div>
       <br>
+
+      <ion-item class="divform itembackground">
+        <ion-label floating>{{'ADDPOST.lab3_city'| translate | titlecase }}</ion-label>
+        <ion-select interface="popover" [(ngModel)]="myitem.city_id" name="selectedCity" #selectedCity="ngModel"
+          required>
+          <ion-option value="{{cityoption.id}}" *ngFor="let cityoption of select_options;">
+            {{cityoption.name |translate |titlecase}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <div text-center>
+        <ion-note *ngIf="selectedCity.touched && selectedCity.errors?.required">
+          {{'ADDPOST.lab3_city_requered'| translate | titlecase }}</ion-note>
+      </div>
+      <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab4_price'| translate | titlecase }}</ion-label>
         <ion-input type="number" [(ngModel)]="myitem.price" name="Price" #Price="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Price.touched && Price.errors?.required">
-        {{'ADDPOST.lab4_price_requered'| translate | titlecase }}
-      </ion-note></div>
+        <ion-note *ngIf="Price.touched && Price.errors?.required">
+          {{'ADDPOST.lab4_price_requered'| translate | titlecase }}
+        </ion-note>
+      </div>
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab6_email'| translate | titlecase }}</ion-label>
-        <ion-input type="text" [(ngModel)]="myitem.email" name="Email" #Email="ngModel" required 
-        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"></ion-input>
+        <ion-input type="text" [(ngModel)]="myitem.email" name="Email" #Email="ngModel" required
+          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Email.touched && Email.errors?.required">{{ 'REGISTER.lab2_email_required' | translate | titlecase}}</ion-note>
-      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
-        {{ 'REGISTER.lab2_email_pattern' | translate | titlecase}}</ion-note>
-    </div>
+        <ion-note *ngIf="Email.touched && Email.errors?.required">
+          {{ 'REGISTER.lab2_email_required' | translate | titlecase}}</ion-note>
+        <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
+          {{ 'REGISTER.lab2_email_pattern' | translate | titlecase}}</ion-note>
+      </div>
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{'ADDPOST.lab7_phone'| translate | titlecase }}</ion-label>
-        <ion-input type="number" [(ngModel)]="myitem.phone" name="Phone" #Phone="ngModel" required maxlength="12"></ion-input>
+        <ion-input type="number" [(ngModel)]="myitem.phone" name="Phone" #Phone="ngModel" required maxlength="12">
+        </ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Phone.touched && Phone.errors?.required">{{ 'REGISTER.lab3_phone_required' | translate | titlecase}}</ion-note>
-      <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">
-        {{ 'REGISTER.lab3_phone_maxlength' | translate | titlecase}}
-      </ion-note>
-    </div>
-    <!--
+        <ion-note *ngIf="Phone.touched && Phone.errors?.required">
+          {{ 'REGISTER.lab3_phone_required' | translate | titlecase}}</ion-note>
+        <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">
+          {{ 'REGISTER.lab3_phone_maxlength' | translate | titlecase}}
+        </ion-note>
+      </div>
       <br>
-      <ion-item class="divform itembackground">
-        <ion-label>{{'ADDPOST.lab5_type'| translate | titlecase }}</ion-label>
-        <ion-select [(ngModel)]="myitem.type" name="Type" #Type="ngModel">
-        <ion-option value="selling">{{'ADDPOST.select_option_salling'| translate | titlecase }}</ion-option>
-        <ion-option value="rent">{{'ADDPOST.select_option_rent'| translate | titlecase }}</ion-option>
-      </ion-select>
-      </ion-item>
-      <div text-center>
-        <ion-note *ngIf="Type.touched && Type.errors?.required">{{'ADDPOST.lab5_type_requered'| translate | titlecase }}</ion-note>
-        </div>-->
-      <br>
+
       <div text-center>
         <ion-col col-10>
           <button ion-button type="submit" block round [disabled]="f.invalid || isClicksave">

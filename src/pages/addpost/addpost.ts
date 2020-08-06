@@ -1,3 +1,4 @@
+import { CITIES_SELECT } from './../../services/ApisConst.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UiControllerFunService } from './../../services/uiControllerFun.service';
 import { PostService } from './../../services/post.service';
@@ -22,22 +23,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddpostPage {
   newad:Post={};
-  isClickAdd:boolean = false
-  myFiles:any[]=[]
+  isClickAdd:boolean = false;
+  myFiles:any[]=[];
+  select_options: any[] = CITIES_SELECT;
+  myImages:any[]=[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public images:ImagePicker, public file:File
     , public postser:PostService, public uiser:UiControllerFunService, public translate:TranslateService) {
   }
-
+  ngOnInit(){
+    this.select_options.splice(0,1)
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddpostPage');
   }
   add(){
     this.isClickAdd = true
-    this.newad.allImages = this.myImages;
-    console.log('new post: ',this.newad)
+    this.newad.galleries = this.myImages;
     this.uiser.presentToast(this.translate.instant('MESSAGETOAST.pleasewait'))
     this.postser.addPost(this.newad).subscribe((data:any)=>{
-      console.log('response of add request: ',data)
       if(data.success){
         this.uiser.presentToast(this.translate.instant('MESSAGETOAST.addpost_seccuss'))
         this.navCtrl.pop()
@@ -48,7 +51,7 @@ export class AddpostPage {
       }
     })
   }
-  myImages:any[]=[]
+  
   selectphotos(){
     this.myImages = [];
     let options : ImagePickerOptions ={
@@ -58,7 +61,6 @@ export class AddpostPage {
       quality: 100
     }
     this.images.getPictures(options).then((results)=>{
-      //alert(JSON.stringify(results))
       this.myFiles = results
       for (let index = 0; index < results.length; index++) {
         const element = results[index];
@@ -66,28 +68,11 @@ export class AddpostPage {
         let path = element.substring(0,element.lastIndexOf('/')+1);
         this.file.readAsDataURL(path,filename).then((base64string)=>{
           this.myImages.push(base64string);
-          //alert(JSON.stringify(this.myImages))
         })
       }
     }).catch(err=>{
       console.log('ERR on select photos..',err)
-      //alert(err)
     })
-    /*
-    let options = {
-      quality: 100,
-      destinationType: thiresultss.cam.DestinationType.FILE_URI,
-      mediaType: this.cam.MediaType.PICTURE,
-      sourceType: this.cam.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum: false,
-      maxImagesCount: 10
-    }
-    console.log('my options: ',options)
-    this.cam.getPicture(options).then(data => {
-      alert(JSON.stringify(data))
-    }).catch(err =>{
-      alert('ERR..'+err)
-    })*/
   }
 
 

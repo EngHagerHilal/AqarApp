@@ -23,6 +23,13 @@ page-addpost {
             height: 220px;
         }
     }
+    ion-slides{
+        height: 230px;
+        img{
+            width: 300px !important;
+            height: 170px !important;
+        }
+    }
     .toolbar-background-md, .toolbar-background-ios{
             background: cadetblue;
         }

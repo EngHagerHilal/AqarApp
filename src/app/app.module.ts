@@ -1,10 +1,10 @@
-import { UserService } from './../services/user.service';
-import { AuthService } from './../services/auth.service';
-import { PostService } from './../services/post.service';
-import { LanguageService } from './../services/language.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {TranslateModule , TranslateLoader} from '@ngx-translate/core';
+import { TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { IonicStorageModule} from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { TabsHomePage } from '../pages/home/home';
@@ -20,16 +20,17 @@ import { ProfilePage } from './../pages/profile/profile';
 import { ContactusPage } from './../pages/contactus/contactus';
 import { EditpostPage } from './../pages/editpost/editpost';
 import { MypostsPage } from './../pages/myposts/myposts';
+import { UserprofilePage } from './../pages/userprofile/userprofile';
+import { TabrowadpostsPage } from './../pages/tabrowadposts/tabrowadposts';
+
+import { UiControllerFunService } from '../services/uiControllerFun.service';
+import { UserService } from './../services/user.service';
+import { AuthService } from './../services/auth.service';
+import { PostService } from './../services/post.service';
+import { LanguageService } from './../services/language.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {TranslateModule , TranslateLoader} from '@ngx-translate/core';
-import { TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { IonicStorageModule} from '@ionic/storage';
-import { UiControllerFunService } from '../services/uiControllerFun.service';
-
 import { CallNumber } from '@ionic-native/call-number';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { ImagePicker } from '@ionic-native/image-picker';
@@ -57,7 +58,9 @@ export function createTeanslateLoader(http: HttpClient){
     ProfilePage,
     ContactusPage,
     EditpostPage,
-    MypostsPage
+    MypostsPage,
+    TabrowadpostsPage,
+    UserprofilePage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,9 @@ export function createTeanslateLoader(http: HttpClient){
     ProfilePage,
     ContactusPage,
     EditpostPage,
-    MypostsPage
+    MypostsPage,
+    TabrowadpostsPage,
+    UserprofilePage
   ],
   providers: [
     StatusBar,

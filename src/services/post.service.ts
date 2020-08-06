@@ -7,9 +7,15 @@ import { Injectable } from '@angular/core'
 @Injectable()
 
 export class PostService {
-
+  TabHomeCash:Post[]=[];
+  TabSellingCash:Post[]=[];
+  TabRentCash:Post[]=[];
+  TabAdminCash:Post[]=[];
+  MyPostsCash:Post[]=[];
   constructor(private http:HttpClient, public authser:AuthService) { }
-  
+  //test(){
+  //  return this.http.get('https://safaregy.com/api/home/')
+  //}
   getAllPosts(){
     return this.http.post(APIURL+'index',{})
   }
@@ -31,16 +37,18 @@ export class PostService {
   addPost(item:Post){
     let param = {
       "api_token": this.authser.userData.api_token,
-      "post_name" : item.post_name,
+
+      "post_name" : item.title,
       "post_desc" : item.desc,
       "post_address" : item.address,
       "type" : item.type,
       "mobile" : item.phone,
       "email" : item.email,
       "price" : item.price,
-      "img" : item.allImages
+      "img" : item.galleries,
+      "city_id": item.city_id
+
     }
-    console.log('param to add request', param)
     return this.http.post(APIURL+'insertPost',param)
   }
 
@@ -48,16 +56,16 @@ export class PostService {
     let param = {
       "api_token": this.authser.userData.api_token,
       "post_id": item.id,
-      "post_name" : item.post_name,
+      "post_name" : item.title,
       "post_desc" : item.desc,
       "post_address" : item.address,
       "type" : item.type,
-      "mobile" : item.phone,
+      "phone" : item.phone,
       "email" : item.email,
       "price" : item.price,
-      "status" : item.status
+      "status" : item.status,
+      "city_id": item.city_id
     }
-    console.log('param', param)
     return this.http.post(APIURL+'updatePost',param)
   }
 
@@ -66,24 +74,26 @@ export class PostService {
       "api_token": this.authser.userData.api_token,
       "post_id": id
     }
-    console.log('param', param)
     return this.http.post(APIURL+'deletePost',param)
   }
 
-  Search(text:string , type?:string){
+  Search(text:string , city?:string){
     let param = {}
-    if(type){
+    if(text !='' && city != ''){
        param = {
         "searchFor": text,
-        "filterType": type
+        "city_id": city
       }
-    }else{
+    }else if(text !=''){
       param = {
         "searchFor": text
       }
+    }else if (city != ''){
+      param = {
+        "city_id": city
+      }
     }
-    console.log('param', param)
-    return this.http.post(APIURL+'search',param)
+    return this.http.get(APIURL+'search',{params : param})
   }
 
 }

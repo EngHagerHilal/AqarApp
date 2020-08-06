@@ -1,10 +1,10 @@
 export interface Post {
     id?: number,
-    post_name?: string,
+    title?: string,
     desc?: string,
     created_at?: Date | string,
     updated_at?: Date | string,
-    allImages?: any[],
+    galleries?: any[],
     price?: number,
     address?: string,
     phone?: string,
@@ -14,5 +14,8 @@ export interface Post {
     status?:string,
     type?:string,
     imgCount?:number,
-    mainImage?:string
+    main_img?:string,
+    city_id?: number,
+    cityNameAR?:string,
+    cityNameEN?:string
 }

@@ -24,50 +24,59 @@ export class ProfilePage {
   NewPasswordText:string='';
   ConfirmeNewPasswordText:string='';
   CurrentPasswordText:string='';
+  isLoading:boolean = false;
+  isClickEdit = false
+  isClickResend = false
   constructor(public navCtrl: NavController, public navParams: NavParams, public authser: AuthService, public userser:UserService
     , public uiser:UiControllerFunService, public translate:TranslateService) {
-    this.userData.name = this.authser.userData.name
-    this.userData.password = this.authser.userData.password
-    this.userData.phone = this.authser.userData.phone
-    this.userData.email = this.authser.userData.email
-    console.log('this.userData: ',this.userData);
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
+  ngOnInit(){
+    this.userData.name = this.authser.userData.name
+    this.userData.password = this.authser.userData.password
+    this.userData.phone = this.authser.userData.phone
+    this.userData.email = this.authser.userData.email
+    this.isLoading = true
+    this.userser.getUserById(this.authser.userData.id).subscribe( (result:any) =>{
+      this.authser.userData = result.user
+      this.authser.userData.password = this.userData.password
+      localStorage.setItem('userData',JSON.stringify(this.authser.userData))
+      this.isLoading = false
+    })
+  }
   toggelIsEdit(){
+    this.userData.name = this.authser.userData.name
+    this.userData.password = this.authser.userData.password
+    this.userData.phone = this.authser.userData.phone
+    this.userData.email = this.authser.userData.email
     this.isEdit = !this.isEdit;
   }
-  isClickEdit = false
+  
   Editprofile(){
     this.isClickEdit = true
     this.userData.password = this.NewPasswordText
-    console.log('obj to updating user: ',this.userData)
-    this.userser.updateProfile(this.userData).subscribe( data =>{
+    this.userser.updateProfile(this.userData,this.authser.userData.email).subscribe( data =>{
       let result:any = data
       if(result.success){
-        this.authser.userData.name = this.userData.name
+        this.authser.userData = result.user
         this.authser.userData.password = this.userData.password
-        this.authser.userData.phone = this.userData.phone
-        this.authser.userData.email = this.userData.email
         localStorage.setItem('userData',JSON.stringify(this.authser.userData))
         this.NewPasswordText='';
         this.ConfirmeNewPasswordText='';
         this.CurrentPasswordText='';
-        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.editprofile_seccuss'))
         this.toggelIsEdit()
+        this.uiser.presentToast(this.translate.instant('MESSAGETOAST.editprofile_seccuss'))
       }else{
-        // result.errors
         this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
       }
-      console.log('after updating user: ',this.authser.userData)
-      console.log('storge after updating user: ',localStorage.getItem('userData'))
       this.isClickEdit = false
     })
   }
 
-  isClickResend = false
   ResendActivationEmail(){
     this.isClickResend = true
     this.userser.resendActivationLink().subscribe( data => {
@@ -75,7 +84,6 @@ export class ProfilePage {
       if(result.success){
         this.uiser.presentToast(this.translate.instant('MESSAGETOAST.ActivationEmail_seccuss'))
       }else{
-        // result.message
         this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
       }
       this.isClickResend = false

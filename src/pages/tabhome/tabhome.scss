@@ -1,21 +1,17 @@
 page-tabhome {
-    ion-content{
-        background-image: url('./../../assets/imgs/home.jpg') !important;
-    }
     .scroll-content {
-        background-image: url('./../../assets/imgs/home.jpg');
         background-repeat: repeat !important;
       }
 
-    .list-md, .list-ios{
-        margin-top: -15px
-    }
     ion-card{
+        box-shadow: 0 0px 0px 0 !important;
         img{
             height: 220px;
         }
     }
-
+    .header_slides{
+        color: black;
+    }
     ion-fab{
         margin-bottom: 35px;
         .fab-md, .fab-ios{
@@ -25,5 +21,23 @@ page-tabhome {
 
     .toolbar-background-md{
         background: cadetblue;
+    }
+
+    ion-list-header{
+        margin-bottom: -20px !important;
+        border-top: 0px !important;
+        text-align: center !important;
+        color: white !important;
+        background-color: initial !important;
+    }
+    ion-slides{
+        height: 230px;
+        img{
+            width: 300px !important;
+            height: 170px !important;
+        }
+        h3{
+            margin-top: 0px;
+        }
     }
 }

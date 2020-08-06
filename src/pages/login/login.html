@@ -15,6 +15,9 @@
 
 
 <ion-content padding>
+  <!-- 
+      login form 
+    -->
   <div class="divform divformmargin" *ngIf="!isforget">
     <h2 text-center>{{ 'LOGIN.sub_title1' | translate | titlecase}}</h2>
     <form #f="ngForm">
@@ -52,6 +55,9 @@
     </form>
   </div>
 
+  <!-- 
+      reset password form 
+    -->
   <div class="divform divformmargin" *ngIf="isforget">
     <h2 text-center>{{ 'LOGIN.sub_title2' | translate | titlecase}}</h2>
     <form #f2="ngForm">

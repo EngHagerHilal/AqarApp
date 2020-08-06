@@ -1,0 +1,86 @@
+<!--
+  Generated template for the UserprofilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title [style.opacity]="isLoading? '0.5' : ''">
+      {{'USERPROFILE.title' |translate |titlecase}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- 
+    personal information
+  -->
+  <div text-center class="userInfo" [style.opacity]="isLoading? '0.5' : ''">
+    <img src="./../../assets/imgs/user.png" class="img-circle" alt="Cinque Terre">
+    <h3><span>{{userProfile?.name |titlecase}}</span></h3>
+    <p><b><a (click)="SendEmail(userProfile.email)">{{userProfile?.email}}</a></b></p>
+  </div>
+
+  <!-- 
+    rent posts button 
+  -->
+  <button ion-button block (click)="toggelRent()" [style.opacity]="isLoading? '0.5' : ''">
+    {{'USERPROFILE.butt_rent' |translate |titlecase}} [ {{RentPosts.length}} ]</button>
+  <div *ngIf="isRent" [style.opacity]="isLoading? '0.5' : ''">
+    <ion-card *ngFor="let Rpost of RentPosts">
+      <img src="{{imgurl}}{{Rpost.main_img}}" (click)="opendetails(Rpost)" />
+      <ion-card-content>
+        <ion-card-title text-center (click)="opendetails(Rpost)">
+          <u><b>{{Rpost.title | titlecase}}</b></u>
+        </ion-card-title>
+        <p text-center>
+          {{Rpost.desc | titlecase}}
+        </p>
+        <hr>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="images"></ion-icon>
+            {{Rpost.imgCount}}
+          </ion-col>
+          <ion-col col-9 text-center>
+            <ion-icon name="time"></ion-icon>
+            {{Rpost.created_at | date:'medium'}}
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- 
+    selling posts button 
+  -->
+  <button ion-button full block (click)="toggelSelling()" [style.opacity]="isLoading? '0.5' : ''">
+    {{'USERPROFILE.butt_selling' |translate |titlecase}} [ {{SellingPosts.length}} ]</button>
+  <div *ngIf="isSelling" [style.opacity]="isLoading? '0.5' : ''">
+    <ion-card *ngFor="let Spost of SellingPosts">
+      <img src="{{imgurl}}{{Spost.main_img}}" (click)="opendetails(Spost)" />
+      <ion-card-content>
+        <ion-card-title text-center (click)="opendetails(Spost)">
+          <u><b>{{Spost.title | titlecase}}</b></u>
+        </ion-card-title>
+        <p text-center>
+          {{Spost.desc | titlecase}}
+        </p>
+        <hr>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="images"></ion-icon>
+            {{Spost.imgCount}}
+          </ion-col>
+          <ion-col col-9 text-center>
+            <ion-icon name="time"></ion-icon>
+            {{Spost.created_at | date:'medium'}}
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+</ion-content>

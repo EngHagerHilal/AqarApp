@@ -13,14 +13,14 @@
   </ion-navbar>
   <div padding>
     <ion-segment scrollable="true" [(ngModel)]="pet">
+      <ion-segment-button value="All">
+        <b>{{'MYPOSTS.butt_segment_allvisible' | translate | titlecase}}</b>
+      </ion-segment-button>
       <ion-segment-button value="sell">
         <b>{{'MYPOSTS.butt_segment_selling' | translate | titlecase}}</b>
       </ion-segment-button>
       <ion-segment-button value="rent">
         <b>{{'MYPOSTS.butt_segment_rent' | translate | titlecase}}</b>
-      </ion-segment-button>
-      <ion-segment-button value="All">
-        <b>{{'MYPOSTS.butt_segment_allvisible' | translate | titlecase}}</b>
       </ion-segment-button>
       <ion-segment-button value="DisActive">
         <b>{{'MYPOSTS.butt_segment_allunvisible' | translate | titlecase}}</b>
@@ -31,15 +31,18 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-spinner *ngIf="isLoading" name="bubbles" class="spinnerloading"></ion-spinner>
+  <ion-spinner *ngIf="isLoading && postser.MyPostsCash.length === 0" name="bubbles" class="spinnerloading"></ion-spinner>
   <div [ngSwitch]="pet">
+    <!-- 
+      rent posts 
+    -->
     <ion-list *ngSwitchCase="'rent'">
       <div *ngFor="let item of myposts; let i = Index">
         <ion-card *ngIf="item.type=='rent' && item.status == 'active'">
-          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <img src="{{imgurl}}{{item.main_img}}" (click)="opendetails(item)"/>
           <ion-card-content>
             <ion-card-title text-center (click)="opendetails(item)">
-              <u><b>{{item.post_name | titlecase}}</b></u>
+              <u><b>{{item.title | titlecase}}</b></u>
             </ion-card-title>
             <p text-center>
               {{item.desc | titlecase}}
@@ -63,13 +66,16 @@
       </div>
     </ion-list>
   
+    <!-- 
+      all active posts 
+    -->
     <ion-list *ngSwitchCase="'All'">
       <div *ngFor="let item of myposts; let i = Index">
         <ion-card *ngIf="item.status == 'active'">
-          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <img src="{{imgurl}}{{item.main_img}}" (click)="opendetails(item)"/>
           <ion-card-content>
             <ion-card-title text-center (click)="opendetails(item)">
-              <u><b>{{item.post_name | titlecase}}</b></u>
+              <u><b>{{item.title | titlecase}}</b></u>
             </ion-card-title>
             <p text-center>
               {{item.desc | titlecase}}
@@ -93,13 +99,16 @@
       </div>
     </ion-list>
 
+    <!-- 
+      selling posts 
+    -->
     <ion-list *ngSwitchCase="'sell'">
       <div *ngFor="let item of myposts; let i = Index">
         <ion-card *ngIf="item.type=='selling' && item.status == 'active'">
-          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <img src="{{imgurl}}{{item.main_img}}" (click)="opendetails(item)"/>
           <ion-card-content>
             <ion-card-title text-center (click)="opendetails(item)">
-              <u><b>{{item.post_name | titlecase}}</b></u>
+              <u><b>{{item.title | titlecase}}</b></u>
             </ion-card-title>
             <p text-center>
               {{item.desc | titlecase}}
@@ -123,13 +132,16 @@
       </div>
     </ion-list>
 
+    <!-- 
+      all DisActive posts 
+    -->
     <ion-list *ngSwitchCase="'DisActive'">
       <div *ngFor="let item of myposts; let i = Index">
         <ion-card *ngIf="item.status == 'disactive'">
-          <img src="{{imgurl}}{{item.mainImage}}" (click)="opendetails(item)"/>
+          <img src="{{imgurl}}{{item.main_img}}" (click)="opendetails(item)"/>
           <ion-card-content>
             <ion-card-title text-center (click)="opendetails(item)">
-              <u><b>{{item.post_name | titlecase}}</b></u>
+              <u><b>{{item.title | titlecase}}</b></u>
             </ion-card-title>
             <p text-center>
               {{item.desc | titlecase}}

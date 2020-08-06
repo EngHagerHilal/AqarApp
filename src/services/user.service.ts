@@ -10,17 +10,24 @@ export class UserService {
     
   constructor(private http:HttpClient, public authser:AuthService) { }
 
-  updateProfile(userdata:User){
+  getUserById(id:any){
+    let params = {
+      "user_id" : id,
+  }
+  return this.http.post(APIURL+'users/visitProfile',params)
+  }
+
+  updateProfile(userdata:User,currentEmail?:string){
     let params = {
         "api_token" : this.authser.userData.api_token,
         "username": userdata.name,
-	      "email": userdata.email,
+        "email": userdata.email,
+	      "currentEmail": currentEmail,
 	      "currentPass": this.authser.userData.password,
 	      "newPass": userdata.password,
 	      "confirmedNewPass": userdata.password,
         "phone" : userdata.phone
     }
-    console.log('my params: ',params)
     return this.http.post(APIURL+'updateProfile',params)
   }
 
@@ -28,7 +35,6 @@ export class UserService {
     let params = {
       "api_token" : this.authser.userData.api_token,
   }
-  console.log('my params: ',params)
   return this.http.post(APIURL+'resendActivationLink',params)
   }
 
@@ -36,7 +42,6 @@ export class UserService {
     let params = {
       "email" : email,
     }
-  console.log('my params: ',params)
   return this.http.post(APIURL+'password/reset',params)
   }
 }

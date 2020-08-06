@@ -1,11 +1,9 @@
 page-myposts {
-        ion-content{
-            background-image: url('./../../assets/imgs/home.jpg');
-        }
         .list-md, .list-ios{
             margin-top: -15px
         }
         ion-card{
+            box-shadow: 0 0px 0px 0 !important;
             img{
                 height: 220px;
             }
@@ -42,8 +40,5 @@ page-myposts {
                 width: auto !important;
                 height: auto !important;
             }
-        }
-        ion-segment-button{
-        color: white !important;
         }
 }

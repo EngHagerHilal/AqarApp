@@ -1,0 +1,36 @@
+page-userprofile {
+    ion-card{
+        box-shadow: 0 0px 0px 0 !important;
+        img{
+            height: 200px !important;
+            width: 100% !important;
+        }
+    }
+    .userInfo{
+        h3{
+            margin-top: 0rem !important;
+            margin-bottom: 0rem !important;
+            span{
+                background-color: aliceblue;
+                border-radius: 5px;
+                padding: 2px;
+            }
+        }
+        p{
+            margin-top: 1.5px !important;
+        }
+        a{
+            background-color: aliceblue;
+            border-radius: 5px;
+            padding: 2px;
+        }
+    }
+    button{
+        border-radius: 15px !important;
+    }
+
+    .toolbar-background-md, .toolbar-background-ios{
+        background: cadetblue;
+    }
+
+}

@@ -17,11 +17,16 @@
     "HOME":{
         "title" : "Home",
         "tabHome" : "Home",
+        "tabrowad" : "AlRowad Ads.",
         "tabSale" : "Sale",
         "tabRent" : "Rent"
     },
 
     "TABs":{
+        "label_select": "city",
+        "placeholder_select": "select city",
+        "placeholder_searchbar": "search",
+        
         "refresher_pullingText" : "Loading more data...",
         "nodata" : "until now, no Advertisements available, be the owner to a first Advertisement!!",
         "searchNoResult" : "sorry, no results matching with this search word!! try agian with anther similar word!!",
@@ -36,6 +41,17 @@
         "title_alert2" : "Sorry,This Feature Not Allowed For You!!",
         "subtitle_alert2" : "Adding an Advertisement Requires First Login. If You Have Not an Account, Please Hurry To Go To Join To Us From 'Sign Up' Page For Free.",
         "butt_alert_ok" : "ok"
+    },
+
+    "HOMETABSLIDES": {
+        "header_slides": "We are in the Kingdom of Saudi Arabia",
+        "macca": "macca",
+        "medina": "medina",
+        "riyadh": "riyadh",
+        "jeddah": "jeddah", 
+        "dammam": "dammam",
+        "qassem": "qassem",
+        "khobar": "khobar"
     },
 
     "POSTDETAILS":{
@@ -58,6 +74,9 @@
 
         "lab3_city" : "city",
         "lab3_city_requered" : "city Cannot By Empty",
+
+        "lab6_address" : "address",
+        "lab6_address_requered" : "address Cannot By Empty",
 
         "lab4_price" : "price (SAR)",
         "lab4_price_requered" : "price Cannot By Empty",
@@ -109,6 +128,12 @@
 
         "butt_save" : "save",
         "butt_cancel" : "cancel"
+    },
+
+    "USERPROFILE": {
+        "title": "user profile",
+        "butt_rent": "rent advertisement",
+        "butt_selling": "selling advertisement"
     },
 
     "MYPOSTS":{
@@ -242,5 +267,56 @@
         "title_part4_ln9" : "- Pesticide workshops and furniture polishing.",
 
         "title_part5" : "Fifth: Classified by the Real Estate Authority in"
-    }
+    },
+
+    "CITY-All" : "all cities",
+    "CITY-macca": "macca" ,
+    "CITY-Medina": "Medina",
+    "CITY-Riyadh": "Riyadh",
+    "CITY-Jeddah": "Jeddah",
+    "CITY-Dammam": "Dammam",
+    "CITY-Qassem": "Qassem" ,
+    "CITY-Khobar": "Khobar",
+    "CITY-Buraidah": "Buraidah",
+    "CITY-Al_Bahah": "Al_Bahah",
+    "CITY-Yanbu": "Yanbu",
+    "CITY-Najran": "Najran" ,
+    "CITY-Jubail": "Jubail",
+    "CITY-Qatif": "Qatif",
+    "CITY-KhamisMushait": "Khamis Mushait",
+    "CITY-Hail": "Ha'il",
+    "CITY-Dhahran": "Dhahran" ,
+    "CITY-Jizan": "Jizan",
+    "CITY-Hafar": "Hafar Al-Batin",
+    "CITY-Sakakah": "Sakakah",
+    "CITY-Hofuf": "Hofuf",
+
+    "CITY-al-Qunfudhah": "al-Qunfudhah" ,
+    "CITY-Dhurma": "Dhurma",
+    "CITY-Baljurashi": "Baljurashi",
+    "CITY-Khafji": "Khafji",
+    "CITY-RasTanura": "Ras Tanura",
+    "CITY-Abqaiq": "Abqaiq" ,
+    "CITY-Rafha": "Rafha",
+    "CITY-AlSulayyil": "Al Sulayyil",
+    "CITY-Afif": "Afif",
+    "CITY-Al-Namas": "Al-Namas",
+    "CITY-Diriyah": "Diriyah" ,
+    "CITY-Al-Kharj": "Al-Kharj",
+    "CITY-Tabuk": "Tabuk",
+    "CITY-Qurayyat": "Qurayyat",
+    "CITY-Al-Ahsa": "Al-Ahsa",
+    "CITY-Duba": "Duba" ,
+    "CITY-Umluj": "Umluj",
+    "CITY-Unaizah": "Unaizah",
+    "CITY-AlWajh": "Al Wajh",
+    "CITY-Al-Ula": "Al-ʿUla",
+    "CITY-Dawadmi": "Dawadmi",
+    "CITY-Bisha": "Bisha",
+    "CITY-Tanomah": "Tanomah",
+    "CITY-KingAbdullah": "King Abdullah Economic City",
+    "CITY-AlJawf": "Al Jawf" ,
+    "CITY-Farasan": "Farasan",
+    "CITY-bhahran": "bhahran"
+
 }

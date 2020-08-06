@@ -20,6 +20,7 @@
       <b>{{ 'REGISTER.sub_title2' | translate | titlecase}} <ion-icon name="happy"></ion-icon></b>
     </div>
     <br>
+
     <form #f="ngForm" (ngSubmit)="Register()">
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab1_username' | translate | titlecase}}</ion-label>
@@ -30,57 +31,69 @@
           {{ 'REGISTER.lab1_username_required' | translate | titlecase}}
         </ion-note>
       </div>
-      
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab2_email' | translate | titlecase}}</ion-label>
-        <ion-input type="text" [(ngModel)]="logData.Email" name="Email" #Email="ngModel" required 
-        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"></ion-input>
+        <ion-input type="text" [(ngModel)]="logData.Email" name="Email" #Email="ngModel" required
+          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Email.touched && Email.errors?.required">{{ 'REGISTER.lab2_email_required' | translate | titlecase}}</ion-note>
-      <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
-        {{ 'REGISTER.lab2_email_pattern' | translate | titlecase}}</ion-note>
-    </div>
+        <ion-note *ngIf="Email.touched && Email.errors?.required">
+          {{ 'REGISTER.lab2_email_required' | translate | titlecase}}</ion-note>
+        <ion-note *ngIf="Email.touched && Email.errors?.pattern && !Email.errors?.required">
+          {{ 'REGISTER.lab2_email_pattern' | translate | titlecase}}</ion-note>
+      </div>
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab3_phone' | translate | titlecase}}</ion-label>
-        <ion-input type="number" [(ngModel)]="logData.Phone" name="Phone" #Phone="ngModel" required maxlength="12"></ion-input>
+        <ion-input type="number" [(ngModel)]="logData.Phone" name="Phone" #Phone="ngModel" required maxlength="12">
+        </ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Phone.touched && Phone.errors?.required">{{ 'REGISTER.lab3_phone_required' | translate | titlecase}}</ion-note>
-      <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">
-        {{ 'REGISTER.lab3_phone_maxlength' | translate | titlecase}}
-      </ion-note>
-    </div>
+        <ion-note *ngIf="Phone.touched && Phone.errors?.required">
+          {{ 'REGISTER.lab3_phone_required' | translate | titlecase}}</ion-note>
+        <ion-note *ngIf="Phone.touched && Phone.errors?.maxlength && !Phone.errors?.required">
+          {{ 'REGISTER.lab3_phone_maxlength' | translate | titlecase}}
+        </ion-note>
+      </div>
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab4_Password' | translate | titlecase}}</ion-label>
-        <ion-input type="Password" [(ngModel)]="logData.Password" name="Password" #Password="ngModel" required minlength="8"></ion-input>
+        <ion-input type="Password" [(ngModel)]="logData.Password" name="Password" #Password="ngModel" required
+          minlength="8"></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="Password.touched && Password.errors?.required">
-        {{ 'REGISTER.lab4_Password_required' | translate | titlecase}}</ion-note>
+        <ion-note *ngIf="Password.touched && Password.errors?.required">
+          {{ 'REGISTER.lab4_Password_required' | translate | titlecase}}</ion-note>
         <ion-note *ngIf="Password.touched && !Password.errors?.required && Password.errors?.minlength">
           {{ 'REGISTER.lab4_Password_minlength' | translate | titlecase}}</ion-note>
       </div>
       <br>
+
       <ion-item class="divform itembackground">
         <ion-label floating>{{ 'REGISTER.lab5_ConfirmePassword' | translate | titlecase}}</ion-label>
-        <ion-input type="Password" [(ngModel)]="ConfirmePasswordText" name="ConfirmePassword" #ConfirmePassword="ngModel" required></ion-input>
+        <ion-input type="Password" [(ngModel)]="ConfirmePasswordText" name="ConfirmePassword"
+          #ConfirmePassword="ngModel" required></ion-input>
       </ion-item>
       <div text-center>
-      <ion-note *ngIf="ConfirmePassword.touched && ConfirmePassword.errors?.required">
-        {{ 'REGISTER.lab5_ConfirmePassword_required' | translate | titlecase}}
-      </ion-note>
-      <ion-note *ngIf="ConfirmePassword.touched && ConfirmePassword.value != Password.value && !ConfirmePassword.errors?.required">
-        {{ 'REGISTER.lab5_ConfirmePassword_notmatch' | translate | titlecase}}
-      </ion-note>
-      </div><br>
+        <ion-note *ngIf="ConfirmePassword.touched && ConfirmePassword.errors?.required">
+          {{ 'REGISTER.lab5_ConfirmePassword_required' | translate | titlecase}}
+        </ion-note>
+        <ion-note
+          *ngIf="ConfirmePassword.touched && ConfirmePassword.value != Password.value && !ConfirmePassword.errors?.required">
+          {{ 'REGISTER.lab5_ConfirmePassword_notmatch' | translate | titlecase}}
+        </ion-note>
+      </div>
+      <br>
+
       <button ion-button type="submit" block round [disabled]="f.invalid || ConfirmePassword.value != Password.value">
         {{ 'REGISTER.butt_signup' | translate | titlecase}}
       </button>
       <br>
+
     </form>
   </div>
 

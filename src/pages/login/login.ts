@@ -21,6 +21,8 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 })
 export class LoginPage {
   isforget:boolean = false;
+  isClickReset = false;
+  isClickLogIn = false;
   logData:{UserName:string , Password:string} = {UserName:'',Password:''}
   EmailText:string=''
   userData:User;
@@ -31,11 +33,9 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  isClickLogIn = false
+  
   Login(){
-    //this.uiser.presentLoading()
     this.isClickLogIn = true
-    console.log('logData: ',this.logData)
     this.authser.Signin(this.logData.UserName , this.logData.Password).subscribe(async data => {
       if(data.userData){
         data.userData.password = this.logData.Password;
@@ -45,19 +45,16 @@ export class LoginPage {
         if(!data.userData.email_verified_at){
           this.uiser.presentToast(this.translate.instant('MESSAGETOAST.notVerifyEmail'))
         }
-        //this.uiser.dissmisloading()
         this.isClickLogIn = false
         localStorage.setItem('userData',JSON.stringify(this.authser.userData))
         await this.event.publish('userLogIn',true)
       }else{
-        //this.uiser.dissmisloading()
         this.isClickLogIn = false
         this.uiser.presentToast(data.message)
       }
-      console.log('data response: ',data)
     })
   }
-  isClickReset = false
+  
   resetpassword(){
     this.isClickReset = true
     this.userser.resetPassword(this.EmailText).subscribe( data => {
@@ -70,8 +67,8 @@ export class LoginPage {
       }
       this.isClickReset = false
     })
-    console.log('reset EmailText: ',this.EmailText)
   }
+
   toggelforget(){
     this.isforget =!this.isforget;
     this.EmailText='';

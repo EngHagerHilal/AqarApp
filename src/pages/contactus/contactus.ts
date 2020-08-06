@@ -30,9 +30,7 @@ export class ContactusPage {
       body: this.contactDetails.massege+'<br>phone to contact: '+this.contactDetails.Phone+'<br>email to contact: '+this.contactDetails.Email,
       isHtml : true
     }
-    console.log('my param: ',email)
     this.email.open(email);
-    //console.log('contactDetails: ',this.contactDetails)
   }
 
 }

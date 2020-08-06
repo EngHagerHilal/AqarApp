@@ -37,27 +37,18 @@ export class MyApp {
         this.isLogIn = false;
       }
     this.initializeApp();
-    console.log('localStorage user: ', localStorage.getItem('userData'))
     this.authser.userData = JSON.parse(localStorage.getItem('userData'))
-    console.log('authser.userData: ', this.authser.userData)
-    // used for an example of ngFor and navigation
     this.pages = this.setPages(this.isLogIn)
     this.lastpage = this.pages[0]
-    console.log('before event loggin: ',this.isLogIn)
-    console.log('before event loggin pages: ',this.pages)
       this.event.subscribe('userLogIn',async (data)=>{
         this.isLogIn = data;
         this.pages = await this.setPages(data)
         this.lastpage = this.pages[0]
-        console.log('after event loggin: ',this.isLogIn)
-        console.log('after event loggin pages: ',this.pages)
       });
       this.event.subscribe('userLOgOut',async (data)=>{
         this.isLogIn = data;
         this.pages = await this.setPages(data)
         this.lastpage = this.pages[0]
-        console.log('after event LOgOut: ',this.isLogIn)
-        console.log('after event LOgOut pages: ',this.pages)
       });
   }
 
@@ -85,8 +76,6 @@ export class MyApp {
   }
   
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
     this.isActive(page);
   }
@@ -96,16 +85,7 @@ export class MyApp {
       this.authser.isLogIn = false
       await this.event.publish("userLOgOut",false)
       this.nav.setRoot(TabsHomePage);
-      console.log('signOut done')
-      console.log('localStorage user: ', localStorage.getItem('userData'))
-      console.log('authser.userData: ', this.authser.userData)
-      console.log('authser.isLogIn: ', this.authser.isLogIn)
-      console.log('pages: ', this.pages)
-    }else{
-      console.log('signOut no')
-      console.log('localStorage user: ', localStorage.getItem('userData'))
-      console.log('authser.userData: ', this.authser.userData)
-    }
+    }else{ }
   }
 
   isActive(page){
@@ -120,7 +100,6 @@ export class MyApp {
   }
 
   changelang(){
-    console.log('selected: ',this.selected)
     this.languageService.setLanguage(this.selected)
   }
 

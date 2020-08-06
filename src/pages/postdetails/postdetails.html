@@ -13,23 +13,34 @@
 <ion-content>
   <ion-list [style.opacity]="isLoading? '0.5' : ''">
     <ion-card>
-
-      <ion-slides *ngIf="myitem2.allImages && myitem2.allImages.length && myitem2.allImages?.length > 1" pager autoplay="1000" loop="true" speed="3000" dir="ltr">
-        <ion-slide *ngFor="let img of myitem2.allImages">
-          <img src="{{imgurl}}{{img?.img_url}}"/>
+      <!--
+        if post has more than one image
+      -->
+      <ion-slides *ngIf="myitem2.galleries && myitem2.galleries.length && myitem2.galleries?.length > 1" pager
+        autoplay="1000" loop="true" speed="3000" dir="ltr">
+        <ion-slide *ngFor="let img of myitem2.galleries">
+          <img src="{{imgurl}}{{img?.img_url}}" />
         </ion-slide>
       </ion-slides>
 
-      <img *ngIf="myitem2.allImages && myitem2.allImages.length && myitem2.allImages?.length === 1" src="{{imgurl}}{{myitem2.mainImage}}"/>
+      <!--
+        if post has only one image
+      -->
+      <img *ngIf="myitem2.galleries && myitem2.galleries.length && myitem2.galleries?.length === 1"
+        src="{{imgurl}}{{myitem2.main_img}}" />
 
+      <!--
+        post content
+      -->
       <ion-card-content>
         <ion-card-title text-center>
-          <b>{{myitem2.post_name | titlecase}}</b>
+          <b>{{myitem2.title | titlecase}}</b>
         </ion-card-title>
         <p text-center>
           {{myitem2.desc | titlecase}}
         </p>
-<hr>
+        <hr>
+
         <ion-row>
           <ion-col col-2>
             <ion-icon name="time" color="primary"></ion-icon>
@@ -50,10 +61,21 @@
 
         <ion-row>
           <ion-col col-2>
+            <ion-icon name="flag" color="primary"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            {{myitem2.cityNameEN}} - {{myitem2.cityNameAR}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-2>
             <ion-icon name="person" color="primary"></ion-icon>
           </ion-col>
           <ion-col col-10>
-            {{myitem.username | titlecase}}
+            <a (click)="userProfile()">
+              {{myitem2.username | titlecase}}
+            </a>
           </ion-col>
         </ion-row>
 
@@ -100,6 +122,6 @@
 
       </ion-card-content>
     </ion-card>
-    
+
   </ion-list>
 </ion-content>

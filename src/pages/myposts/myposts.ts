@@ -21,34 +21,34 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
   templateUrl: 'myposts.html',
 })
 export class MypostsPage {
-  imgurl:string = IMGURL;
-  pet:string = 'All'
-  myposts:Post[]=[]
+  imgurl: string = IMGURL;
+  pet: string = 'All'
+  myposts: Post[] = []
   isLoading = false
-  constructor(public navCtrl: NavController, public navParams: NavParams, public postser:PostService, public uiser:UiControllerFunService
-    ,public translate:TranslateService, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public postser: PostService, public uiser: UiControllerFunService
+    , public translate: TranslateService, public actionSheetCtrl: ActionSheetController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MypostsPage');
   }
-  ionViewWillEnter() {
-    console.log('ionViewWillEnter MypostsPage');
-    this.myposts=[]
+  ngOnInit() {
     this.isLoading = true
-    this.postser.getMyPosts().subscribe((data:any) => {
-      this.myposts = data.myposts
+    this.myposts = this.postser.MyPostsCash
+    this.postser.getMyPosts().subscribe((data: any) => {
+      this.postser.MyPostsCash = data
+      this.myposts = this.postser.MyPostsCash
       this.isLoading = false
-      console.log("my posts: ",this.myposts)
+    },err => {
+      console.log("err my posts: ", err)
     })
   }
 
-  opendetails(item){
-    item.allImages=[]
-    this.navCtrl.push(PostdetailsPage ,{item:item});
+  opendetails(item) {
+    this.navCtrl.push(PostdetailsPage, { item: item });
   }
 
-  presentActionSheetMore(item:Post) {
+  presentActionSheetMore(item: Post) {
     const actionSheet = this.actionSheetCtrl.create({
       title: this.translate.instant('TABs.title_actionSheet'),
       buttons: [
@@ -56,32 +56,25 @@ export class MypostsPage {
           text: this.translate.instant('TABs.butDelete_actionSheet'),
           handler: () => {
             this.uiser.presentLoading();
-            console.log('Delete clicked id:', item.id);
-            this.postser.deletePost(item.id.toString()).subscribe(data=>{
-              let result:any = data
-              console.log('delete response data: ',result)
-              if(result.success){
-                this.myposts.splice(this.myposts.indexOf(item),1)
+            this.postser.deletePost(item.id.toString()).subscribe(data => {
+              let result: any = data
+              if (result.success) {
+                this.myposts.splice(this.myposts.indexOf(item), 1)
                 this.uiser.dissmisloading()
                 this.uiser.presentToast(this.translate.instant('MESSAGETOAST.deletepost_seccuss'))
-                console.log('this.myposts after deleted: ',this.myposts)
-              }else{
+              } else {
                 this.uiser.dissmisloading()
                 this.uiser.presentToast(this.translate.instant('MESSAGETOAST.errorRequest'))
-                console.log('ERR: ',result.errors)
-                console.log('this.myposts after no deleted: ',this.myposts)
+                console.log('ERR: ', result.errors)
               }
             })
           }
-        },{
+        }, {
           text: this.translate.instant('TABs.butEdit_actionSheet'),
           handler: () => {
-            this.navCtrl.push(EditpostPage,{item:item
-              //,callback: this.myCallbackFunction;
-         });
-            console.log('Edit clicked');
+            this.navCtrl.push(EditpostPage, { item: item });
           }
-        },{
+        }, {
           text: this.translate.instant('TABs.butCancel_actionSheet'),
           handler: () => {
             console.log('Cancel clicked');
